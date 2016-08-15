@@ -1,9 +1,7 @@
-{
-   gROOT->ProcessLine(".L makePlot.C");
+#include "makePlot.C"
 
-//makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString units = "GeV",bool left=false,TString channel = "",TString json = "Golden",bool log = false,bool dndm=false,bool doRatio = false)
+void makeTemplatePlotsMuTau(){
 
-   //makeLTauStack("~/www/Research/muTau_m_vis","muTauPlots/muTau_m_vis.root","mt_inclusive",3,"visible mass","GeV",false,"#tau_{#mu}#tau_{h}","Golden",true,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_m_vis","muTauPlots/muTau_m_vis.root","mt_inclusive",3,"visible mass","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_npv","muTauPlots/muTau_npv.root","mt_inclusive",3,"npv","",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_OldMVAIso","muTauPlots/muTau_OldMVAIso.root","mt_inclusive",3,"Raw MVAIsolation","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
@@ -12,19 +10,15 @@
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_neutralIso","muTauPlots/muTau_neutralIso.root","mt_inclusive",3,"Raw Tau Neutral Isolation","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
 
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_1","muTauPlots/muTau_mt_1.root","mt_inclusive",3,"m_{T} (no met cuts applied)","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
-   makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_1_nocut","muTauPlots/muTau_mt_1_nocut.root","mt_inclusive",3,"m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_phi_1","muTauPlots/muTau_phi_1.root","mt_inclusive",3,"#mu #phi","",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_phi_2","muTauPlots/muTau_phi_2.root","mt_inclusive",3,"#tau #phi","",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_2","muTauPlots/muTau_mt_2.root","mt_inclusive",3,"#tau +MET m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt","muTauPlots/muTau_mt.root","mt_inclusive",3,"Total m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_ht","muTauPlots/muTau_ht.root","mt_inclusive",3,"Generator HT","GeV",false,"#tau_{#mu}#tau_{h}","Golden",true,false,true);
-   //makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_m_vis_nocut","muTauPlots/muTau_m_vis_nocut.root","mt_inclusive",3,"visible mass","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_iso_1","muTauPlots/muTau_iso_1.root","mt_inclusive",3,"Isolation #mu DR=0.3","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_met","muTauPlots/muTau_met.root","mt_inclusive",3,"ME_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_pt_1","muTauPlots/muTau_pt_1.root","mt_inclusive",3,"#mu P_{T} ","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
-   //makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_genVisPt1","muTauPlots/muTau_genVisPt1.root","mt_inclusive",3,"Gen Visible #mu P_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",true,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_pt_2","muTauPlots/muTau_pt_2.root","mt_inclusive",3,"#tau P_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
-   //makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_genVisPt2","muTauPlots/muTau_genVisPt2.root","mt_inclusive",3,"Gen Visible #tau P_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",true,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_eta_1","muTauPlots/muTau_eta_1.root","mt_inclusive",3,"#eta_{#mu}","",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_eta_2","muTauPlots/muTau_eta_2.root","mt_inclusive",3,"#eta_{#tau}","",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_m_vis","muTauPlots/muTau_m_vis.root","mt_inclusive",3,"visible mass","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
