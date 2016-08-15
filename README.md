@@ -21,3 +21,12 @@ cd sm_higgs
 root -l -b -q makeTemplatePlotsMuTau.C #check the output directory here 
 ```
 
+Combine hard to set up. Always make a clean build, as scram doesn't always see updates to src/LinkDef.h. See https://twiki.cern.ch/twiki/bin/viewauth/CMS/SWGuideHiggsAnalysisCombinedLimit for more
+```
+cd $CMSSW_BASE/src/HiggsAnalysis/CombinedLimit
+git fetch origin
+git checkout v6.2.1
+scramv1 b clean; scramv1 b 
+```
+
+
