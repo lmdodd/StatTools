@@ -9,7 +9,7 @@ cd CMSSW_7_4_7/src/
 cmsenv
 git cms-init
 git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
-#git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester #combine harvester integration is underway 
+git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester #combine harvester integration is underway 
 mkdir UWAnalysis
 git clone git@github.com:lmdodd/StatTools.git UWAnalysis/StatTools 
 ```
