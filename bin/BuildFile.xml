@@ -1,0 +1,17 @@
+<use   name="rootcore"/>
+<use   name="root"/>
+<use   name="roofit"/>
+<use   name="PhysicsTools/FWLite"/>
+<use   name="DataFormats/FWLite"/>
+<use   name="HiggsAnalysis/CombinedLimit"/>
+
+<bin   name="MakeDataCardTauMass" file="MakeDataCardTauMass.cc">
+</bin>
+<bin   name="MakeDataCardHTT" file="MakeDataCardHTT.cc">
+</bin>
+<bin   name="MakeDataCardXTT" file="MakeDataCardXTT.cc">
+</bin>
+<bin   name="MakeDataCardBtagSF" file="MakeDataCardBtagSF.cc">
+</bin>
+<bin   name="MakeDataCardBtag1d" file="MakeDataCardBtag1d.cc">
+</bin>

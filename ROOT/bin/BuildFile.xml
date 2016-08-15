@@ -1,0 +1,13 @@
+<use   name="root"/>
+<use   name="rootcore"/>
+<use   name="PhysicsTools/FWLite"/>
+<use   name="PhysicsTools/Utilities"/>
+<use   name="DataFormats/FWLite"/>
+<use   name="roofit"/>
+<use   name="roostats"/>
+<use   name="roottmva"/>
+
+<bin   name="OptimizeCuts" file="OptimizeCuts.cc">
+  <use   name="UWAnalysis/ROOT"/>
+</bin>
+
