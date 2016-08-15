@@ -1,5 +1,5 @@
 
-#include "UWAnalysis/StatTools/interface/DataCardCreatorTauMass_2016.h"
+#include "UWAnalysis/StatTools/interface/DataCardCreatorTauMass.h"
 #include "PhysicsTools/FWLite/interface/CommandLineParser.h" 
 
 
@@ -103,7 +103,7 @@ int main (int argc, char* argv[])
 
 	parser.parseArguments (argc, argv);
 	std::vector<int> bitmask = parser.integerVector("bitMask");
-	DataCardCreatorTauMass_2016 creator(parser);
+	DataCardCreatorTauMass creator(parser);
 
 	printf("HighStat has %d entries ,LowStat has %d entries\n",(int)parser.doubleVector("binningHighStat").size(),(int)parser.doubleVector("binningLowStat").size());
 

@@ -8,8 +8,8 @@
 #include "PhysicsTools/FWLite/interface/CommandLineParser.h" 
 #include <math.h>
 #include <boost/algorithm/string.hpp>
-//#include "HiggsAnalysis/CombinedLimit/interface/th1fmorph.h"
-//#include "HiggsAnalysis/CombinedLimit/interface/TH1Keys.h"
+#include "HiggsAnalysis/CombinedLimit/interface/th1fmorph.h"
+#include "HiggsAnalysis/CombinedLimit/interface/TH1Keys.h"
 #include <TEfficiency.h>
 #include <TMath.h>
 #include <iostream>
@@ -38,10 +38,10 @@ struct BkgOutput {
 
 
 
-class DataCardCreatorTauMass_2016 {
+class DataCardCreatorTauMass {
 	public:
 
-		DataCardCreatorTauMass_2016(optutl::CommandLineParser parser) {
+		DataCardCreatorTauMass(optutl::CommandLineParser parser) {
 			channel_ = parser.stringValue("channel");
 			shifts_  = parser.stringVector("shifts");
 			energy_ = parser.stringValue("energy");

@@ -38,10 +38,10 @@ struct BkgOutput {
 
 
 
-class DataCardCreatorHTT_2016_MC {
+class DataCardCreatorHTT {
 	public:
 
-		DataCardCreatorHTT_2016_MC(optutl::CommandLineParser parser) {
+		DataCardCreatorHTT(optutl::CommandLineParser parser) {
 			channel_ = parser.stringValue("channel");
 			shifts_  = parser.stringVector("shifts");
 			energy_ = parser.stringValue("energy");
