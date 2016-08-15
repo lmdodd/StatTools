@@ -36,7 +36,7 @@ void convertToDNDM(TH1F* histo) {
 
 
 
-makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString units = "GeV",bool left=false,TString channel = "",TString json = "Golden",bool log = false,bool dndm=false,bool doRatio = false)
+void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString units = "GeV",bool left=false,TString channel = "",TString json = "Golden",bool log = false,bool dndm=false,bool doRatio = false)
 {
 	setTDRStyle();
 
@@ -88,6 +88,8 @@ makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString
 	}
 	c->cd();
 
+    TPad * plotPad =0;
+    TPad * ratioPad =0;
 	if(doRatio){
 		TPad * plotPad = new TPad("pad1","",0.0,0.3,1.0,1.0);
 		plotPad->SetTicks(0,0);
@@ -139,6 +141,8 @@ makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString
 	if (dndm) convertToDNDM(EWK);
 	applyStyle(EWK,kRed-6,1,1001);
 
+
+    TH1F * ZEE =0;
 	if(f->Get(dir+"/ZLL")!=0)
 		TH1F * ZEE = (TH1F*)(f->Get(dir+"/ZLL"));	  	
 	if(f->Get(dir+"/ZL")!=0&&f->Get(dir+"/ZLL")==0)

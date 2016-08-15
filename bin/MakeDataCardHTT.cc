@@ -27,8 +27,8 @@ int main (int argc, char* argv[])
 	parser.addOption("qcdSelection",optutl::CommandLineParser::kString,"QCD Shape definition");
 	parser.addOption("relaxedselection",optutl::CommandLineParser::kString,"Relaxed Selection");
 	parser.addOption("vbfselection",optutl::CommandLineParser::kString,"vbf Selection","njets==2&&mjj>300&&jdeta>3.5&&nbtagNoSF==0");
-	parser.addOption("0jselection",optutl::CommandLineParser::kString,"0j Selection","njets==0");
-	parser.addOption("1jselection",optutl::CommandLineParser::kString,"1j Selection","njets==1&&nbtagNoSF==0");
+	parser.addOption("zerojselection",optutl::CommandLineParser::kString,"0j Selection","njets==0");
+	parser.addOption("onejselection",optutl::CommandLineParser::kString,"1j Selection","njets==1&&nbtagNoSF==0");
 	parser.addOption("bTagSF",optutl::CommandLineParser::kString,"bTagSF","1");
 	parser.addOption("bTagSF2",optutl::CommandLineParser::kString,"bTagSF","1");
     //need these
@@ -136,7 +136,7 @@ int main (int argc, char* argv[])
 
 		printf("INCLUSIVE: 0 Jets-------------------------------------\n"); 
 		std::string inclSel = parser.stringValue("preselection"); 
-		std::string catSel = parser.stringValue("0jselection"); 
+		std::string catSel = parser.stringValue("zerojselection"); 
 		std::string bTagSF = parser.stringValue("bTagSF");					 
 
 		creator.makeHiggsShape(inclSel,catSel,"_0j");
@@ -154,7 +154,7 @@ int main (int argc, char* argv[])
 		creator.setBinning(parser.doubleVector("binningLowStat"));
 		std::string inclSel = parser.stringValue("preselection"); 
 		std::string relSel = parser.stringValue("relaxedselection");//To be relaxed Btag discriminator 
-		std::string catSel = parser.stringValue("1jselection"); 
+		std::string catSel = parser.stringValue("onejselection"); 
 		std::string bTagSF = parser.stringValue("bTagSF");					 
 
 		creator.makeHiggsShape(inclSel,catSel,"_1j");
