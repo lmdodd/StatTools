@@ -632,29 +632,29 @@ class DataCardCreatorHTT {
             float leg1Corr=1.0;
             if(muID_!=0) leg1Corr*=muID_;
             if(eleID_!=0) leg1Corr*=eleID_;
-            std::pair<float,float> dataQCDShape = createHistogramAndShifts(dataFile_,"QCDShape","("+relaxedSelection+"&&"+trigSelection50ns_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
+            std::pair<float,float> dataQCDShape = createHistogramAndShifts(dataFile_,"QCD","("+relaxedSelection+"&&"+trigSelection50ns_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
             printf("      Data events in SS Signal QCDShape sideband region = %f + %f \n",dataQCDShape.first,dataQCDShape.second);
-            std::pair<float,float> ZQCDShape = createHistogramAndShifts(zttFile_,"ZQCDShape","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
+            std::pair<float,float> ZQCDShape = createHistogramAndShifts(zttFile_,"ZQCD","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
             printf("      Z events in SS Signal QCDShape sideband region = %f + %f \n",ZQCDShape.first,ZQCDShape.second);
-            std::pair<float,float> TopQCDShape = createHistogramAndShifts(topFile_,"TopQCDShape","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
+            std::pair<float,float> TopQCDShape = createHistogramAndShifts(topFile_,"TopQCD","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
             printf("      TOP events in SS Signal QCDShape sideband region = %f + %f \n",TopQCDShape.first,TopQCDShape.second);
-            std::pair<float,float> VVQCDShape       = createHistogramAndShifts(vvFile_,"VVQCDShape",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
+            std::pair<float,float> VVQCDShape       = createHistogramAndShifts(vvFile_,"VVQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
             printf("      VV events in SS Signal QCDShape sideband region = %f + %f \n",VVQCDShape.first,VVQCDShape.second);
-            std::pair<float,float> WQCDLowShape       = createHistogramAndShifts(wFile_,"WQCDShape",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
+            std::pair<float,float> WQCDLowShape       = createHistogramAndShifts(wFile_,"WQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
 
 
 
             std::cout<<"QCD Selections= "<<"("<<preSelection_<<"&&"<<trigSelection50ns_<<"&&"<<ssSignalSelection_<<"&&"<<categorySelection<<")"<<std::endl;
-            std::pair<float,float> dataQCD = createHistogramAndShifts(dataFile_,"QCD","("+preSelection+"&&"+trigSelection50ns_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
+            std::pair<float,float> dataQCD = createHistogramAndShifts(dataFile_,"QCDYield","("+preSelection+"&&"+trigSelection50ns_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
             printf("      Data events in SS Signal QCD sideband region = %f + %f \n",dataQCD.first,dataQCD.second);
-            std::pair<float,float> ZQCD = createHistogramAndShifts(zttFile_,"ZQCD","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
+            std::pair<float,float> ZQCD = createHistogramAndShifts(zttFile_,"ZQCDYield","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
             printf("      Z events in SS Signal QCD sideband region = %f + %f \n",ZQCD.first,ZQCD.second);
-            std::pair<float,float> TopQCD = createHistogramAndShifts(topFile_,"TopQCD","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
+            std::pair<float,float> TopQCD = createHistogramAndShifts(topFile_,"TopQCDYield","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
             printf("      TOP events in SS Signal QCD sideband region = %f + %f \n",TopQCD.first,TopQCD.second);
-            std::pair<float,float> VVQCD       = createHistogramAndShifts(vvFile_,"VVQCD",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
+            std::pair<float,float> VVQCD       = createHistogramAndShifts(vvFile_,"VVQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
             printf("      VV events in SS Signal QCD sideband region = %f + %f \n",VVQCD.first,VVQCD.second);
 
-            std::pair<float,float> ssWLow       = createHistogramAndShifts(wFile_,"WQCD",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
+            std::pair<float,float> ssWLow       = createHistogramAndShifts(wFile_,"WQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
             printf("      (MonteCarlo) W events in SS region = %f + %f \n",ssWLow.first,ssWLow.second);
 
             /*
@@ -662,15 +662,15 @@ class DataCardCreatorHTT {
              */
 
             //Now subtracting off bkgd shapes from data ss shape
+            subtractHistogram(filelabel_+prefix,"QCDYield","ZQCDYield");
+            subtractHistogram(filelabel_+prefix,"QCDYield","VVQCDYield");
+            subtractHistogram(filelabel_+prefix,"QCDYield","TopQCDYield");
+            subtractHistogram(filelabel_+prefix,"QCDYield","WQCDYield");
+
             subtractHistogram(filelabel_+prefix,"QCD","ZQCD");
             subtractHistogram(filelabel_+prefix,"QCD","VVQCD");
             subtractHistogram(filelabel_+prefix,"QCD","TopQCD");
             subtractHistogram(filelabel_+prefix,"QCD","WQCD");
-
-            subtractHistogram(filelabel_+prefix,"QCDShape","ZQCDShape");
-            subtractHistogram(filelabel_+prefix,"QCDShape","VVQCDShape");
-            subtractHistogram(filelabel_+prefix,"QCDShape","TopQCDShape");
-            subtractHistogram(filelabel_+prefix,"QCDShape","WQCDShape");
 
 
             std::pair<float,float> ssQCD = std::make_pair(TMath::Nint(dataQCD.first
@@ -706,7 +706,7 @@ class DataCardCreatorHTT {
                         +qcdFactorErr_*qcdFactorErr_*ssQCD.first*ssQCD.first));
 
             //Now Renormalize
-            renormalizeHistogram(filelabel_+prefix,"QCDShape",osQCD.first);
+            renormalizeHistogram(filelabel_+prefix,"QCD",osQCD.first);
 
             printf("OS QCD in  core  =%f *%f = %f +- %f \n",ssQCD.first,qcdFactor_,osQCD.first,osQCD.second);
 
