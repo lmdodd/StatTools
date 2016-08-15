@@ -125,8 +125,7 @@ makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString
 	if (dndm) convertToDNDM(data);
 	applyDATAStyle(data);
 
-	TH1F * QCD = (TH1F*)(f->Get(dir+"/QCDShape"));
-    //TH1F * QCD = (TH1F*)(f->Get(dir+"/QCD"));
+    TH1F * QCD = (TH1F*)(f->Get(dir+"/QCD"));
 	if (dndm) convertToDNDM(QCD);
 	applyStyle(QCD,kMagenta-10,1,1001);
 

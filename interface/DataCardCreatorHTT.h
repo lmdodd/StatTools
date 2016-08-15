@@ -18,620 +18,620 @@
 //#include "FineBins.h"
 
 struct BkgOutput {
-	float DATA;
-	float W, dW;
-	float QCD, dQCD;
-	float ZLFT, dZLFT;
-	float ZJFT, dZJFT;
-	float TOP, dTOP;
-	float VV, dVV;
-	float ZTT, dZTT;
+    float DATA;
+    float W, dW;
+    float QCD, dQCD;
+    float ZLFT, dZLFT;
+    float ZJFT, dZJFT;
+    float TOP, dTOP;
+    float VV, dVV;
+    float ZTT, dZTT;
 
-	BkgOutput(){};
+    BkgOutput(){};
 
-	BkgOutput(float i) {
-		// This assumes that a-d are all of the same type and all in order
-		std::fill(&DATA, &dZTT+1, i);
-	}
+    BkgOutput(float i) {
+        // This assumes that a-d are all of the same type and all in order
+        std::fill(&DATA, &dZTT+1, i);
+    }
 
 };
 
 
 
 class DataCardCreatorHTT {
-	public:
-
-		DataCardCreatorHTT(optutl::CommandLineParser parser) {
-			channel_ = parser.stringValue("channel");
-			shifts_  = parser.stringVector("shifts");
-			energy_ = parser.stringValue("energy");
-			samesign_ = parser.doubleValue("samesign");
-
-
-                        std::string name_=channel_;
-                        if (channel_=="eleTau") filelabel_="et";
-                        if (channel_=="muTau") filelabel_="mt";
-
-
-			//create the name you need to add to the histograms 
-			//in the root file 
-			for(unsigned int i=0;i<shifts_.size();++i) {
-				std::string shiftL = shifts_.at(i);
-				shiftL.resize(1);
-				boost::to_lower(shiftL);
-				std::cout<<"shiftL: "<<shiftL<<std::endl;
-				std::string chan = "mutau";
-				//Change Me
-				if(channel_=="eleTau") chan = "etau";
-				shiftsPostFix_.push_back("CMS_scale_"+shiftL+"_"+chan+"_"+energy_);
-			}
-
-			//read input files
-			zttFile_  = parser.stringValue("zttFile");
-			zllFile_  = parser.stringValue("zllFile");
-			wFile_    = parser.stringValue("wFile");
-			vvFile_   = parser.stringValue("vvFile");
-			topFile_  = parser.stringValue("topFile");
-			qcdFile_  = parser.stringValue("qcdFile");
-			dataFile_  = parser.stringValue("dataFile");
-
-			//read control and signal regions
-			preSelection_ = parser.stringValue("preselection");
-
-			signalSelection_      = parser.stringValue("signalselection");
-			wSelection_           = parser.stringValue("wselection");
-			qcdSelection_         = parser.stringValue("qcdSelection");
-			relaxedSelection_     = parser.stringValue("relaxedselection");
-			trigSelection_        = parser.stringValue("trigSelection");
-			trigSelection50ns_        = parser.stringValue("trigSelection50ns");
-			trigSelection25ns_        = parser.stringValue("trigSelection25ns");
-			blinding_             = parser.stringValue("blinding");
-			charge_               = parser.stringValue("charge");
-                        if (samesign_) charge_="abs(charge)==2";
-   
-                  
-			ZTT_genTauSel_        = "gen_match_2==5"; //Zttyield
-			ZLFT_genLSel_         = "gen_match_2<5";
-			ZJFT_genLReject_      = "gen_match_2==6";
-			ZLL_genLLSel_        = "(gen_match_2<5||gen_match_2==6)"; //Zttyield
-
-			//
-			if(samesign_>0)
-			  osSignalSelection_    = signalSelection_+"&&abs(charge)==2";
-			else
-			  osSignalSelection_    = signalSelection_+"&&charge==0";
-
-			ssSignalSelection_    = signalSelection_+"&&abs(charge)==2";
-			if(samesign_>0)
-			  osWSelection_         = wSelection_+"&&abs(charge)==2";
-			else
-			  osWSelection_         = wSelection_+"&&charge==0";
-
-			ssWSelection_         = wSelection_+"&&abs(charge)==2";
-			verbose_              = parser.integerValue("verbose");
-
-			//read systematic uncertainties 
-			luminosity_    = parser.doubleValue("luminosity");
-			luminosityErr_ = parser.doubleValue("luminosityErr");
-			muID_          = parser.doubleValue("muID");
-			muIDErr_       = parser.doubleValue("muIDErr");
-			bID_           = parser.doubleValue("bID");
-			bIDErr_        = parser.doubleValue("bIDErr");
-			bMisID_        = parser.doubleValue("bMisID");
-			bMisIDErr_     = parser.doubleValue("bMisIDErr");
-			eleID_         = parser.doubleValue("eleID");
-			eleIDErr_      = parser.doubleValue("eleIDErr");
-			tauID_         = parser.doubleValue("tauID");
-			tauIDHigh_     = parser.doubleValue("tauIDHigh");
-			tauIDErr_      = parser.doubleValue("tauIDErr");
-			zttScale_      = parser.doubleValue("zttScale");
-			zttScaleErr_   = parser.doubleValue("zttScaleErr");
-
-			//read the basic varibale you will put in the histogram
-			variable_      = parser.stringValue("variable");
-
-			//read the event weight for MC and embedded
-			weight_        = parser.stringValue("weight");
-			Zweight_        = parser.stringValue("Zweight");
-			TTweight_        = parser.stringValue("TTweight");
-			embWeight_     = parser.stringValue("embWeight");
-
-			//define the histogram binning
-			bins_ = parser.integerValue("bins");
-			min_  = parser.doubleValue("min");
-			max_  = parser.doubleValue("max");
-
-
-			//Define background uncertainty Errors
-			topErr_     = parser.doubleValue("topErr");
-			qcdErr_     = parser.doubleValue("qcdErr");
-			vvErr_      = parser.doubleValue("vvErr");
-			zlftErr_    = parser.doubleValue("zlftErr");
-			zlftFactor_ = parser.doubleValue("zlftFactor");
-
-			zjftErr_      = parser.doubleValue("zjftErr");
-			wFactorErr_   = parser.doubleValue("wFactorErr");
-			qcdFactor_    = parser.doubleValue("qcdFactor");
-			qcdFactorErr_ = parser.doubleValue("qcdFactorErr");
-			bFactorZ_     = parser.doubleValue("bFactorZ");
-			bFactorZErr_  = parser.doubleValue("bFactorZErr");
-			bFactorW_     = parser.doubleValue("bFactorW");
-			bFactorWErr_  = parser.doubleValue("bFactorWErr");
-
-			dir_ = parser.stringValue("dir");
-
-			scaleUp_ = parser.doubleValue("scaleUp");
-
-			fout_ = new TFile(parser.stringValue("outputfile").c_str(),"RECREATE");
-
-		}
-
-
-		void makeHiggsShape(std::string preselection, std::string categoryselection, std::string prefix) {
-
-			std::pair<float,float> tmp;
-			float legCorr=1.0;
-
-			if(muID_!=0&&eleID_!=0) {legCorr*=muID_*eleID_;}
-			if(muID_!=0&&eleID_==0) {legCorr*=muID_*tauID_;}
-			if(muID_==0&&eleID_!=0) {legCorr*=eleID_*tauID_;}
-                        std::cout<<"Make Higgs Shape"<<std::endl;
-			//tmp= createHistogramAndShifts(dir_+"ggH120.root","ggH120",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"ggH125.root","ggH125",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"ggH130.root","ggH130",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"vbfH120.root","qqH120",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"vbfH125.root","qqH125",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"vbfH130.root","qqH130",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-                        //std::cout<<"susyggH"<<std::endl;
-
-			//tmp= createHistogramAndShifts(dir_+"susyggH_80.root","ggH80",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_90.root","ggH90",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_100.root","ggH100",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_110.root","ggH110",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_120.root","ggH120",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_140.root","ggH140",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_160.root","ggH160",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_180.root","ggH180",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_200.root","ggH200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_250.root","ggH250",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_400.root","ggH400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_450.root","ggH450",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_500.root","ggH500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_600.root","ggH600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_700.root","ggH700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_800.root","ggH800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_900.root","ggH900",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_1000.root","ggH1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_1200.root","ggH1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_1400.root","ggH1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_1600.root","ggH1600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_1800.root","ggH1800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_2000.root","ggH2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_2300.root","ggH2300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_2600.root","ggH2600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_2900.root","ggH2900",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susyggH_3200.root","ggH3200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-
-
-/*
-                        std::cout<<"susybbH"<<std::endl;
-			tmp= createHistogramAndShifts(dir_+"susybbH_80.root","bbH80",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_90.root","bbH90",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_100.root","bbH100",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_110.root","bbH110",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_120.root","bbH120",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_140.root","bbH140",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_160.root","bbH160",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_180.root","bbH180",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_200.root","bbH200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_250.root","bbH250",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_300.root","bbH300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_350.root","bbH350",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_400.root","bbH400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_450.root","bbH450",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_500.root","bbH500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_600.root","bbH600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_700.root","bbH700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_800.root","bbH800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_900.root","bbH900",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_1000.root","bbH1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_1200.root","bbH1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			//tmp= createHistogramAndShifts(dir_+"susybbH_1400.root","bbH1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_1600.root","bbH1600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_1800.root","bbH1800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_2000.root","bbH2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_2300.root","bbH2300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_2600.root","bbH2600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_2900.root","bbH2900",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-			tmp= createHistogramAndShifts(dir_+"susybbH_3200.root","bbH3200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
-
-
-                        std::cout<<"Made Higgs Shape"<<std::endl;
-*/
-		}
-
-
-		/*-------------Create Histograms------------------*/
-
-		BkgOutput runOSLSMT(std::string preSelection,std::string prefix,std::string zShape, float topExtrap) {
-                        std::cout<<"runOSLSMT"<<std::endl;
-
-			BkgOutput output(0);    
-
-			float leg1Corr=1.0;
-			if(muID_!=0) leg1Corr*=muID_;
-			if(eleID_!=0) leg1Corr*=eleID_;
-
-			printf("Tau ID Scale Factor is %.3f \n",tauID_);
-
-                        std::cout<<"Create Data"<<std::endl;
-			std::cout<<"      Data Selection: "<<preSelection<<"&&"<<osSignalSelection_<<std::endl;
-
-
-			std::pair<float,float> dataY         = createHistogramAndShifts(dataFile_,"data_obs","("+preSelection+"&&"+trigSelection50ns_+"&&"+osSignalSelection_+"&&"+blinding_+")",scaleUp_,prefix);
-			output.DATA = dataY.first;
-
-
-                        std::cout<<"Create Top"<<std::endl;
-			//Create ttbar
-			std::pair<float,float> topYield      = createHistogramAndShifts(topFile_,"TT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_+"*"+TTweight_),luminosity_*leg1Corr*tauID_*topExtrap,prefix);
-			std::pair<float,float> topInflYield  = inflateError(topYield,topErr_);
-			printf("      TTbar events in signal region = %f + %f \n",topInflYield.first,topInflYield.second);
-			output.TOP  = topInflYield.first;
-			output.dTOP = topInflYield.second;
-
-                        std::cout<<"Create VV"<<std::endl;
-			//Create Diboson
-			std::pair<float,float> vvYield      = createHistogramAndShifts(vvFile_,"VV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*leg1Corr*tauID_,prefix);
-			printf("      Diboson events before inflation = %f + %f \n",vvYield.first,vvYield.second);
-			std::pair<float,float> vvInflYield  = inflateError(vvYield,vvErr_);
-			printf("      Diboson events in signal region = %f + %f \n",vvInflYield.first,vvInflYield.second);
-			output.VV  = vvInflYield.first;
-			output.dVV = vvInflYield.second;
-
-
-                        std::cout<<"Create ZLFT"<<std::endl;
-                        std::cout<<"      Factor ZLFT: "<<zlftFactor_<<std::endl;
-			//Create ZL and ZJ
-			std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZLFT_genLSel_+")*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
-			//std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&genTaus==0&&((abs(pdg2)==13&&genPt2>8)||(abs(pdg2)==11&&genPt2>8)))*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
-			std::pair<float,float> zlftInflYield  = inflateError(zlftYield,zlftErr_);
-			printf("      Z (l->tau) in signal region = %f + %f \n",zlftInflYield.first,zlftInflYield.second);
-			output.ZLFT  = zlftInflYield.first;
-			output.dZLFT = zlftInflYield.second;
-
-
-                        std::cout<<"Create ZJFT"<<std::endl;
-			std::pair<float,float> zjftYield      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZJFT_genLReject_+")*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
-			//std::pair<float,float> zjftYield      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&(!((genTaus==0&&abs(pdg2)==13&&genPt2>8)||(genTaus==0&&abs(pdg2)==11&&genPt2>8)||(genTaus>0&&genVisPt2>18))))*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
-			std::pair<float,float> zjftInflYield  = inflateError(zjftYield,zjftErr_);
-			printf("      Z (j->tau) in signal region = %f + %f \n",zjftInflYield.first,zjftInflYield.second);
-			output.ZJFT  = zjftInflYield.first;
-			output.dZJFT = zjftInflYield.second;
-
-			/*
-                        std::cout<<"Create ZLL"<<std::endl;
-			//Create ZL and ZJ
-			std::pair<float,float> zllYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZLL_genLLSel_+")*"+weight_),luminosity_*leg1Corr*zllFactor_*zttScale_,prefix,false);
-			//std::pair<float,float> zllYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&genTaus==0&&((abs(pdg2)==13&&genPt2>8)||(abs(pdg2)==11&&genPt2>8)))*"+weight_),luminosity_*leg1Corr*zllFactor_*zttScale_,prefix,false);
-			std::pair<float,float> zllInflYield  = inflateError(zllYield,zllErr_);
-			printf("      Z (l->tau) in signal region = %f + %f \n",zllInflYield.first,zllInflYield.second);
-			output.ZLL  = zllInflYield.first;
-			output.dZLL = zllInflYield.second;
-			*/
-
-
-                        std::cout<<"Create ZTT"<<std::endl;
-			//Create Z-->tautau
-			if(!runZTT(preSelection, prefix, zShape, topExtrap, output)){
-				std::cout<<"Error Creating Ztt"<<std::endl;
-				return output;
-			}
-
-
-			//Create W 
-			//In principle osSignalSelection should work as a dummy variable
-			std::cout<<"Create W"<<std::endl;
-			if(!runW(preSelection, prefix, zShape, topExtrap, output, "pt_1>-100", "pt_1>-100",wSelection_)){
-				std::cout<<"Error Creating W"<<std::endl;
-				return output;
-			}
-
-                        std::cout<<"Create QCD"<<std::endl;
-			//Create QCD
-			if(!runQCD(preSelection, prefix, zShape, topExtrap, output, "pt_1>-100", relaxedSelection_)){ //pt_1>-100 is the category Selection
-				std::cout<<"Error Creating QCD"<<std::endl;
-				return output;
-			}
-
-
-			std::cout<<"=============Data Yields============="<<std::endl;
-			std::cout<<"DATA: "<< output.DATA<<std::endl;
-			std::cout<<std::endl;
-			std::cout<<"BKGD Yields "<<std::endl;
-			std::cout<<"QCD: "<< output.QCD<<std::endl;
-			std::cout<<"W: "<< output.W<<std::endl;
-			std::cout<<"TOP: "<< output.TOP<<std::endl;
-			std::cout<<"VV: "<< output.VV<<std::endl;
-			std::cout<<"ZLFT: "<< output.ZLFT<<std::endl;
-			std::cout<<"ZJFT: "<< output.ZJFT<<std::endl;
-			std::cout<<"ZTT: "<< output.ZTT<<std::endl;
-
-			//TODO: Check that this outputs the correct values
-			float background    = output.QCD  + output.W  + output.TOP  + output.VV  + output.ZLFT  + output.ZJFT  + output.ZTT;
-			float backgroundErr = sqrt( pow(output.dQCD,2) + pow(output.dW,2) + pow(output.dTOP,2) + pow(output.dVV,2) + pow(output.dZLFT,2) + pow(output.dZJFT,2) + pow(output.dZTT,2));
-
-			printf("BACKGROUND=%f +-%f \n",background,backgroundErr);
-
-
-			float fullBackgroundErr = sqrt(pow(quadrature(output.VV,output.dVV,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
-					+pow(quadrature(output.TOP,output.dTOP,muIDErr_,eleIDErr_,tauIDErr_),2)
-					+pow(quadrature(output.ZJFT,output.dZJFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
-					+pow(quadrature(output.ZLFT,output.dZLFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
-					+pow(output.dQCD,2)
-					+pow(output.dW,2)
-					+pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2));
-
-			printf("Total Background & %.2f $\\pm$ %.2f & - & - & - \\\\ \n",background,sqrt(pow(quadrature(output.VV,    output.dVV,   muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
-						+pow(quadrature(output.TOP,  output.dTOP,  muIDErr_,eleIDErr_,tauIDErr_),2)
-						+pow(quadrature(output.ZJFT, output.dZJFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
-						+pow(quadrature(output.ZLFT, output.dZLFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
-						+pow(output.dQCD,2)
-						+pow(output.dW,2)
-						+pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)));
-
-
-
-			//create a histogram with the error for plotting reasons and only
-			TH1F *err = new TH1F("BKGErr","",1,0,1);
-			err->SetBinContent(1,fullBackgroundErr/background);
-			fout_->cd((filelabel_+prefix).c_str());
-			err->Write();
-
-			return output;      
-		}
-
-		/*
-		 * Run the full extrapolation in the Btag category
-		 * Needed: BtagSF, categorySelection
-		 *
-		 */
-
-		BkgOutput runFullExtrapBtag(std::string relaxedSelection, std::string wSel, std::string preSelection, std::string categorySelection_, std::string prefix, std::string zShape, float topExtrap, float zExtrap, float zExtrapErr, std::string bTagSF) {
-
-			std::cout<<"======================"<<std::endl;
-                        std::cout<<"Run Full Extrapolation"<<std::endl;
-			std::cout<<"categorySelection: "<<categorySelection_<<std::endl;
-			//TODO: Fix this category seleciton business, should be more elegant
-			std::string categorySelection = categorySelection_;
-			std::string dummySelection_   = osSignalSelection_;
-
-			weight_ = weight_+"*"+bTagSF;
-
-			BkgOutput output;    
-
-			float leg1Corr=1.0;
-			if(muID_!=0) leg1Corr*=muID_;
-			if(eleID_!=0) leg1Corr*=eleID_;
-
-			printf("Tau ID Scale Factor is %.3f \n",tauID_);
-
-			std::cout<<"Select DATA"<<std::endl;
-			std::pair<float,float> dataY         = createHistogramAndShifts(dataFile_,"data_obs","("+preSelection+"&&"+trigSelection50ns_+"&&"+osSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix);
-			output.DATA = dataY.first;
-			std::cout<<"      DATA Yield: "<< output.DATA<<std::endl;
-			std::cout<<"      DATA Selection: "<<preSelection<<"&&"<<trigSelection50ns_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl; 
-
-
-
-                        std::cout<<"Create DiBoson"<<std::endl;
-			//Create Diboson
-			std::pair<float,float> vvYield      = createHistogramAndShifts(vvFile_,"VV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr*tauID_,prefix);
-			std::cout<<"      VV before error inflation: "<<vvYield.first<<std::endl;
-			std::pair<float,float> vvInflYield  = inflateError(vvYield,vvErr_);
-			printf("      Diboson events in signal region = %f + %f \n",vvInflYield.first,vvInflYield.second);
-			std::cout<<"      VV after error inflation: "<<vvInflYield.first<<std::endl;
-			output.VV  = vvInflYield.first;
-			output.dVV = vvInflYield.second;
-
-			//Create ZL and ZJ
-
-                        std::cout<<"Create ZLFT"<<std::endl;
-			//ZL Yield
-			std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZLTmp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
-			//ZLShape
-			//std::pair<float,float> zlftShape   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+relaxedSelection+"&&"+ZLFT_genLSel_+")*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
-			std::pair<float,float> zlftShape   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
-
-			std::pair<float,float> zlftInflYield  = inflateError(zlftYield,zlftErr_);
-			printf("      Z (l->tau) in signal region = %f + %f \n",zlftInflYield.first,zlftInflYield.second);
-
-			renormalizeHistogram(filelabel_+prefix,"ZL",zlftInflYield.first);
-			output.ZLFT  = zlftInflYield.first;
-			output.dZLFT  = zlftInflYield.second;
-
-			if(shifts_.size()>0&&channel_=="eleTau"){
-				std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_etau_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==11&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"1.02",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
-				std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_etau_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==11&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"0.98",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
-			}
-			else if(shifts_.size()>0&&channel_=="muTau"){
-				std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_mutau_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==13&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"1.02",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
-				std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_mutau_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==13&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"0.98",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
-			}
-
-                        std::cout<<"Create ZJFT"<<std::endl;
-			//ZJ Yield
-			std::pair<float,float> zjftYield      = createHistogramAndShifts(zllFile_,"ZJTmp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&"+ZJFT_genLReject_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zttScale_,prefix);    
-
-			//ZJ Shape
-			//std::pair<float,float> zjftShape      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+relaxedSelection+"&&"+ZJFT_genLReject_+")*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
-			std::pair<float,float> zjftShape      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZJFT_genLReject_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zttScale_,prefix);    
-
-			std::pair<float,float> zjftInflYield  = inflateError(zjftYield,zjftErr_);
-			printf("      Z (j->tau) in signal region = %f + %f \n",zjftInflYield.first,zjftInflYield.second);
-			renormalizeHistogram(filelabel_+prefix,"ZJ",zjftInflYield.first);
-			output.ZJFT  = zjftInflYield.first;
-			output.dZJFT = zjftInflYield.second;
-
-                        std::cout<<"Create ZTT"<<std::endl;
-			//TODO: Check me, previous Btag ZTT shape correction had a special normalization method
-			if(!runZTT(preSelection, prefix, zShape, topExtrap, output, categorySelection)){
-				std::cout<<"Error Creating Ztt"<<std::endl;
-				return output;
-			}
-
-                        std::cout<<"Create TOP"<<std::endl;
-			//Create ttbar
-			//Last argument is a dummy argument
-			if(!runTOP(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection)){
-				std::cout<<"Error Creating TOP"<<std::endl;
-				return output;
-			}
-
-
-                        std::cout<<"Create W"<<std::endl;
-			//Create W
-			if(!runW(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection, wSel)){
-				std::cout<<"Error Creating W"<<std::endl;
-				return output;
-			}
-
-                        std::cout<<"Create QCD"<<std::endl;
-			//Create QCD
-			if(!runQCD(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection)){
-				std::cout<<"Error Creating QCD"<<std::endl;
-				return output;
-			}
-
-
-
-			std::cout<<std::endl;
-			std::cout<<"=============Data Yields============="<<std::endl;
-			std::cout<<"DATA: "<< output.DATA<<std::endl;
-			std::cout<<std::endl;
-	
-
-			std::cout<<std::endl;
-			std::cout<<"BKGD Yields "<<std::endl;
-			std::cout<<"QCD: "<< output.QCD<<std::endl;
-			std::cout<<"W: "<< output.W<<std::endl;
-			std::cout<<"TOP: "<< output.TOP<<std::endl;
-			std::cout<<"VV: "<< output.VV<<std::endl;
-			std::cout<<"ZLFT: "<< output.ZLFT<<std::endl;
-			std::cout<<"ZJFT: "<< output.ZJFT<<std::endl;
-			std::cout<<"ZTT: "<< output.ZTT<<std::endl;
-
-
-			float background    = output.QCD  + output.W  + output.TOP  + output.VV  + output.ZLFT  + output.ZJFT  + output.ZTT;
-			float backgroundErr = sqrt( pow(output.dQCD,2) + pow(output.dW,2) + pow(output.dTOP,2) + pow(output.dVV,2) + pow(output.dZLFT,2) + pow(output.dZJFT,2) + pow(output.dZTT,2));
-			printf("BACKGROUND=%f +-%f \n",background,backgroundErr);
-
-			///LATEX->Here since we want it for the note add all errors , even those that will go separate in the datacard
-
-			//printf("LATEX ------------------------------------\n");
-			//printf("Total & %.2f & %.2f & %.2f & %.2f \\\\ \n", dataYield.first, dataYieldSdb.first, dataSSYield.first, dataSSYieldSdb.first);
-			//printf("Di-Boson & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f & - & - \\\\ \n", vvInflYield.first, quadrature(vvInflYield.first,vvInflYield.second,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_), vvInflYieldSdb.first, quadrature(vvInflYieldSdb.first,vvInflYieldSdb.second,muIDErr_,eleIDErr_,tauIDErr_));
-			//printf("$t\\bar{t}$ & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f & - & - \\\\ \n", topInflYield.first,quadrature(topInflYield.first,topInflYield.second,muIDErr_,eleIDErr_,tauIDErr_), topInflYieldSdb.first, quadrature(topInflYieldSdb.first,topInflYield.second,muIDErr_,eleIDErr_,tauIDErr_));
-			//printf("$Z^{l+jet}$ & %.2f $\\pm$ %.2f & - & %.2f $\\pm$ %.2f & - \\\\ \n", zjftInflYield.first, quadrature(zjftInflYield.first,zjftInflYield.second,muIDErr_,eleIDErr_,zttScaleErr_), zjftInflSSYield.first,quadrature(zjftInflSSYield.first,zjftInflSSYield.second,muIDErr_,eleIDErr_,zttScaleErr_));
-			//printf("$Z^{ll}$ & %.2f $\\pm$ %.2f & - & %.2f $\\pm$ %.2f & - \\\\ \n", zlftInflYield.first, quadrature(zlftInflYield.first,zlftInflYield.second,muIDErr_,eleIDErr_,zttScaleErr_),zlftInflSSYield.first,quadrature(zlftInflSSYield.first,zlftInflSSYield.second,muIDErr_,eleIDErr_,zttScaleErr_));
-			//printf("$W+jets$ & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f  \\\\ \n", osWLow.first, osWLow.second, osWHigh.first, osWHigh.second, ssWLow.first, ssWLow.second, dataSSYieldSdb.first, dataSSYieldSdb.second);
-			//printf("QCD & %.2f $\\pm$ %.2f & - & %.2f $\\pm$ %.2f & - \\\\ \n", osQCD.first, osQCD.second, ssQCD.first, ssQCD.second);
-			//printf("$Z\\rightarrow\\tau\\tau$ & %.2f $\\pm$ %.2f & - & - & - \\\\ \n", zttYield.first,quadrature(zttYield.first,zttYield.second,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_));
-
-
-			float fullBackgroundErr = sqrt(pow(quadrature(output.VV,output.dVV,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
-					+pow(quadrature(output.TOP,output.dTOP,muIDErr_,eleIDErr_,tauIDErr_),2)
-					+pow(quadrature(output.ZJFT,output.dZJFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
-					+pow(quadrature(output.ZLFT,output.dZLFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
-					+pow(output.dQCD,2)
-					+pow(output.dW,2)
-					+pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2));
-
-			printf("Total Background & %.2f $\\pm$ %.2f & - & - & - \\\\ \n",background,sqrt(pow(quadrature(output.VV,    output.dVV,   muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
-						+pow(quadrature(output.TOP,  output.dTOP,  muIDErr_,eleIDErr_,tauIDErr_),2)
-						+pow(quadrature(output.ZJFT, output.dZJFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
-						+pow(quadrature(output.ZLFT, output.dZLFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
-						+pow(output.dQCD,2)
-						+pow(output.dW,2)
-						+pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)));
-
-
-
-			//create a histogram with the error for plotting reasons and only
-			TH1F *err = new TH1F("BKGErr","",1,0,1);
-			err->SetBinContent(1,fullBackgroundErr/background);
-			fout_->cd((filelabel_+prefix).c_str());
-			err->Write();
-
-			return output;
-
-		}
-
-
-		/*
-		 * For Inclusive take the Ztt normalization directly from MC (zttFile_)
-		 * For a category the Ztt normalization is as follows,
-		 * ZttCategoryYield = ZttMCInclusiveYield * (ZttEmbedded_Category) / *Ztt(
-		 */
-
-		bool runZTT(std::string preSelection,std::string prefix,std::string zShape, float topExtrap, BkgOutput &output,
-				std::string categorySelection = "pt_1>-100", std::string relaxedSelection = "pt_1>-100"){
-
-			float leg1Corr=1.0;
-			if(muID_!=0) leg1Corr*=muID_;
-			if(eleID_!=0) leg1Corr*=eleID_;
-
-
-			std::pair<float,float> ztt  = createHistogramAndShifts(zttFile_,"ZTT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
-			std::pair<float,float> zttDyUp  = createHistogramAndShifts(zttFile_,"ZTT_CMS_htt_dyShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+Zweight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
-			std::pair<float,float> zttDyDown  = createHistogramAndShifts(zttFile_,"ZTT_CMS_htt_dyShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
-
-			std::cout<<"      ZTT Selection: "<<preSelection<<"&&"<<trigSelection_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl;
-			output.ZTT  = ztt.first;
-			output.dZTT = ztt.second;
-
-			printf("      Selection ZTT events in signal region = %f + %f \n",ztt.first,ztt.second);
-			return true;
-		}
-
-
-		bool runTOP( std::string preSelection, std::string prefix, std::string zShape, float topExtrap, BkgOutput &output, 
-				std::string categorySelection, std::string relaxedSelection ) {
-
-
-			float leg1Corr=1.0;
-			if(muID_!=0) leg1Corr*=muID_;
-			if(eleID_!=0) leg1Corr*=eleID_;
-
-			std::pair<float,float> topShape      = createHistogramAndShifts(topFile_,"TT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
-			std::pair<float,float> topShapeUp      = createHistogramAndShifts(topFile_,"TT_CMS_htt_ttbarShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
-			std::pair<float,float> topShapeDown      = createHistogramAndShifts(topFile_,"TT_CMS_htt_ttbarShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
-
-			std::pair<float,float> topYield      = createHistogramAndShifts(topFile_,"TTYield",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
-
-
-			std::pair<float,float> topInflYield  = inflateError(topYield,topErr_);
-
-			output.TOP  = topInflYield.first;
-			output.dTOP = topInflYield.second;
-
-			//Subtract the ztt ttbar overlap of 1.5% from the ttbar yield
-			//not used for 2014 MSSM
-			//output.TOP = output.TOP-(output.ZTT*0.015);   //only for  
-			renormalizeHistogram(filelabel_+prefix,"TT",output.TOP);
-
-			printf("      TTbar events in signal region = %f + %f \n",topInflYield.first,topInflYield.second);
-
-			return true;}
-		
-
-
-
-		bool runQCD(std::string preSelection, std::string prefix, std::string zShape, float topExtrap, BkgOutput &output, std::string categorySelection, std::string relaxedSelection) 
-		{
-			float leg1Corr=1.0;
-			if(muID_!=0) leg1Corr*=muID_;
-			if(eleID_!=0) leg1Corr*=eleID_;
+    public:
+
+        DataCardCreatorHTT(optutl::CommandLineParser parser) {
+            channel_ = parser.stringValue("channel");
+            shifts_  = parser.stringVector("shifts");
+            energy_ = parser.stringValue("energy");
+            samesign_ = parser.doubleValue("samesign");
+
+
+            std::string name_=channel_;
+            if (channel_=="eleTau") filelabel_="et";
+            if (channel_=="muTau") filelabel_="mt";
+
+
+            //create the name you need to add to the histograms 
+            //in the root file 
+            for(unsigned int i=0;i<shifts_.size();++i) {
+                std::string shiftL = shifts_.at(i);
+                shiftL.resize(1);
+                boost::to_lower(shiftL);
+                std::cout<<"shiftL: "<<shiftL<<std::endl;
+                std::string chan = "mutau";
+                //Change Me
+                if(channel_=="eleTau") chan = "etau";
+                shiftsPostFix_.push_back("CMS_scale_"+shiftL+"_"+chan+"_"+energy_);
+            }
+
+            //read input files
+            zttFile_  = parser.stringValue("zttFile");
+            zllFile_  = parser.stringValue("zllFile");
+            wFile_    = parser.stringValue("wFile");
+            vvFile_   = parser.stringValue("vvFile");
+            topFile_  = parser.stringValue("topFile");
+            qcdFile_  = parser.stringValue("qcdFile");
+            dataFile_  = parser.stringValue("dataFile");
+
+            //read control and signal regions
+            preSelection_ = parser.stringValue("preselection");
+
+            signalSelection_      = parser.stringValue("signalselection");
+            wSelection_           = parser.stringValue("wselection");
+            qcdSelection_         = parser.stringValue("qcdSelection");
+            relaxedSelection_     = parser.stringValue("relaxedselection");
+            trigSelection_        = parser.stringValue("trigSelection");
+            trigSelection50ns_        = parser.stringValue("trigSelection50ns");
+            trigSelection25ns_        = parser.stringValue("trigSelection25ns");
+            blinding_             = parser.stringValue("blinding");
+            charge_               = parser.stringValue("charge");
+            if (samesign_) charge_="abs(charge)==2";
+
+
+            ZTT_genTauSel_        = "gen_match_2==5"; //Zttyield
+            ZLFT_genLSel_         = "gen_match_2<5";
+            ZJFT_genLReject_      = "gen_match_2==6";
+            ZLL_genLLSel_        = "(gen_match_2<5||gen_match_2==6)"; //Zttyield
+
+            //
+            if(samesign_>0)
+                osSignalSelection_    = signalSelection_+"&&abs(charge)==2";
+            else
+                osSignalSelection_    = signalSelection_+"&&charge==0";
+
+            ssSignalSelection_    = signalSelection_+"&&abs(charge)==2";
+            if(samesign_>0)
+                osWSelection_         = wSelection_+"&&abs(charge)==2";
+            else
+                osWSelection_         = wSelection_+"&&charge==0";
+
+            ssWSelection_         = wSelection_+"&&abs(charge)==2";
+            verbose_              = parser.integerValue("verbose");
+
+            //read systematic uncertainties 
+            luminosity_    = parser.doubleValue("luminosity");
+            luminosityErr_ = parser.doubleValue("luminosityErr");
+            muID_          = parser.doubleValue("muID");
+            muIDErr_       = parser.doubleValue("muIDErr");
+            bID_           = parser.doubleValue("bID");
+            bIDErr_        = parser.doubleValue("bIDErr");
+            bMisID_        = parser.doubleValue("bMisID");
+            bMisIDErr_     = parser.doubleValue("bMisIDErr");
+            eleID_         = parser.doubleValue("eleID");
+            eleIDErr_      = parser.doubleValue("eleIDErr");
+            tauID_         = parser.doubleValue("tauID");
+            tauIDHigh_     = parser.doubleValue("tauIDHigh");
+            tauIDErr_      = parser.doubleValue("tauIDErr");
+            zttScale_      = parser.doubleValue("zttScale");
+            zttScaleErr_   = parser.doubleValue("zttScaleErr");
+
+            //read the basic varibale you will put in the histogram
+            variable_      = parser.stringValue("variable");
+
+            //read the event weight for MC and embedded
+            weight_        = parser.stringValue("weight");
+            Zweight_        = parser.stringValue("Zweight");
+            TTweight_        = parser.stringValue("TTweight");
+            embWeight_     = parser.stringValue("embWeight");
+
+            //define the histogram binning
+            bins_ = parser.integerValue("bins");
+            min_  = parser.doubleValue("min");
+            max_  = parser.doubleValue("max");
+
+
+            //Define background uncertainty Errors
+            topErr_     = parser.doubleValue("topErr");
+            qcdErr_     = parser.doubleValue("qcdErr");
+            vvErr_      = parser.doubleValue("vvErr");
+            zlftErr_    = parser.doubleValue("zlftErr");
+            zlftFactor_ = parser.doubleValue("zlftFactor");
+
+            zjftErr_      = parser.doubleValue("zjftErr");
+            wFactorErr_   = parser.doubleValue("wFactorErr");
+            qcdFactor_    = parser.doubleValue("qcdFactor");
+            qcdFactorErr_ = parser.doubleValue("qcdFactorErr");
+            bFactorZ_     = parser.doubleValue("bFactorZ");
+            bFactorZErr_  = parser.doubleValue("bFactorZErr");
+            bFactorW_     = parser.doubleValue("bFactorW");
+            bFactorWErr_  = parser.doubleValue("bFactorWErr");
+
+            dir_ = parser.stringValue("dir");
+
+            scaleUp_ = parser.doubleValue("scaleUp");
+
+            fout_ = new TFile(parser.stringValue("outputfile").c_str(),"RECREATE");
+
+        }
+
+
+        void makeHiggsShape(std::string preselection, std::string categoryselection, std::string prefix) {
+
+            std::pair<float,float> tmp;
+            float legCorr=1.0;
+
+            if(muID_!=0&&eleID_!=0) {legCorr*=muID_*eleID_;}
+            if(muID_!=0&&eleID_==0) {legCorr*=muID_*tauID_;}
+            if(muID_==0&&eleID_!=0) {legCorr*=eleID_*tauID_;}
+            std::cout<<"Make Higgs Shape"<<std::endl;
+            //tmp= createHistogramAndShifts(dir_+"ggH120.root","ggH120",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            tmp= createHistogramAndShifts(dir_+"ggH125.root","ggH125",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ggH130.root","ggH130",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"vbfH120.root","qqH120",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"vbfH125.root","qqH125",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"vbfH130.root","qqH130",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //std::cout<<"susyggH"<<std::endl;
+
+            //tmp= createHistogramAndShifts(dir_+"susyggH_80.root","ggH80",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_90.root","ggH90",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_100.root","ggH100",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_110.root","ggH110",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_120.root","ggH120",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_140.root","ggH140",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_160.root","ggH160",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_180.root","ggH180",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_200.root","ggH200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_250.root","ggH250",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_400.root","ggH400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_450.root","ggH450",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_500.root","ggH500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_600.root","ggH600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_700.root","ggH700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_800.root","ggH800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_900.root","ggH900",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_1000.root","ggH1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_1200.root","ggH1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_1400.root","ggH1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_1600.root","ggH1600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_1800.root","ggH1800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_2000.root","ggH2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_2300.root","ggH2300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_2600.root","ggH2600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_2900.root","ggH2900",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susyggH_3200.root","ggH3200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+
+
+            /*
+               std::cout<<"susybbH"<<std::endl;
+               tmp= createHistogramAndShifts(dir_+"susybbH_80.root","bbH80",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_90.root","bbH90",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_100.root","bbH100",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_110.root","bbH110",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_120.root","bbH120",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_140.root","bbH140",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_160.root","bbH160",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_180.root","bbH180",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_200.root","bbH200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_250.root","bbH250",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_300.root","bbH300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_350.root","bbH350",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_400.root","bbH400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_450.root","bbH450",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_500.root","bbH500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_600.root","bbH600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_700.root","bbH700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_800.root","bbH800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_900.root","bbH900",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_1000.root","bbH1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+               tmp= createHistogramAndShifts(dir_+"susybbH_1200.root","bbH1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            //tmp= createHistogramAndShifts(dir_+"susybbH_1400.root","bbH1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            tmp= createHistogramAndShifts(dir_+"susybbH_1600.root","bbH1600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            tmp= createHistogramAndShifts(dir_+"susybbH_1800.root","bbH1800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            tmp= createHistogramAndShifts(dir_+"susybbH_2000.root","bbH2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            tmp= createHistogramAndShifts(dir_+"susybbH_2300.root","bbH2300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            tmp= createHistogramAndShifts(dir_+"susybbH_2600.root","bbH2600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            tmp= createHistogramAndShifts(dir_+"susybbH_2900.root","bbH2900",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+            tmp= createHistogramAndShifts(dir_+"susybbH_3200.root","bbH3200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*legCorr,prefix);
+
+
+            std::cout<<"Made Higgs Shape"<<std::endl;
+            */
+        }
+
+
+        /*-------------Create Histograms------------------*/
+
+        BkgOutput runOSLSMT(std::string preSelection,std::string prefix,std::string zShape, float topExtrap) {
+            std::cout<<"runOSLSMT"<<std::endl;
+
+            BkgOutput output(0);    
+
+            float leg1Corr=1.0;
+            if(muID_!=0) leg1Corr*=muID_;
+            if(eleID_!=0) leg1Corr*=eleID_;
+
+            printf("Tau ID Scale Factor is %.3f \n",tauID_);
+
+            std::cout<<"Create Data"<<std::endl;
+            std::cout<<"      Data Selection: "<<preSelection<<"&&"<<osSignalSelection_<<std::endl;
+
+
+            std::pair<float,float> dataY         = createHistogramAndShifts(dataFile_,"data_obs","("+preSelection+"&&"+trigSelection50ns_+"&&"+osSignalSelection_+"&&"+blinding_+")",scaleUp_,prefix);
+            output.DATA = dataY.first;
+
+
+            std::cout<<"Create Top"<<std::endl;
+            //Create ttbar
+            std::pair<float,float> topYield      = createHistogramAndShifts(topFile_,"TT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_+"*"+TTweight_),luminosity_*leg1Corr*tauID_*topExtrap,prefix);
+            std::pair<float,float> topInflYield  = inflateError(topYield,topErr_);
+            printf("      TTbar events in signal region = %f + %f \n",topInflYield.first,topInflYield.second);
+            output.TOP  = topInflYield.first;
+            output.dTOP = topInflYield.second;
+
+            std::cout<<"Create VV"<<std::endl;
+            //Create Diboson
+            std::pair<float,float> vvYield      = createHistogramAndShifts(vvFile_,"VV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*leg1Corr*tauID_,prefix);
+            printf("      Diboson events before inflation = %f + %f \n",vvYield.first,vvYield.second);
+            std::pair<float,float> vvInflYield  = inflateError(vvYield,vvErr_);
+            printf("      Diboson events in signal region = %f + %f \n",vvInflYield.first,vvInflYield.second);
+            output.VV  = vvInflYield.first;
+            output.dVV = vvInflYield.second;
+
+
+            std::cout<<"Create ZLFT"<<std::endl;
+            std::cout<<"      Factor ZLFT: "<<zlftFactor_<<std::endl;
+            //Create ZL and ZJ
+            std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZLFT_genLSel_+")*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
+            //std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&genTaus==0&&((abs(pdg2)==13&&genPt2>8)||(abs(pdg2)==11&&genPt2>8)))*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
+            std::pair<float,float> zlftInflYield  = inflateError(zlftYield,zlftErr_);
+            printf("      Z (l->tau) in signal region = %f + %f \n",zlftInflYield.first,zlftInflYield.second);
+            output.ZLFT  = zlftInflYield.first;
+            output.dZLFT = zlftInflYield.second;
+
+
+            std::cout<<"Create ZJFT"<<std::endl;
+            std::pair<float,float> zjftYield      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZJFT_genLReject_+")*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
+            //std::pair<float,float> zjftYield      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&(!((genTaus==0&&abs(pdg2)==13&&genPt2>8)||(genTaus==0&&abs(pdg2)==11&&genPt2>8)||(genTaus>0&&genVisPt2>18))))*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
+            std::pair<float,float> zjftInflYield  = inflateError(zjftYield,zjftErr_);
+            printf("      Z (j->tau) in signal region = %f + %f \n",zjftInflYield.first,zjftInflYield.second);
+            output.ZJFT  = zjftInflYield.first;
+            output.dZJFT = zjftInflYield.second;
+
+            /*
+               std::cout<<"Create ZLL"<<std::endl;
+            //Create ZL and ZJ
+            std::pair<float,float> zllYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZLL_genLLSel_+")*"+weight_),luminosity_*leg1Corr*zllFactor_*zttScale_,prefix,false);
+            //std::pair<float,float> zllYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&genTaus==0&&((abs(pdg2)==13&&genPt2>8)||(abs(pdg2)==11&&genPt2>8)))*"+weight_),luminosity_*leg1Corr*zllFactor_*zttScale_,prefix,false);
+            std::pair<float,float> zllInflYield  = inflateError(zllYield,zllErr_);
+            printf("      Z (l->tau) in signal region = %f + %f \n",zllInflYield.first,zllInflYield.second);
+            output.ZLL  = zllInflYield.first;
+            output.dZLL = zllInflYield.second;
+            */
+
+
+            std::cout<<"Create ZTT"<<std::endl;
+            //Create Z-->tautau
+            if(!runZTT(preSelection, prefix, zShape, topExtrap, output)){
+                std::cout<<"Error Creating Ztt"<<std::endl;
+                return output;
+            }
+
+
+            //Create W 
+            //In principle osSignalSelection should work as a dummy variable
+            std::cout<<"Create W"<<std::endl;
+            if(!runW(preSelection, prefix, zShape, topExtrap, output, "pt_1>-100", "pt_1>-100",wSelection_)){
+                std::cout<<"Error Creating W"<<std::endl;
+                return output;
+            }
+
+            std::cout<<"Create QCD"<<std::endl;
+            //Create QCD
+            if(!runQCD(preSelection, prefix, zShape, topExtrap, output, "pt_1>-100", relaxedSelection_)){ //pt_1>-100 is the category Selection
+                std::cout<<"Error Creating QCD"<<std::endl;
+                return output;
+            }
+
+
+            std::cout<<"=============Data Yields============="<<std::endl;
+            std::cout<<"DATA: "<< output.DATA<<std::endl;
+            std::cout<<std::endl;
+            std::cout<<"BKGD Yields "<<std::endl;
+            std::cout<<"QCD: "<< output.QCD<<std::endl;
+            std::cout<<"W: "<< output.W<<std::endl;
+            std::cout<<"TOP: "<< output.TOP<<std::endl;
+            std::cout<<"VV: "<< output.VV<<std::endl;
+            std::cout<<"ZLFT: "<< output.ZLFT<<std::endl;
+            std::cout<<"ZJFT: "<< output.ZJFT<<std::endl;
+            std::cout<<"ZTT: "<< output.ZTT<<std::endl;
+
+            //TODO: Check that this outputs the correct values
+            float background    = output.QCD  + output.W  + output.TOP  + output.VV  + output.ZLFT  + output.ZJFT  + output.ZTT;
+            float backgroundErr = sqrt( pow(output.dQCD,2) + pow(output.dW,2) + pow(output.dTOP,2) + pow(output.dVV,2) + pow(output.dZLFT,2) + pow(output.dZJFT,2) + pow(output.dZTT,2));
+
+            printf("BACKGROUND=%f +-%f \n",background,backgroundErr);
+
+
+            float fullBackgroundErr = sqrt(pow(quadrature(output.VV,output.dVV,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
+                    +pow(quadrature(output.TOP,output.dTOP,muIDErr_,eleIDErr_,tauIDErr_),2)
+                    +pow(quadrature(output.ZJFT,output.dZJFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
+                    +pow(quadrature(output.ZLFT,output.dZLFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
+                    +pow(output.dQCD,2)
+                    +pow(output.dW,2)
+                    +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2));
+
+            printf("Total Background & %.2f $\\pm$ %.2f & - & - & - \\\\ \n",background,sqrt(pow(quadrature(output.VV,    output.dVV,   muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
+                        +pow(quadrature(output.TOP,  output.dTOP,  muIDErr_,eleIDErr_,tauIDErr_),2)
+                        +pow(quadrature(output.ZJFT, output.dZJFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
+                        +pow(quadrature(output.ZLFT, output.dZLFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
+                        +pow(output.dQCD,2)
+                        +pow(output.dW,2)
+                        +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)));
+
+
+
+            //create a histogram with the error for plotting reasons and only
+            TH1F *err = new TH1F("BKGErr","",1,0,1);
+            err->SetBinContent(1,fullBackgroundErr/background);
+            fout_->cd((filelabel_+prefix).c_str());
+            err->Write();
+
+            return output;      
+        }
+
+        /*
+         * Run the full extrapolation in the Btag category
+         * Needed: BtagSF, categorySelection
+         *
+         */
+
+        BkgOutput runFullExtrapBtag(std::string relaxedSelection, std::string wSel, std::string preSelection, std::string categorySelection_, std::string prefix, std::string zShape, float topExtrap, float zExtrap, float zExtrapErr, std::string bTagSF) {
+
+            std::cout<<"======================"<<std::endl;
+            std::cout<<"Run Full Extrapolation"<<std::endl;
+            std::cout<<"categorySelection: "<<categorySelection_<<std::endl;
+            //TODO: Fix this category seleciton business, should be more elegant
+            std::string categorySelection = categorySelection_;
+            std::string dummySelection_   = osSignalSelection_;
+
+            weight_ = weight_+"*"+bTagSF;
+
+            BkgOutput output;    
+
+            float leg1Corr=1.0;
+            if(muID_!=0) leg1Corr*=muID_;
+            if(eleID_!=0) leg1Corr*=eleID_;
+
+            printf("Tau ID Scale Factor is %.3f \n",tauID_);
+
+            std::cout<<"Select DATA"<<std::endl;
+            std::pair<float,float> dataY         = createHistogramAndShifts(dataFile_,"data_obs","("+preSelection+"&&"+trigSelection50ns_+"&&"+osSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix);
+            output.DATA = dataY.first;
+            std::cout<<"      DATA Yield: "<< output.DATA<<std::endl;
+            std::cout<<"      DATA Selection: "<<preSelection<<"&&"<<trigSelection50ns_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl; 
+
+
+
+            std::cout<<"Create DiBoson"<<std::endl;
+            //Create Diboson
+            std::pair<float,float> vvYield      = createHistogramAndShifts(vvFile_,"VV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr*tauID_,prefix);
+            std::cout<<"      VV before error inflation: "<<vvYield.first<<std::endl;
+            std::pair<float,float> vvInflYield  = inflateError(vvYield,vvErr_);
+            printf("      Diboson events in signal region = %f + %f \n",vvInflYield.first,vvInflYield.second);
+            std::cout<<"      VV after error inflation: "<<vvInflYield.first<<std::endl;
+            output.VV  = vvInflYield.first;
+            output.dVV = vvInflYield.second;
+
+            //Create ZL and ZJ
+
+            std::cout<<"Create ZLFT"<<std::endl;
+            //ZL Yield
+            std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZLTmp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
+            //ZLShape
+            //std::pair<float,float> zlftShape   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+relaxedSelection+"&&"+ZLFT_genLSel_+")*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
+            std::pair<float,float> zlftShape   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
+
+            std::pair<float,float> zlftInflYield  = inflateError(zlftYield,zlftErr_);
+            printf("      Z (l->tau) in signal region = %f + %f \n",zlftInflYield.first,zlftInflYield.second);
+
+            renormalizeHistogram(filelabel_+prefix,"ZL",zlftInflYield.first);
+            output.ZLFT  = zlftInflYield.first;
+            output.dZLFT  = zlftInflYield.second;
+
+            if(shifts_.size()>0&&channel_=="eleTau"){
+                std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_etau_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==11&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"1.02",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_etau_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==11&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"0.98",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
+            }
+            else if(shifts_.size()>0&&channel_=="muTau"){
+                std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_mutau_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==13&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"1.02",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_mutau_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==13&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"0.98",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
+            }
+
+            std::cout<<"Create ZJFT"<<std::endl;
+            //ZJ Yield
+            std::pair<float,float> zjftYield      = createHistogramAndShifts(zllFile_,"ZJTmp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&"+ZJFT_genLReject_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zttScale_,prefix);    
+
+            //ZJ Shape
+            //std::pair<float,float> zjftShape      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+relaxedSelection+"&&"+ZJFT_genLReject_+")*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
+            std::pair<float,float> zjftShape      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZJFT_genLReject_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zttScale_,prefix);    
+
+            std::pair<float,float> zjftInflYield  = inflateError(zjftYield,zjftErr_);
+            printf("      Z (j->tau) in signal region = %f + %f \n",zjftInflYield.first,zjftInflYield.second);
+            renormalizeHistogram(filelabel_+prefix,"ZJ",zjftInflYield.first);
+            output.ZJFT  = zjftInflYield.first;
+            output.dZJFT = zjftInflYield.second;
+
+            std::cout<<"Create ZTT"<<std::endl;
+            //TODO: Check me, previous Btag ZTT shape correction had a special normalization method
+            if(!runZTT(preSelection, prefix, zShape, topExtrap, output, categorySelection)){
+                std::cout<<"Error Creating Ztt"<<std::endl;
+                return output;
+            }
+
+            std::cout<<"Create TOP"<<std::endl;
+            //Create ttbar
+            //Last argument is a dummy argument
+            if(!runTOP(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection)){
+                std::cout<<"Error Creating TOP"<<std::endl;
+                return output;
+            }
+
+
+            std::cout<<"Create W"<<std::endl;
+            //Create W
+            if(!runW(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection, wSel)){
+                std::cout<<"Error Creating W"<<std::endl;
+                return output;
+            }
+
+            std::cout<<"Create QCD"<<std::endl;
+            //Create QCD
+            if(!runQCD(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection)){
+                std::cout<<"Error Creating QCD"<<std::endl;
+                return output;
+            }
+
+
+
+            std::cout<<std::endl;
+            std::cout<<"=============Data Yields============="<<std::endl;
+            std::cout<<"DATA: "<< output.DATA<<std::endl;
+            std::cout<<std::endl;
+
+
+            std::cout<<std::endl;
+            std::cout<<"BKGD Yields "<<std::endl;
+            std::cout<<"QCD: "<< output.QCD<<std::endl;
+            std::cout<<"W: "<< output.W<<std::endl;
+            std::cout<<"TOP: "<< output.TOP<<std::endl;
+            std::cout<<"VV: "<< output.VV<<std::endl;
+            std::cout<<"ZLFT: "<< output.ZLFT<<std::endl;
+            std::cout<<"ZJFT: "<< output.ZJFT<<std::endl;
+            std::cout<<"ZTT: "<< output.ZTT<<std::endl;
+
+
+            float background    = output.QCD  + output.W  + output.TOP  + output.VV  + output.ZLFT  + output.ZJFT  + output.ZTT;
+            float backgroundErr = sqrt( pow(output.dQCD,2) + pow(output.dW,2) + pow(output.dTOP,2) + pow(output.dVV,2) + pow(output.dZLFT,2) + pow(output.dZJFT,2) + pow(output.dZTT,2));
+            printf("BACKGROUND=%f +-%f \n",background,backgroundErr);
+
+            ///LATEX->Here since we want it for the note add all errors , even those that will go separate in the datacard
+
+            //printf("LATEX ------------------------------------\n");
+            //printf("Total & %.2f & %.2f & %.2f & %.2f \\\\ \n", dataYield.first, dataYieldSdb.first, dataSSYield.first, dataSSYieldSdb.first);
+            //printf("Di-Boson & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f & - & - \\\\ \n", vvInflYield.first, quadrature(vvInflYield.first,vvInflYield.second,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_), vvInflYieldSdb.first, quadrature(vvInflYieldSdb.first,vvInflYieldSdb.second,muIDErr_,eleIDErr_,tauIDErr_));
+            //printf("$t\\bar{t}$ & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f & - & - \\\\ \n", topInflYield.first,quadrature(topInflYield.first,topInflYield.second,muIDErr_,eleIDErr_,tauIDErr_), topInflYieldSdb.first, quadrature(topInflYieldSdb.first,topInflYield.second,muIDErr_,eleIDErr_,tauIDErr_));
+            //printf("$Z^{l+jet}$ & %.2f $\\pm$ %.2f & - & %.2f $\\pm$ %.2f & - \\\\ \n", zjftInflYield.first, quadrature(zjftInflYield.first,zjftInflYield.second,muIDErr_,eleIDErr_,zttScaleErr_), zjftInflSSYield.first,quadrature(zjftInflSSYield.first,zjftInflSSYield.second,muIDErr_,eleIDErr_,zttScaleErr_));
+            //printf("$Z^{ll}$ & %.2f $\\pm$ %.2f & - & %.2f $\\pm$ %.2f & - \\\\ \n", zlftInflYield.first, quadrature(zlftInflYield.first,zlftInflYield.second,muIDErr_,eleIDErr_,zttScaleErr_),zlftInflSSYield.first,quadrature(zlftInflSSYield.first,zlftInflSSYield.second,muIDErr_,eleIDErr_,zttScaleErr_));
+            //printf("$W+jets$ & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f & %.2f $\\pm$ %.2f  \\\\ \n", osWLow.first, osWLow.second, osWHigh.first, osWHigh.second, ssWLow.first, ssWLow.second, dataSSYieldSdb.first, dataSSYieldSdb.second);
+            //printf("QCD & %.2f $\\pm$ %.2f & - & %.2f $\\pm$ %.2f & - \\\\ \n", osQCD.first, osQCD.second, ssQCD.first, ssQCD.second);
+            //printf("$Z\\rightarrow\\tau\\tau$ & %.2f $\\pm$ %.2f & - & - & - \\\\ \n", zttYield.first,quadrature(zttYield.first,zttYield.second,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_));
+
+
+            float fullBackgroundErr = sqrt(pow(quadrature(output.VV,output.dVV,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
+                    +pow(quadrature(output.TOP,output.dTOP,muIDErr_,eleIDErr_,tauIDErr_),2)
+                    +pow(quadrature(output.ZJFT,output.dZJFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
+                    +pow(quadrature(output.ZLFT,output.dZLFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
+                    +pow(output.dQCD,2)
+                    +pow(output.dW,2)
+                    +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2));
+
+            printf("Total Background & %.2f $\\pm$ %.2f & - & - & - \\\\ \n",background,sqrt(pow(quadrature(output.VV,    output.dVV,   muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
+                        +pow(quadrature(output.TOP,  output.dTOP,  muIDErr_,eleIDErr_,tauIDErr_),2)
+                        +pow(quadrature(output.ZJFT, output.dZJFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
+                        +pow(quadrature(output.ZLFT, output.dZLFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
+                        +pow(output.dQCD,2)
+                        +pow(output.dW,2)
+                        +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)));
+
+
+
+            //create a histogram with the error for plotting reasons and only
+            TH1F *err = new TH1F("BKGErr","",1,0,1);
+            err->SetBinContent(1,fullBackgroundErr/background);
+            fout_->cd((filelabel_+prefix).c_str());
+            err->Write();
+
+            return output;
+
+        }
+
+
+        /*
+         * For Inclusive take the Ztt normalization directly from MC (zttFile_)
+         * For a category the Ztt normalization is as follows,
+         * ZttCategoryYield = ZttMCInclusiveYield * (ZttEmbedded_Category) / *Ztt(
+         */
+
+        bool runZTT(std::string preSelection,std::string prefix,std::string zShape, float topExtrap, BkgOutput &output,
+                std::string categorySelection = "pt_1>-100", std::string relaxedSelection = "pt_1>-100"){
+
+            float leg1Corr=1.0;
+            if(muID_!=0) leg1Corr*=muID_;
+            if(eleID_!=0) leg1Corr*=eleID_;
+
+
+            std::pair<float,float> ztt  = createHistogramAndShifts(zttFile_,"ZTT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
+            std::pair<float,float> zttDyUp  = createHistogramAndShifts(zttFile_,"ZTT_CMS_htt_dyShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+Zweight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
+            std::pair<float,float> zttDyDown  = createHistogramAndShifts(zttFile_,"ZTT_CMS_htt_dyShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
+
+            std::cout<<"      ZTT Selection: "<<preSelection<<"&&"<<trigSelection_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl;
+            output.ZTT  = ztt.first;
+            output.dZTT = ztt.second;
+
+            printf("      Selection ZTT events in signal region = %f + %f \n",ztt.first,ztt.second);
+            return true;
+        }
+
+
+        bool runTOP( std::string preSelection, std::string prefix, std::string zShape, float topExtrap, BkgOutput &output, 
+                std::string categorySelection, std::string relaxedSelection ) {
+
+
+            float leg1Corr=1.0;
+            if(muID_!=0) leg1Corr*=muID_;
+            if(eleID_!=0) leg1Corr*=eleID_;
+
+            std::pair<float,float> topShape      = createHistogramAndShifts(topFile_,"TT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
+            std::pair<float,float> topShapeUp      = createHistogramAndShifts(topFile_,"TT_CMS_htt_ttbarShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
+            std::pair<float,float> topShapeDown      = createHistogramAndShifts(topFile_,"TT_CMS_htt_ttbarShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
+
+            std::pair<float,float> topYield      = createHistogramAndShifts(topFile_,"TTYield",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
+
+
+            std::pair<float,float> topInflYield  = inflateError(topYield,topErr_);
+
+            output.TOP  = topInflYield.first;
+            output.dTOP = topInflYield.second;
+
+            //Subtract the ztt ttbar overlap of 1.5% from the ttbar yield
+            //not used for 2014 MSSM
+            //output.TOP = output.TOP-(output.ZTT*0.015);   //only for  
+            renormalizeHistogram(filelabel_+prefix,"TT",output.TOP);
+
+            printf("      TTbar events in signal region = %f + %f \n",topInflYield.first,topInflYield.second);
+
+            return true;}
+
+
+
+
+        bool runQCD(std::string preSelection, std::string prefix, std::string zShape, float topExtrap, BkgOutput &output, std::string categorySelection, std::string relaxedSelection) 
+        {
+            float leg1Corr=1.0;
+            if(muID_!=0) leg1Corr*=muID_;
+            if(eleID_!=0) leg1Corr*=eleID_;
             std::pair<float,float> dataQCDShape = createHistogramAndShifts(dataFile_,"QCDShape","("+relaxedSelection+"&&"+trigSelection50ns_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
             printf("      Data events in SS Signal QCDShape sideband region = %f + %f \n",dataQCDShape.first,dataQCDShape.second);
             std::pair<float,float> ZQCDShape = createHistogramAndShifts(zttFile_,"ZQCDShape","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
