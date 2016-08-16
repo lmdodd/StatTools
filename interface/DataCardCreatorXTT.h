@@ -84,12 +84,8 @@ class DataCardCreatorXTT_MC {
             wSelection_           = parser.stringValue("wselection");
             qcdSelection_         = parser.stringValue("qcdSelection");
             relaxedSelection_     = parser.stringValue("relaxedselection");
-            bSelection_           = parser.stringValue("bselection");
-            antibSelection_       = parser.stringValue("antibSelection");
-            btagRelaxedSelection_ = parser.stringValue("btagRelaxedSelection");
             trigSelection_        = parser.stringValue("trigSelection");
-            trigSelection50ns_        = parser.stringValue("trigSelection50ns");
-            trigSelection25ns_        = parser.stringValue("trigSelection25ns");
+            trigSelectionDATA_        = parser.stringValue("trigSelectionData");
             blinding_             = parser.stringValue("blinding");
             charge_               = parser.stringValue("charge");
             if (samesign_) charge_="abs(charge)==2";
@@ -278,157 +274,6 @@ class DataCardCreatorXTT_MC {
         }
 
 
-        /*-------------Create Histograms------------------*/
-
-        BkgOutput runOSLSMT(std::string preSelection,std::string prefix,std::string zShape, float topExtrap) {
-            std::cout<<"runOSLSMT"<<std::endl;
-
-            BkgOutput output(0);    
-
-            float leg1Corr=1.0;
-            if(muID_!=0) leg1Corr*=muID_;
-            if(eleID_!=0) leg1Corr*=eleID_;
-
-            printf("Tau ID Scale Factor is %.3f \n",tauID_);
-
-            std::cout<<"Create Data"<<std::endl;
-            std::cout<<"      Data Selection: "<<preSelection<<"&&"<<osSignalSelection_<<std::endl;
-
-
-            std::pair<float,float> dataY         = createHistogramAndShiftsFinal(dataFile_,"data_obs","("+preSelection+"&&"+trigSelection50ns_+"&&"+osSignalSelection_+"&&"+blinding_+")",scaleUp_,prefix);
-            output.DATA = dataY.first;
-
-
-            std::cout<<"Create Top"<<std::endl;
-            //Create ttbar
-            std::pair<float,float> topYield      = createHistogramAndShifts(topFile_,"TT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_+"*"+TTweight_),luminosity_*leg1Corr*tauID_*topExtrap,prefix);
-            std::pair<float,float> topInflYield  = inflateError(topYield,topErr_);
-            printf("      TTbar events in signal region = %f + %f \n",topInflYield.first,topInflYield.second);
-            output.TOP  = topInflYield.first;
-            output.dTOP = topInflYield.second;
-
-            std::cout<<"Create VV"<<std::endl;
-            //Create Diboson
-            std::pair<float,float> vvYield      = createHistogramAndShifts(vvFile_,"VV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*leg1Corr*tauID_,prefix);
-            printf("      Diboson events before inflation = %f + %f \n",vvYield.first,vvYield.second);
-            std::pair<float,float> vvInflYield  = inflateError(vvYield,vvErr_);
-            printf("      Diboson events in signal region = %f + %f \n",vvInflYield.first,vvInflYield.second);
-            output.VV  = vvInflYield.first;
-            output.dVV = vvInflYield.second;
-
-            //Create Znunu
-            std::pair<float,float> zvvYield      = createHistogramAndShifts(zvvFile_,"ZVV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*leg1Corr*tauID_,prefix);
-            printf("      ZVV events before inflation = %f + %f \n",zvvYield.first,zvvYield.second);
-            std::pair<float,float> zvvInflYield  = inflateError(zvvYield,vvErr_); //FIXME
-            printf("      Diboson events in signal region = %f + %f \n",zvvInflYield.first,zvvInflYield.second);
-            output.ZVV  = zvvInflYield.first;
-            output.dZVV = zvvInflYield.second;
-
-
-
-            std::cout<<"Create ZLFT"<<std::endl;
-            std::cout<<"      Factor ZLFT: "<<zlftFactor_<<std::endl;
-            //Create ZL and ZJ
-            std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZLFT_genLSel_+")*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
-            //std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&genTaus==0&&((abs(pdg2)==13&&genPt2>8)||(abs(pdg2)==11&&genPt2>8)))*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
-            std::pair<float,float> zlftInflYield  = inflateError(zlftYield,zlftErr_);
-            printf("      Z (l->tau) in signal region = %f + %f \n",zlftInflYield.first,zlftInflYield.second);
-            output.ZLFT  = zlftInflYield.first;
-            output.dZLFT = zlftInflYield.second;
-
-
-            std::cout<<"Create ZJFT"<<std::endl;
-            std::pair<float,float> zjftYield      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZJFT_genLReject_+")*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
-            //std::pair<float,float> zjftYield      = createHistogramAndShifts(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&(!((genTaus==0&&abs(pdg2)==13&&genPt2>8)||(genTaus==0&&abs(pdg2)==11&&genPt2>8)||(genTaus>0&&genVisPt2>18))))*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
-            std::pair<float,float> zjftInflYield  = inflateError(zjftYield,zjftErr_);
-            printf("      Z (j->tau) in signal region = %f + %f \n",zjftInflYield.first,zjftInflYield.second);
-            output.ZJFT  = zjftInflYield.first;
-            output.dZJFT = zjftInflYield.second;
-
-            /*
-               std::cout<<"Create ZLL"<<std::endl;
-            //Create ZL and ZJ
-            std::pair<float,float> zllYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+ZLL_genLLSel_+")*"+weight_),luminosity_*leg1Corr*zllFactor_*zttScale_,prefix,false);
-            //std::pair<float,float> zllYield   = createHistogramAndShifts(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&genTaus==0&&((abs(pdg2)==13&&genPt2>8)||(abs(pdg2)==11&&genPt2>8)))*"+weight_),luminosity_*leg1Corr*zllFactor_*zttScale_,prefix,false);
-            std::pair<float,float> zllInflYield  = inflateError(zllYield,zllErr_);
-            printf("      Z (l->tau) in signal region = %f + %f \n",zllInflYield.first,zllInflYield.second);
-            output.ZLL  = zllInflYield.first;
-            output.dZLL = zllInflYield.second;
-            */
-
-
-            std::cout<<"Create ZTT"<<std::endl;
-            //Create Z-->tautau
-            if(!runZTT(preSelection, prefix, zShape, topExtrap, output)){
-                std::cout<<"Error Creating Ztt"<<std::endl;
-                return output;
-            }
-
-
-            //Create W 
-            //In principle osSignalSelection should work as a dummy variable
-            std::cout<<"Create W"<<std::endl;
-            if(!runW(preSelection, prefix, zShape, topExtrap, output, "pt_1>-100", "pt_1>-100",wSelection_)){
-                std::cout<<"Error Creating W"<<std::endl;
-                return output;
-            }
-
-            std::cout<<"Create QCD"<<std::endl;
-            //Create QCD
-            if(!runQCD(preSelection, prefix, zShape, topExtrap, output, "pt_1>-100", relaxedSelection_)){ //pt_1>-100 is the category Selection
-                std::cout<<"Error Creating QCD"<<std::endl;
-                return output;
-            }
-
-
-            std::cout<<"=============Data Yields============="<<std::endl;
-            std::cout<<"DATA: "<< output.DATA<<std::endl;
-            std::cout<<std::endl;
-            std::cout<<"BKGD Yields "<<std::endl;
-            std::cout<<"QCD: "<< output.QCD<<std::endl;
-            std::cout<<"W: "<< output.W<<std::endl;
-            std::cout<<"TOP: "<< output.TOP<<std::endl;
-            std::cout<<"VV: "<< output.VV<<std::endl;
-            std::cout<<"ZVV: "<< output.ZVV<<std::endl;
-            std::cout<<"ZLFT: "<< output.ZLFT<<std::endl;
-            std::cout<<"ZJFT: "<< output.ZJFT<<std::endl;
-            std::cout<<"ZTT: "<< output.ZTT<<std::endl;
-
-            //TODO: Check that this outputs the correct values
-            float background    = output.QCD  + output.W  + output.TOP  + output.VV  + output.ZLFT  + output.ZJFT  + output.ZTT +output.ZVV;
-            float backgroundErr = sqrt( pow(output.dQCD,2) + pow(output.dW,2) + pow(output.dTOP,2) + pow(output.dVV,2) + pow(output.dZVV,2)+ pow(output.dZLFT,2) + pow(output.dZJFT,2) + pow(output.dZTT,2));
-
-            printf("BACKGROUND=%f +-%f \n",background,backgroundErr);
-
-
-            float fullBackgroundErr = sqrt(pow(quadrature(output.VV,output.dVV,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
-                    +pow(quadrature(output.TOP,output.dTOP,muIDErr_,eleIDErr_,tauIDErr_),2)
-                    +pow(quadrature(output.ZJFT,output.dZJFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
-                    +pow(quadrature(output.ZLFT,output.dZLFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
-                    +pow(output.dQCD,2)
-                    +pow(output.dW,2)
-                    +pow(output.dZVV,2)
-                    +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2));
-
-            printf("Total Background & %.2f $\\pm$ %.2f & - & - & - \\\\ \n",background,sqrt(pow(quadrature(output.VV,    output.dVV,   muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
-                        +pow(quadrature(output.TOP,  output.dTOP,  muIDErr_,eleIDErr_,tauIDErr_),2)
-                        +pow(quadrature(output.ZJFT, output.dZJFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
-                        +pow(quadrature(output.ZLFT, output.dZLFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
-                        +pow(output.dQCD,2)
-                        +pow(output.dW,2)
-                        +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)));
-
-
-
-            //create a histogram with the error for plotting reasons and only
-            TH1F *err = new TH1F("BKGErr","",1,0,1);
-            err->SetBinContent(1,fullBackgroundErr/background);
-            fout_->cd((filelabel_+prefix).c_str());
-            err->Write();
-
-            return output;      
-        }
-
         /*
          * Run the full extrapolation in the Btag category
          * Needed: BtagSF, categorySelection
@@ -456,10 +301,10 @@ class DataCardCreatorXTT_MC {
             printf("Tau ID Scale Factor is %.3f \n",tauID_);
 
             std::cout<<"Select DATA"<<std::endl;
-            std::pair<float,float> dataY         = createHistogramAndShiftsFinal(dataFile_,"data_obs","("+preSelection+"&&"+trigSelection50ns_+"&&"+osSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix);
+            std::pair<float,float> dataY         = createHistogramAndShiftsFinal(dataFile_,"data_obs","("+preSelection+"&&"+trigSelectionDATA_+"&&"+osSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix);
             output.DATA = dataY.first;
             std::cout<<"      DATA Yield: "<< output.DATA<<std::endl;
-            std::cout<<"      DATA Selection: "<<preSelection<<"&&"<<trigSelection50ns_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl; 
+            std::cout<<"      DATA Selection: "<<preSelection<<"&&"<<trigSelectionDATA_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl; 
 
 
 
@@ -681,18 +526,29 @@ class DataCardCreatorXTT_MC {
             float leg1Corr=1.0;
             if(muID_!=0) leg1Corr*=muID_;
             if(eleID_!=0) leg1Corr*=eleID_;
+            std::pair<float,float> dataQCDShape = createHistogramAndShifts(dataFile_,"QCD","("+relaxedSelection+"&&"+trigSelectionDATA_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
+            printf("      Data events in SS Signal QCDShape sideband region = %f + %f \n",dataQCDShape.first,dataQCDShape.second);
+            std::pair<float,float> ZQCDShape = createHistogramAndShifts(zttFile_,"ZQCD","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
+            printf("      Z events in SS Signal QCDShape sideband region = %f + %f \n",ZQCDShape.first,ZQCDShape.second);
+            std::pair<float,float> TopQCDShape = createHistogramAndShifts(topFile_,"TopQCD","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
+            printf("      TOP events in SS Signal QCDShape sideband region = %f + %f \n",TopQCDShape.first,TopQCDShape.second);
+            std::pair<float,float> VVQCDShape       = createHistogramAndShifts(vvFile_,"VVQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
+            printf("      VV events in SS Signal QCDShape sideband region = %f + %f \n",VVQCDShape.first,VVQCDShape.second);
+            std::pair<float,float> WQCDLowShape       = createHistogramAndShifts(wFile_,"WQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
 
-            std::cout<<"QCD Selections= "<<"("<<preSelection_<<"&&"<<trigSelection50ns_<<"&&"<<ssSignalSelection_<<"&&"<<categorySelection<<")"<<std::endl;
-            std::pair<float,float> dataQCD = createHistogramAndShifts(dataFile_,"QCD","("+preSelection+"&&"+trigSelection50ns_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
+
+
+            std::cout<<"QCD Selections= "<<"("<<preSelection_<<"&&"<<trigSelectionDATA_<<"&&"<<ssSignalSelection_<<"&&"<<categorySelection<<")"<<std::endl;
+            std::pair<float,float> dataQCD = createHistogramAndShifts(dataFile_,"QCDYield","("+preSelection+"&&"+trigSelectionDATA_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
             printf("      Data events in SS Signal QCD sideband region = %f + %f \n",dataQCD.first,dataQCD.second);
-            std::pair<float,float> ZQCD = createHistogramAndShifts(zttFile_,"ZQCD","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
+            std::pair<float,float> ZQCD = createHistogramAndShifts(zttFile_,"ZQCDYield","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
             printf("      Z events in SS Signal QCD sideband region = %f + %f \n",ZQCD.first,ZQCD.second);
-            std::pair<float,float> TopQCD = createHistogramAndShifts(topFile_,"TopQCD","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
+            std::pair<float,float> TopQCD = createHistogramAndShifts(topFile_,"TopQCDYield","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
             printf("      TOP events in SS Signal QCD sideband region = %f + %f \n",TopQCD.first,TopQCD.second);
-            std::pair<float,float> VVQCD       = createHistogramAndShifts(vvFile_,"VVQCD",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
+            std::pair<float,float> VVQCD       = createHistogramAndShifts(vvFile_,"VVQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
             printf("      VV events in SS Signal QCD sideband region = %f + %f \n",VVQCD.first,VVQCD.second);
 
-            std::pair<float,float> ssWLow       = createHistogramAndShifts(wFile_,"WQCD",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
+            std::pair<float,float> ssWLow       = createHistogramAndShifts(wFile_,"WQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
             printf("      (MonteCarlo) W events in SS region = %f + %f \n",ssWLow.first,ssWLow.second);
 
             /*
@@ -700,10 +556,16 @@ class DataCardCreatorXTT_MC {
              */
 
             //Now subtracting off bkgd shapes from data ss shape
+            subtractHistogram(filelabel_+prefix,"QCDYield","ZQCDYield");
+            subtractHistogram(filelabel_+prefix,"QCDYield","VVQCDYield");
+            subtractHistogram(filelabel_+prefix,"QCDYield","TopQCDYield");
+            subtractHistogram(filelabel_+prefix,"QCDYield","WQCDYield");
+
             subtractHistogram(filelabel_+prefix,"QCD","ZQCD");
             subtractHistogram(filelabel_+prefix,"QCD","VVQCD");
             subtractHistogram(filelabel_+prefix,"QCD","TopQCD");
             subtractHistogram(filelabel_+prefix,"QCD","WQCD");
+
 
             std::pair<float,float> ssQCD = std::make_pair(TMath::Nint(dataQCD.first
                         -ssWLow.first
@@ -1438,8 +1300,7 @@ class DataCardCreatorXTT_MC {
         std::string relaxedSelection_;
         std::string btagRelaxedSelection_;
         std::string trigSelection_;
-        std::string trigSelection50ns_;
-        std::string trigSelection25ns_;
+        std::string trigSelectionDATA_;
         std::string blinding_;
         std::string charge_;
         std::string ZLL_genLLSel_;

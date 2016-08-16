@@ -25,6 +25,7 @@ scramv1 b clean; scramv1 b
 To build the package
 ```
 export USER_CXXFLAGS="-Wno-error=unused-but-set-variable"
+source setup.sh
 scram b -j8
 ```
 

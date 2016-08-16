@@ -28,15 +28,10 @@ int main (int argc, char* argv[])
 	parser.addOption("wselection",optutl::CommandLineParser::kString,"W sideband defintion ","mt_1>70");
 	parser.addOption("qcdSelection",optutl::CommandLineParser::kString,"QCD Shape definition");
 	parser.addOption("relaxedselection",optutl::CommandLineParser::kString,"Relaxed Selection");
-	parser.addOption("bselection",optutl::CommandLineParser::kString,"Btagging requirement for MSSM","nbtag>=1");
-	parser.addOption("antibselection",optutl::CommandLineParser::kString,"Anti Btagging requirement for MSSM","(nbtag==0&&njets<2)");
 	parser.addOption("bTagSF",optutl::CommandLineParser::kString,"bTagSF","1");
 	//breaks without this currently
-	parser.addOption("btagRelaxedSelection",optutl::CommandLineParser::kString,"bTag Relaxed Selection","");
-	parser.addOption("btagRelaxedSelection2",optutl::CommandLineParser::kString,"2 bTag Relaxed Selection","");
 	parser.addOption("trigSelection",optutl::CommandLineParser::kString,"Trigger Selection","crossTrigger>0||(lTrigger>0&&pt_1>25)");
-	parser.addOption("trigSelection50ns",optutl::CommandLineParser::kString,"Trigger Selection","crossTrigger_50ns>0||(lTrigger_50ns>0&&pt_1>25)");
-	parser.addOption("trigSelection25ns",optutl::CommandLineParser::kString,"Trigger Selection","crossTrigger_25ns>0||(lTrigger_25ns>0&&pt_1>25)");
+	parser.addOption("trigSelectionData",optutl::CommandLineParser::kString,"Trigger Selection","crossTrigger_50ns>0||(lTrigger_50ns>0&&pt_1>25)");
 	parser.addOption("blinding",optutl::CommandLineParser::kString,"Blinding","pt_1>0");
 	parser.addOption("charge",optutl::CommandLineParser::kString,"charge","charge==0");
 	parser.addOption("catSplit",optutl::CommandLineParser::kString,"High/Low category split","pt_2>45");
@@ -119,12 +114,12 @@ int main (int argc, char* argv[])
 		creator.setBinning(parser.doubleVector("binningHighStat"));
 
 		printf("INCLUSIVE:preselection -------------------------------------\n"); 
-		std::string inclSel = parser.stringValue("preselection"); 
+		std::string relSel = parser.stringValue("relaxedselection"); 
 		std::string catSel = parser.stringValue("preselection"); 
 		std::string bTagSF = parser.stringValue("bTagSF");					 
 
-		creator.makeHiggsShape(inclSel,catSel,"_inclusive");
-		BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_inclusive",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
+		creator.makeHiggsShape(catSel,catSel,"_inclusive");
+		BkgOutput outputIncl = creator.runFullExtrapBtag(relSel,parser.stringValue("wselection"),catSel,catSel,"_inclusive",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
 				1,//parser.doubleValue("zExtrap"),
 				1,//parser.doubleValue("zExtrapErr"),
 				bTagSF
