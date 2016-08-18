@@ -176,10 +176,10 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     if(s==3) {
         TH1F * SM = (TH1F*)(f->Get(dir+"/ggH125"));
         TH1F *sm = SM;
-        sm->Scale(10);
+        sm->Scale(43.92*0.0632*10); //ggH xsec*tautau branching ratio*scaled by 10
         TH1F * SM2 = (TH1F*)(f->Get(dir+"/qqH125"));
         TH1F *sm2 = SM2;
-        sm2->Scale(10);//FIXME
+        sm2->Scale(3.748*0.0632*10);//VBF Xsec 13 TeV * tautau BR *Scaled by 10
         sm->Add(sm2);
         signal=sm;
 

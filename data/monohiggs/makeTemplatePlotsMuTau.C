@@ -9,7 +9,7 @@ void makeTemplatePlotsMuTau(){
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_chargedIso","muTauPlots/muTau_chargedIso.root","mt_inclusive",3,"Raw Tau Charged Isolation","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_neutralIso","muTauPlots/muTau_neutralIso.root","mt_inclusive",3,"Raw Tau Neutral Isolation","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
 
-   makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_1","muTauPlots/muTau_mt_1.root","mt_inclusive",3,"m_{T} (no met cuts applied)","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
+   makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_1","muTauPlots/muTau_mt_1.root","mt_inclusive",3,"m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_phi_1","muTauPlots/muTau_phi_1.root","mt_inclusive",3,"#mu #phi","",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_phi_2","muTauPlots/muTau_phi_2.root","mt_inclusive",3,"#tau #phi","",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_2","muTauPlots/muTau_mt_2.root","mt_inclusive",3,"#tau +MET m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","Golden",false,false,true);

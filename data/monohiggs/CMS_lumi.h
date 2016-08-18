@@ -8,8 +8,8 @@
 // Global variables
 //
 
-//TString cmsText     = "CMS";
-TString cmsText     = "Laura Dodd";
+TString cmsText     = "CMS";
+//TString cmsText     = "Laura Dodd";
 float cmsTextFont   = 61;  // default is helvetic-bold
 
 bool writeExtraText = true;

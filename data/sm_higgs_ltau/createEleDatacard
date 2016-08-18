@@ -1,5 +1,6 @@
 #!/bin/sh
-preselection='pt_1>27&&pt_2>20&&vertices>0&&dilepton_veto==0&&iso_1<0.1&&tightElectrons<=1&&tightMuons==0&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&chargedIsoPtSum_2<0.5&&(chargedIsoPtSum_2/pt_2)<0.04'
+#preselection='pt_1>27&&pt_2>20&&vertices>0&&dilepton_veto==0&&iso_1<0.1&&tightElectrons<=1&&tightMuons==0&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&chargedIsoPtSum_2<0.5&&(chargedIsoPtSum_2/pt_2)<0.02'
+preselection='pt_1>27&&pt_2>20&&vertices>0&&dilepton_veto==0&&iso_1<0.1&&tightElectrons<=1&&tightMuons==0&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5'
 wselection='mt_1>70'
 signalselection='mt_1<40'
 zerojselection='njets==0'

@@ -42,8 +42,8 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     gROOT->SetBatch(kTRUE);
 
 	writeExtraText = true;       // if extra text
-	//extraText  = "Preliminary";  // default extra text is "Preliminary"
-	extraText  = "Analysis in Progress";  // default extra text is "Preliminary"
+	extraText  = "Preliminary";  // default extra text is "Preliminary"
+	//extraText  = "Analysis in Progress";  // default extra text is "Preliminary"
 	lumi_8TeV  = "19.1 fb^{-1}"; // default is "19.7 fb^{-1}"
 	lumi_7TeV  = "4.9 fb^{-1}";  // default is "5.1 fb^{-1}"
 	lumi_sqrtS = "13 TeV";

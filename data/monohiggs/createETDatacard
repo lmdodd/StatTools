@@ -5,7 +5,7 @@ signalselection='pth>50&&met>100'
 qcdselection=$preselection
 trigselection='pt_1>27' #only for MC
 trigselectiondata='pt_1>27&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&nbtagNoSF==0'
-relaxedSelection=$relaxedselection
+relaxedSelection=$preselection
 luminosity=12900. #pb
 #luminosity=2246. #pb
 direc='/nfs_scratch/laura/80X_charged_weighted/'

@@ -59,10 +59,10 @@ int main() {
       {4, "mt_vbf"}};
 
   //! [part2]
-  //vector<string> massesZ = ch::MassesFromRange("600-1400:200");
   // Or equivalently, specify the mass points explicitly:
   vector<string> sig_procs = {"ggH","qqH"};
-  vector<string> masses = {"125"};
+  vector<string> masses = ch::MassesFromRange("120-130:5");
+  //vector<string> masses = {"125"};
   //! [part2]
   for (auto chn : chns) {
       cb.AddObservations(
@@ -123,11 +123,11 @@ int main() {
   cb.cp().process({"QCD"})
       .AddSyst(cb, "CMS_QCD_Syst ", "lnN", SystMap<>::init(1.2));
 
-  //cb.cp().process(ch::JoinStr({sig_procs, {"TT"}}))
+  //cb.cp().process(ch::JoinStr({sig_procs, {"ZTT"}}))
   //    .AddSyst(cb, "CMS_scale_dyshape_$ERA", "shape", SystMap<>::init(1.00));
 
 
-  //cb.cp().process(ch::JoinStr({sig_procs, {"ZTT"}}))
+  //cb.cp().process(ch::JoinStr({sig_procs, {"ZTT,W,VV"}}))
   //    .AddSyst(cb, "CMS_scale_t_mutau_$ERA", "shape", SystMap<>::init(1.00));
 
   //cb.cp().process(ch::JoinStr({sig_procs, {"ZL"}}))

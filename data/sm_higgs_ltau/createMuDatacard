@@ -1,6 +1,6 @@
 #!/bin/sh
 #preselection='pt_1>24&&pt_2>20&&npv>0&&diLeptons==0&&iso04_1<0.15&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0'
-preselection='pt_1>25&&pt_2>20&&npv>0&&diLeptons==0&&iso04_1<0.15&&(chargedIsoPtSum_2/pt_2)<0.04&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&nbtagNoSF==0&&chargedIsoPtSum_2<0.5'
+preselection='pt_1>25&&pt_2>20&&npv>0&&diLeptons==0&&iso04_1<0.15&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&nbtagNoSF==0&&chargedIsoPtSum_2<0.05&&(chargedIsoPtSum_2/pt_2)<0.02'
 #preselection='pt_1>24&&pt_2>20&&npv>0&&diLeptons==0&&iso04_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0'
 wselection='mt_1>70'
 signalselection='mt_1<40'
