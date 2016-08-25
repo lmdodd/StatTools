@@ -115,11 +115,12 @@ int main (int argc, char* argv[])
 
 		printf("INCLUSIVE:preselection -------------------------------------\n"); 
 		std::string relSel = parser.stringValue("relaxedselection"); 
-		std::string catSel = parser.stringValue("preselection"); 
+		std::string preSel = parser.stringValue("preselection"); 
+		std::string sigSel = parser.stringValue("signalselection"); 
 		std::string bTagSF = parser.stringValue("bTagSF");					 
 
-		creator.makeHiggsShape(catSel,catSel,"_inclusive");
-		BkgOutput outputIncl = creator.runFullExtrapBtag(relSel,parser.stringValue("wselection"),catSel,catSel,"_inclusive",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
+		creator.makeHiggsShape(preSel,sigSel,"_inclusive");
+		BkgOutput outputIncl = creator.runFullExtrapBtag(relSel,parser.stringValue("wselection"),preSel,sigSel,"_inclusive",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
 				1,//parser.doubleValue("zExtrap"),
 				1,//parser.doubleValue("zExtrapErr"),
 				bTagSF

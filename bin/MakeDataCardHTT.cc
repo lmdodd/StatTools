@@ -29,6 +29,7 @@ int main (int argc, char* argv[])
 	parser.addOption("vbfselection",optutl::CommandLineParser::kString,"vbf Selection","njets==2&&mjj>300&&jdeta>3.5&&nbtagNoSF==0");
 	parser.addOption("zerojselection",optutl::CommandLineParser::kString,"0j Selection","njets==0");
 	parser.addOption("onejselection",optutl::CommandLineParser::kString,"1j Selection","njets==1&&nbtagNoSF==0");
+	parser.addOption("onejboostselection",optutl::CommandLineParser::kString,"1j Boost Selection","njets==1&&nbtagNoSF==0&&pth>100&&pt_2>50");
 	parser.addOption("bTagSF",optutl::CommandLineParser::kString,"bTagSF","1");
 	parser.addOption("bTagSF2",optutl::CommandLineParser::kString,"bTagSF","1");
     //need these
@@ -60,8 +61,8 @@ int main (int argc, char* argv[])
 	parser.addOption("topErr",optutl::CommandLineParser::kDouble,"TTBar Relative Error",0.075);
 	parser.addOption("qcdErr",optutl::CommandLineParser::kDouble,"QCD ERROR",0.15);
 	parser.addOption("vvErr",optutl::CommandLineParser::kDouble,"DiBoson RelativeError",0.3);   
-	parser.addOption("zLFTErr",optutl::CommandLineParser::kDouble,"Z Muon fakes tau error",0.25);
-	parser.addOption("zLFTFactor",optutl::CommandLineParser::kDouble,"Z Muon fakes tau error",1.0);
+	parser.addOption("zlftErr",optutl::CommandLineParser::kDouble,"Z Muon fakes tau error",0.25);
+	parser.addOption("zlftFactor",optutl::CommandLineParser::kDouble,"Z Muon fakes tau error",1.0);
 	parser.addOption("zJFTErr",optutl::CommandLineParser::kDouble,"Z Jet fakes tau Error",0.2);
 	parser.addOption("zttScale",optutl::CommandLineParser::kDouble,"Z tau tau scale",1.00);
 	parser.addOption("zttScaleErr",optutl::CommandLineParser::kDouble,"Z tau tau scale error",0.033);
@@ -164,6 +165,40 @@ int main (int argc, char* argv[])
 				bTagSF
 				);
 	}
+
+	if(bitmask[2]==2){
+
+		printf(" -------------------------------------\n"); 
+		std::cout<<"========Running 1j Low selection========"<<std::endl;
+    		creator.setBinning(parser.doubleVector("binningLowStat"));
+		std::string inclSel = parser.stringValue("preselection"); 
+		std::string relSel = parser.stringValue("relaxedselection");//To be relaxed Btag discriminator 
+		std::string catSel = parser.stringValue("onejselection"); 
+		std::string bTagSF = parser.stringValue("bTagSF");					 
+
+		creator.makeHiggsShape(inclSel,catSel,"_1j");
+		BkgOutput outputIncl = creator.runFullExtrapBtag(relSel,parser.stringValue("wselection"),inclSel,catSel,"_1j",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
+				1,//parser.doubleValue("zExtrap"),
+				1,//parser.doubleValue("zExtrapErr"),
+				bTagSF
+				);
+
+
+
+		std::cout<<"========Running 1j High selection========"<<std::endl;
+
+		creator.setBinning(parser.doubleVector("binningLowStat"));
+		catSel = parser.stringValue("onejboostselection"); 
+
+		creator.makeHiggsShape(inclSel,catSel,"_1jhigh");
+		BkgOutput outputBoost = creator.runFullExtrapBtag(relSel,parser.stringValue("wselection"),inclSel,catSel,"_1jboost",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
+				1,//parser.doubleValue("zExtrap"),
+				1,//parser.doubleValue("zExtrapErr"),
+				bTagSF
+				);
+	}
+
+
 
 
 	if(bitmask[3]==1){

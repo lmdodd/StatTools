@@ -94,7 +94,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     if(doRatio){
         plotPad = new TPad("pad1","",0.0,0.3,1.0,1.0);
         //TPad * plotPad = new TPad("pad1","",0.0,0.3,1.0,1.0);
-        plotPad->SetTicks(0,0);
+        //plotPad->SetTicks(0,0);
         plotPad->SetLeftMargin  (L/W);
         plotPad->SetRightMargin (R/W);
         plotPad->SetTopMargin   (T/H);

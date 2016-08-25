@@ -11,6 +11,8 @@
 </bin>
 <bin   name="MakeDataCardXTT" file="MakeDataCardXTT.cc">
 </bin>
+<bin   name="MakeDataCardBoost" file="MakeDataCardBoost.cc">
+</bin>
 <bin   name="MakeDataCardBtagSF" file="MakeDataCardBtagSF.cc">
 </bin>
 <bin   name="MakeDataCardBtag1d" file="MakeDataCardBtag1d.cc">
