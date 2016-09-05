@@ -57,10 +57,12 @@ int main() {
   //vector<string> sig_procs = {"Zprime1000A","Zprime1200A","Zprime1400A"};
 
   //Option 2
-  //vector<string> masses = {"600", "800", "1000", "1200","1400","1700","2000","2500"};
-  //vector<string> sig_procs = {"ZprimeA400Z"};
-  vector<string> masses = {"1000", "1200","1400","1700","2000","2500"};
-  vector<string> sig_procs = {"ZprimeA400Z","ZprimeA500Z","ZprimeA600Z","ZprimeA700Z","ZprimeA800Z"};
+  vector<string> masses = {"600", "800", "1000", "1200","1400","1700","2000","2500"};
+  vector<string> sig_procs = {"ZprimeA400Z"};
+  //
+  //option3
+  //vector<string> masses = {"1000", "1200","1400","1700","2000","2500"};
+  //vector<string> sig_procs = {"ZprimeA400Z","ZprimeA500Z","ZprimeA600Z","ZprimeA700Z","ZprimeA800Z"};
   // Or equivalently, specify the mass points explicitly:
   //! [part2]
   for (auto chn : chns) {
@@ -86,16 +88,10 @@ int main() {
   using ch::syst::process;
 
 
-  //! [part5]
- // cb.cp().signals()
- //     .AddSyst(cb, "lumi_$ERA", "lnN", SystMap<era>::init
- //             ({"13TeV"}, 1.062));
 
   cb.cp().process(ch::JoinStr({sig_procs,{"ZTT", "W", "ZL", "ZJ", "TT", "VV","ZVV"} }))
       .AddSyst(cb, "CMS_lumi", "lnN", SystMap<>::init(1.062));
 
-
-  //! [part5]
 
   //! [part6]
   //cb.cp().process({"Zprime1200A"})
@@ -138,10 +134,6 @@ int main() {
 
   cb.cp().process({"W"})
       .AddSyst(cb, "CMS_norm_W ", "lnN", SystMap<>::init(1.1));
-
-
-
-
 
   //add btagging uncertainties
   //add lepton energy shifts
