@@ -24,7 +24,8 @@ scramv1 b clean; scramv1 b
 
 To build the package
 ```
-export USER_CXXFLAGS="-Wno-error=unused-but-set-variable"
+cd $CMSSW_BASE/src/UWAnalysis/StatTools/
+export USER_CXXFLAGS="-Wno-error=unused-but-set-variable -Wno-error=sign-compare"
 source setup.sh
 scram b -j8
 ```
