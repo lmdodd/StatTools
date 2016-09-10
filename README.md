@@ -24,7 +24,8 @@ scramv1 b clean; scramv1 b
 
 To build the package
 ```
-export USER_CXXFLAGS="-Wno-error=unused-but-set-variable"
+cd $CMSSW_BASE/src/UWAnalysis/StatTools/
+export USER_CXXFLAGS="-Wno-error=unused-but-set-variable -Wno-error=sign-compare"
 source setup.sh
 scram b -j8
 ```
@@ -40,3 +41,14 @@ root -l -b -q makeTemplatePlotsMuTau.C #check the output directory here
 ```
 
 
+to run limit example: remember to change 'aux_shapes' in cpp file. works for XTT <-> HTT
+```
+(remember to change the aux shapes directory in HTT)
+HTT 
+cd output/htt_cards
+combineTool.py -M T2W -i {cmb,et,mt}/* -o workspace.root --parallel 4
+nohup combineTool.py -M Asymptotic -d */*/workspace.root --there -n .limit --parallel 4 &
+combineTool.py -M CollectLimits */*/*.limit.* --use-dirs -o limits.json
+
+plotLimits.py limits_{et,mt,cmb}.json:exp0 --auto-style --logy # will plot the expected limit comparisons of the channels
+```
