@@ -61,9 +61,6 @@ int main() {
   cats["mt"] = {
             {1, "mt_inclusive"}};
   //! [part1]
-  cout << ">> Scaling signal process rates...\n";
-  map<string, TGraph> xs;
-  // Get the table of H->tau tau BRs vs mass
   //! 
   //Option 1
   //vector<string> massesA = ch::MassesFromRange("400-800:100");
@@ -161,6 +158,11 @@ int main() {
       cb.cp().channel({chn}).signals().ExtractShapes(
               file, "$BIN/$PROCESS$MASS", "$BIN/$PROCESS$MASS_$SYSTEMATIC");
   }
+
+  cout << ">> Scaling signal process rates...\n";
+  map<string, TGraph> xs;
+  // Get the table of H->tau tau BRs vs mass
+ 
   for (string const& p : sig_procs) {
       // Get the table of xsecs vs mass for process "p" and era "e":
       cout << ">>>> Scaling for process " << p << " \n";
