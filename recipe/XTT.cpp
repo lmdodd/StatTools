@@ -20,6 +20,9 @@ int main() {
   // First define the location of the "auxiliaries" directory where we can
   // source the input files containing the datacard shapes
   string aux_shapes = string(getenv("CMSSW_BASE")) + "/src/UWAnalysis/StatTools/data/monohiggs/datacards/";
+  string input_dir =
+      string(getenv("CMSSW_BASE")) + "/src/CombineHarvester/CombineTools/input";
+
 
   typedef vector<string> VString;
   typedef vector<pair<int, string>> Categories;
@@ -46,11 +49,21 @@ int main() {
   bkg_procs["mt"] = {"ZTT", "W", "QCD", "ZL", "ZJ", "TT", "VV","ZVV"};
 
   map<string, Categories> cats;
-  cats["et"] = {
-      {1, "et_inclusive"}};
+  /*cats["et"] = {
+      {1, "et_low"},
+      {2, "et_high"}};
   cats["mt"] = {
-      {1, "mt_inclusive"}};
-
+      {1, "mt_low"},
+      {2, "mt_high"}};
+*/
+  cats["et"] = {
+            {1, "et_inclusive"}};
+  cats["mt"] = {
+            {1, "mt_inclusive"}};
+  //! [part1]
+  cout << ">> Scaling signal process rates...\n";
+  map<string, TGraph> xs;
+  // Get the table of H->tau tau BRs vs mass
   //! 
   //Option 1
   //vector<string> massesA = ch::MassesFromRange("400-800:100");
@@ -88,50 +101,43 @@ int main() {
   using ch::syst::process;
 
 
+  //! [part6]
 
   cb.cp().process(ch::JoinStr({sig_procs,{"ZTT", "W", "ZL", "ZJ", "TT", "VV","ZVV"} }))
       .AddSyst(cb, "CMS_lumi", "lnN", SystMap<>::init(1.062));
 
-
-  //! [part6]
-  //cb.cp().process({"Zprime1200A"})
-  //    .AddSyst(cb, "pdf_gg", "lnN", SystMap<>::init(1.1));
-
-  cb.cp().process(ch::JoinStr({sig_procs, {"ZTT", "TT"}}))
+  cb.cp().process(ch::JoinStr({sig_procs, {"ZTT", "TT","VV"}}))
       .AddSyst(cb, "CMS_eff_t", "lnN", SystMap<>::init(1.06));
 
-  cb.cp().process({"ZTT", "ZL", "ZJ", "ZLL"}).AddSyst(cb,
-    "CMS_htt_zjXsec_13TeV", "lnN", SystMap<>::init(1.04));
+  cb.cp().process({"ZTT", "ZL", "ZJ"}).AddSyst(cb,
+          "CMS_htt_zjXsec_13TeV", "lnN", SystMap<>::init(1.1));
 
-  cb.cp().process({"TT","QCD"})
-      .AddSyst(cb, "CMS_norm_TT_btag ", "lnN", SystMap<>::init(1.13));
+  cb.cp().process({"TT"})
+      .AddSyst(cb, "CMS_norm_TT_btag ", "lnN", SystMap<>::init(1.12));
 
   cb.cp().process({"QCD"})
       .AddSyst(cb, "CMS_QCD_Syst ", "lnN", SystMap<>::init(1.3));
 
   //TT_CMS_htt_ttbarShape_13TeVUp
-  cb.cp().process({"TT"})
-      .AddSyst(cb, "CMS_htt_ttbarShape_$ERA", "shape", SystMap<>::init(1.00));
+  //cb.cp().process({"TT"})
+  //    .AddSyst(cb, "CMS_htt_ttbarShape_$ERA", "shape", SystMap<>::init(1.00));
 
   // Electron and muon efficiencies
   cb.cp().AddSyst(cb, "CMS_eff_m", "lnN", SystMap<channel, process>::init
-    ({"mt"}, ch::JoinStr({sig_procs, {"ZTT", "TT", "VV", "ZL", "ZJ"}}),  1.02));
-  
+          ({"mt"}, ch::JoinStr({sig_procs, {"ZTT", "TT", "VV", "ZL", "ZJ","W"}}),  1.02));
+
   cb.cp().AddSyst(cb, "CMS_eff_e", "lnN", SystMap<channel, process>::init
-    ({"et"}, ch::JoinStr({sig_procs, {"ZTT", "TT", "VV", "ZL", "ZJ"}}),  1.02));
+          ({"et"}, ch::JoinStr({sig_procs, {"ZTT", "TT", "VV", "ZL", "ZJ","W"}}),  1.02));
 
 
   // Diboson and ttbar Normalisation - fully correlated
   cb.cp().process({"VV"}).AddSyst(cb,
-    "CMS_htt_vvXsec_13TeV", "lnN", SystMap<>::init(1.05));
+          "CMS_htt_vvXsec_13TeV", "lnN", SystMap<>::init(1.05));
 
   cb.cp().process({"TT"}).AddSyst(cb,
-    "CMS_htt_tjXsec_13TeV", "lnN", SystMap<>::init(1.06));
-  
-  // W norm, just for em and tt where MC norm is from MC
-  cb.cp().process({"W"}).channel({"et","mt"}).AddSyst(cb,
-    "CMS_htt_wjXsec_13TeV", "lnN", SystMap<>::init(1.04));
+          "CMS_htt_tjXsec_13TeV", "lnN", SystMap<>::init(1.06));
 
+  // W norm, just for em and tt where MC norm is from MC
   cb.cp().process({"W"})
       .AddSyst(cb, "CMS_norm_W ", "lnN", SystMap<>::init(1.1));
 
@@ -155,6 +161,18 @@ int main() {
       cb.cp().channel({chn}).signals().ExtractShapes(
               file, "$BIN/$PROCESS$MASS", "$BIN/$PROCESS$MASS_$SYSTEMATIC");
   }
+  for (string const& p : sig_procs) {
+      // Get the table of xsecs vs mass for process "p" and era "e":
+      cout << ">>>> Scaling for process " << p << " \n";
+      cb.cp().process({p}).ForEachProc([&](ch::Process *proc) {
+              std::string mass = proc->mass(); 
+              cout << ">>>> Scaling for process " << p << "with mass "<<mass<<" \n";
+              xs["xtt"+mass] = ch::TGraphFromTable(input_dir+"/xsecs_brs/xtt_monoH_"+mass+".txt", "mA", "br");
+              proc->set_rate(proc->rate() * xs["xtt"+mass].Eval(400));
+              });
+  }
+
+
 
   //! [part8]
   auto bbb = ch::BinByBinFactory()
@@ -187,7 +205,7 @@ int main() {
   for (auto chn : cb.channel_set()) {
       writer.WriteCards("output/xtt_cards/" + chn, cb.cp().channel({chn}));
   }
-  TFile output("output/xtt_cards/xtt_mt.input.root", "RECREATE");
+  //TFile output("output/xtt_cards/xtt_mt.input.root", "RECREATE");
 
 
 }

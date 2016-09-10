@@ -19,7 +19,7 @@ int main() {
   //! [part1]
   // First define the location of the "auxiliaries" directory where we can
   // source the input files containing the datacard shapes
-  string aux_shapes = string(getenv("CMSSW_BASE")) + "/src/UWAnalysis/StatTools/data/sm_higgs_ltau/datacards/";
+  string aux_shapes = string(getenv("CMSSW_BASE")) + "/src/UWAnalysis/StatTools/data/sm_higgs_ltau/datacardsRename/";
 
   typedef vector<string> VString;
   typedef vector<pair<int, string>> Categories;
@@ -47,14 +47,14 @@ int main() {
 
   map<string, Categories> cats;
   cats["et"] = {
-      {1, "et_0j"},
-      {2, "et_1j"},
-      {3, "et_vbf"}};
+      {1, "et_0jet"},
+      {2, "et_1jet"},
+      {3, "et_2jet"}};
 
   cats["mt"] = {
-      {1, "mt_0j"},
-      {2, "mt_1j"},
-      {3, "mt_vbf"}};
+      {1, "mt_0jet"},
+      {2, "mt_1jet"},
+      {3, "mt_2jet"}};
 
   //! [part2]
   // Or equivalently, specify the mass points explicitly:
@@ -136,7 +136,7 @@ int main() {
 
   for (string chn : chns) {
       string file = aux_shapes + "htt_" + chn +
-          "_nobjetveto.inputs-sm-13TeV-m_vis.root";
+          "_withbtagveto.inputs-sm-13TeV-m_vis.root";
       cb.cp().channel({chn}).backgrounds().ExtractShapes(
               file, "$BIN/$PROCESS", "$BIN/$PROCESS_$SYSTEMATIC");
       cb.cp().channel({chn}).signals().ExtractShapes(

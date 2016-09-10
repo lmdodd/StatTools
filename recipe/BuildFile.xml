@@ -1,5 +1,6 @@
 <bin file="XTT.cpp" name="XTT"></bin>
 <bin file="HTT.cpp" name="HTT"></bin>
+<bin file="HTT_all.cpp" name="HTT_all"></bin>
 <bin file="Example1.cpp" name="Example1"></bin>
 <bin file="Example2.cpp" name="Example2"></bin>
 <bin file="Example3.cpp" name="Example3"></bin>
