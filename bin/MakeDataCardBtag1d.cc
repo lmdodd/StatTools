@@ -133,23 +133,6 @@ int main (int argc, char* argv[])
 	
 
 
-	if(bitmask[2]==1){
-
-	printf(" -------------------------------------\n"); 
-		std::cout<<"========Running btag selection========"<<std::endl;
-		std::string inclSel = parser.stringValue("preselection"); 
-		std::string catSel = "nbtag>0"; 
-		std::string catDataSel = catSel;
-		std::string bTagSF = "CSVShapeWeight";
-
-		creator.makeHiggsShape(inclSel,catSel,"_btag",bTagSF);
-		BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_btag",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
-				1,//parser.doubleValue("zExtrap"),
-				1,//parser.doubleValue("zExtrapErr"),
-				bTagSF, //parser.stringValue("bTagSF");
-				catDataSel
-				);
-	}
 
 	if(bitmask[3]==1){
 

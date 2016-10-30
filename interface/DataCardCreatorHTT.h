@@ -673,8 +673,6 @@ class DataCardCreatorHTT {
             std::cout<<"Straight W MC Yield: "<<wYield.first<<" stat error:" <<wYield.second<<std::endl;
             std::cout<<"Straight W MC Yield: "<<preSelection+"&&"<<trigSelection_<<"&&"<<categorySelection<<"&&"<<osSignalSelection_<<std::endl; 
 
-            extractWFactor(wFile_,relaxedSelection+"&&"+trigSelection_+"&&"+categorySelection,prefix,osWSelection_,osSignalSelection_)
-
                 renormalizeHistogram(filelabel_+prefix,"W",wYield.first);
             output.W  = wYield.first;
             output.dW  = wYield.second;
@@ -690,7 +688,7 @@ class DataCardCreatorHTT {
 
 
 
-            //std::pair<float,float> wShape         = createHistogramAndShifts(wFile_,"W",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
+            std::pair<float,float> wYield         = createHistogramAndShifts(wFile_,"WTmp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
             std::pair<float,float> wShape         = createHistogramAndShifts(wFile_,"W",("("+relaxedSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
 
             //First get data in Sideband
@@ -708,7 +706,7 @@ class DataCardCreatorHTT {
             printf("Diboson events in sideband region = %f + %f \n",vvYieldSdb.first,vvInflYieldSdb.second);
 
             //finally get Z in sideband
-            std::pair<float,float> zSDB        = createHistogramAndShifts(zttFile_,"Z_SDB",("("+preSelection+"&&"+trigSelection_+"&&"+categorySelection+"&&"+osWSelection_+")*"+weight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
+            std::pair<float,float> zSDB        = createHistogramAndShifts(zttFile_,"Z_SDB",("("+preSelection+"&&"+trigSelection_+"&&"+categorySelection+"&&"+osWSelection_+")*"+weight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
             printf("Z events in sideband region = %f + %f \n",zSDB.first,zSDB.second);
 
             //Run OS+LS + MT method
@@ -724,6 +722,7 @@ class DataCardCreatorHTT {
 
             printf("OS W in sideband  =%f -%f -%f -%f  = %f +- %f \n",dataYieldSdb.first,topInflYieldSdb.first,vvInflYieldSdb.first,zSDB.first,osWHigh.first,osWHigh.second);
 
+            
             std::pair<float,float> wFactor = extractWFactor(wFile_,relaxedSelection+"&&"+trigSelection_+"&&"+categorySelection,prefix,osWSelection_,osSignalSelection_);
             //std::pair<float,float> wFactor = extractWFactor(wFile_,preSelection,prefix,osWSelection_,osSignalSelection_);
             printf("W extrapolation factor as measured in corrected MC = %f +- %f\n",wFactor.first,wFactor.second);
@@ -736,9 +735,11 @@ class DataCardCreatorHTT {
                     sqrt(osWHigh.first*osWHigh.first*wFactor.second*wFactor.second+osWHigh.second*osWHigh.second*wFactor.first*wFactor.first));
 
             printf("OS W  in core  =%f *%f  = %f +- %f \n",osWHigh.first,wFactor.first,osWLow.first,osWLow.second);
-            renormalizeHistogram(channel_+prefix,"W",osWLow.first);
+            renormalizeHistogram(filelabel_+prefix,"W",osWLow.first);
 
-            std::pair<float,float> wMCYield       = createHistogramAndShifts(wFile_,"WTMP",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
+            printf("OS W MC in signal reg  = %f +- %f \n", wYield.first, wYield.second);
+            //std::pair<float,float> wMCYield       = createHistogramAndShifts(wFile_,"WTMP",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix);
+            //
             output.W  = osWLow.first;
             output.dW = osWLow.second;
             return true;

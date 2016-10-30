@@ -9,6 +9,12 @@
 </bin>
 <bin   name="MakeDataCardHTT" file="MakeDataCardHTT.cc">
 </bin>
+<bin   name="MakeDataCardQCD" file="MakeDataCardQCD.cc">
+</bin>
+<bin   name="MakeDataCardHTT_Btag" file="MakeDataCardHTT_Btag.cc">
+</bin>
+<bin   name="MakeDataCardHTT_New" file="MakeDataCardHTT_New.cc">
+</bin>
 <bin   name="MakeDataCardXTT" file="MakeDataCardXTT.cc">
 </bin>
 <bin   name="MakeDataCardBoost" file="MakeDataCardBoost.cc">

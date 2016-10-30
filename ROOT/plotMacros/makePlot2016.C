@@ -47,7 +47,8 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     lumi_8TeV  = "19.1 fb^{-1}"; // default is "19.7 fb^{-1}"
     lumi_7TeV  = "4.9 fb^{-1}";  // default is "5.1 fb^{-1}"
     lumi_sqrtS = "13 TeV";
-    if (json=="Golden") lumi_13TeV = channel+"    2016, 12.9 fb^{-1}";
+    if (json=="ICHEP") lumi_13TeV = channel+"    2016, 12.9 fb^{-1}";
+    if (json=="Golden") lumi_13TeV = channel+"    2016, 20.1 fb^{-1}";
 
     int iPeriod = 4;    // 1=7TeV, 2=8TeV, 3=7+8TeV, 7=7+8+13TeV 
 
@@ -176,10 +177,10 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     if(s==3) {
         TH1F * SM = (TH1F*)(f->Get(dir+"/ggH125"));
         TH1F *sm = SM;
-        sm->Scale(43.92*0.0632*10); //ggH xsec*tautau branching ratio*scaled by 10
+        sm->Scale(10); //ggH xsec*tautau branching ratio*scaled by 10
         TH1F * SM2 = (TH1F*)(f->Get(dir+"/qqH125"));
         TH1F *sm2 = SM2;
-        sm2->Scale(3.748*0.0632*10);//VBF Xsec 13 TeV * tautau BR *Scaled by 10
+        sm2->Scale(10);//VBF Xsec 13 TeV * tautau BR *Scaled by 10
         sm->Add(sm2);
         signal=sm;
 
@@ -239,7 +240,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
             TH1 *last = (TH1*)hs->GetStack()->Last();
             float bkg = last->GetBinContent(i+1);
             y = sig/(TMath::Sqrt(bkg + (0.09*bkg)*(0.09*bkg)));
-            if (y>=0.5) { 
+            if (y>=0.25) { 
                 std::cout<<" blinding bin "<<i+1<<std::endl;
                 data->SetBinContent(i+1,0);}
         }

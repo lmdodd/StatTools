@@ -363,12 +363,12 @@ class DataCardCreatorXTT_MC {
             output.dZLFT  = zlftInflYield.second;
 
             if(shifts_.size()>0&&channel_=="eleTau"){
-                std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_etau_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==11&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"1.02",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
-                std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_etau_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==11&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"0.98",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_xtt_ZLScale_etau_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==11&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"1.02",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_xtt_ZLScale_etau_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==11&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"0.98",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
             }
             else if(shifts_.size()>0&&channel_=="muTau"){
-                std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_mutau_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==13&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"1.02",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
-                std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLScale_mutau_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==13&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"0.98",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_xtt_ZLScale_mutau_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==13&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"1.02",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_xtt_ZLScale_mutau_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection_+"&&abs(pdg2)==13&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),"0.98",luminosity_*leg1Corr*zlftFactor_*zttScale_*zExtrap,prefix);
             }
 
             std::cout<<"Create ZJFT"<<std::endl;
@@ -564,8 +564,8 @@ class DataCardCreatorXTT_MC {
 
 
             std::pair<float,float> ztt  = createHistogramAndShiftsFinal(zttFile_,"ZTT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
-            std::pair<float,float> zttDyUp  = createHistogramAndShiftsFinal(zttFile_,"ZTT_CMS_htt_dyShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+Zweight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
-            std::pair<float,float> zttDyDown  = createHistogramAndShiftsFinal(zttFile_,"ZTT_CMS_htt_dyShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
+            std::pair<float,float> zttDyUp  = createHistogramAndShiftsFinal(zttFile_,"ZTT_CMS_xtt_dyShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+Zweight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
+            std::pair<float,float> zttDyDown  = createHistogramAndShiftsFinal(zttFile_,"ZTT_CMS_xtt_dyShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
 
             std::cout<<"      ZTT Selection: "<<preSelection<<"&&"<<trigSelection_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl;
             output.ZTT  = ztt.first;
@@ -605,8 +605,8 @@ class DataCardCreatorXTT_MC {
             if(eleID_!=0) leg1Corr*=eleID_;
 
             std::pair<float,float> topShape      = createHistogramAndShiftsFinal(topFile_,"TT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
-            std::pair<float,float> topShapeUp      = createHistogramAndShiftsFinal(topFile_,"TT_CMS_htt_ttbarShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
-            std::pair<float,float> topShapeDown      = createHistogramAndShiftsFinal(topFile_,"TT_CMS_htt_ttbarShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
+            std::pair<float,float> topShapeUp      = createHistogramAndShiftsFinal(topFile_,"TT_CMS_xtt_ttbarShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
+            std::pair<float,float> topShapeDown      = createHistogramAndShiftsFinal(topFile_,"TT_CMS_xtt_ttbarShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
 
             std::pair<float,float> topYield      = createHistogramAndShiftsFinal(topFile_,"TTYield",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_), luminosity_*leg1Corr*tauID_*topExtrap, prefix);
 
@@ -723,7 +723,7 @@ class DataCardCreatorXTT_MC {
             output.dQCD = osQCD.second;
 
             if(shifts_.size()>0){
-                qcdSyst(filelabel_, prefix, "QCD", 1.1, 0.1);
+                qcdSyst(filelabel_, prefix, "QCD", 1.2, 0.2);
             }
 
             return true;
@@ -792,9 +792,17 @@ class DataCardCreatorXTT_MC {
             else
                 yield =makeTHKeys(t,filelabel_+postfix,name,cut,scaleFactor);
 
+
             //now the shifts
             std::pair<float,float> tmpYield;
             for(unsigned int i=0;i<shifts_.size();++i) {
+
+                std::string weightUp=weight_;
+                std::string weightDown=weight_;
+                //if (weightShift=="EffCSVWeight0"){ 
+                //    weightUp=weight_+"*EffCSVWeight0Up";
+                //    weightDown=weight_+"*EffCSVWeight0Down";
+                //}
 
                 TTree *ts= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Up/eventTree").c_str());
                 if(ts!=0) {
@@ -936,8 +944,8 @@ class DataCardCreatorXTT_MC {
             TH1F *h=0;
 
             TString variableOld_=variable_;
-            if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&variable_=="pt2ES"){
-                variable_="pt_2";
+            if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&(variable_=="ptmtEnUp"||variable_=="ptmtEnDown")){
+                variable_="mt12";
             }
 
 
@@ -1354,8 +1362,8 @@ class DataCardCreatorXTT_MC {
                 chan = "tt";
 
             TH1F * h1 =(TH1F*) fout_->Get((channel+prefix+"/"+histo1).c_str());
-            TH1F * h2 = (TH1F*)h1->Clone(TString(histo1+std::string("_CMS_htt_QCDShape_"+chan+prefix+"_"+energy_+"Up")));
-            TH1F * h3 = (TH1F*)h1->Clone(TString(histo1+std::string("_CMS_htt_QCDShape_"+chan+prefix+"_"+energy_+"Down")));
+            TH1F * h2 = (TH1F*)h1->Clone(TString(histo1+std::string("_CMS_xtt_QCDShape_"+chan+prefix+"_"+energy_+"Up")));
+            TH1F * h3 = (TH1F*)h1->Clone(TString(histo1+std::string("_CMS_xtt_QCDShape_"+chan+prefix+"_"+energy_+"Down")));
             std::cout << "Channel label is " << chan << std::endl;
             float x,y;
             float cUp = corr+unc;

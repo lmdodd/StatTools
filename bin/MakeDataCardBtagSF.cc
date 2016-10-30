@@ -108,74 +108,35 @@ int main (int argc, char* argv[])
 	printf(" -------------------------------------\n"); 
 	printf(" --------New Variable--------\n"); 
 
-	if(bitmask[0]==0){
-	printf(" -------------------------------------\n"); 
-		printf("INCLUSIVE: MT Cut:  preselection -------------------------------------\n"); 
-		std::string inclSel = parser.stringValue("preselection"); //signalselection  has mt_cut
-                std::cout<<"using preselection: "<<inclSel<<std::endl;
-		BkgOutput output = creator.runOSLSMT(inclSel,"_inclusive",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"));
-		//(std::string preselection, std::string categoryselection, std::string prefixi,std::string bTagSF)
-		creator.makeHiggsShape(inclSel,inclSel,"_inclusive","1");
-	}
-       
-	if(bitmask[1]==1){
-	printf(" -------------------------------------\n"); 
+    if(bitmask[0]==0){
+        printf(" -------------------------------------\n"); 
+        printf("INCLUSIVE: MT Cut:  preselection -------------------------------------\n"); 
+        std::string inclSel = parser.stringValue("preselection"); //signalselection  has mt_cut
+        std::cout<<"using preselection: "<<inclSel<<std::endl;
+        BkgOutput output = creator.runOSLSMT(inclSel,"_inclusive",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"));
+        //(std::string preselection, std::string categoryselection, std::string prefixi,std::string bTagSF)
+        creator.makeHiggsShape(inclSel,inclSel,"_inclusive","1");
+    }
+    if(bitmask[3]==1){
 
-		printf("INCLUSIVE: MT Cut : preselection+extraselection -------------------------------------\n"); 
-		std::string inclSel = parser.stringValue("preselection"); 
-		std::string catSel = parser.stringValue("extraselection"); //any cat cut
-		std::string catDataSel = parser.stringValue("extraselection"); //any cat cut
-		std::string bTagSF = parser.stringValue("bTagSF");					 
+        printf(" -------------------------------------\n"); 
+        std::cout<<"========Running antibtag selection========"<<std::endl;
+        std::string inclSel = parser.stringValue("preselection"); 
+        std::string catSel = parser.stringValue("preselection"); 
+        std::string catDataSel = catSel; 
+        //std::string bTagSF = parser.stringValue("bTagSF");					 
 
-		creator.makeHiggsShape(inclSel,catSel,"_extraselection",bTagSF);
-		BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_inclusivemt40",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
-				1,//parser.doubleValue("zExtrap"),
-				1,//parser.doubleValue("zExtrapErr"),
-				bTagSF,//parser.doubleValue("BTagSF")
-				catDataSel 
-				);
-	}
-	
+        creator.makeHiggsShape(inclSel,catSel,"_nobtag","EffCSVWeight0");
+        BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_nobtag",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
+                1,//parser.doubleValue("zExtrap"),
+                1,//parser.doubleValue("zExtrapErr"),
+                "EffCSVWeight0", //parser.stringValue("bTagSF");
+                "nbtag==0"
+                );
+    }
 
 
-	if(bitmask[2]==1){
-
-	printf(" -------------------------------------\n"); 
-		std::cout<<"========Running btag selection========"<<std::endl;
-		std::string inclSel = parser.stringValue("preselection"); 
-		std::string catSel = parser.stringValue("preselection"); 
-		std::string catDataSel = catSel;
-		//std::string bTagSF = parser.stringValue("bTagSF1");					 
-
-		creator.makeHiggsShape(inclSel,catSel,"_btag","EffCSVWeight1");
-		BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_btag",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
-				1,//parser.doubleValue("zExtrap"),
-				1,//parser.doubleValue("zExtrapErr"),
-				"EffCSVWeight1", //parser.stringValue("bTagSF");
-				"nbtag>0"
-				);
-	}
-
-	if(bitmask[3]==1){
-
-	printf(" -------------------------------------\n"); 
-		std::cout<<"========Running antibtag selection========"<<std::endl;
-		std::string inclSel = parser.stringValue("preselection"); 
-		std::string catSel = parser.stringValue("preselection"); 
-		std::string catDataSel = catSel; 
-		//std::string bTagSF = parser.stringValue("bTagSF");					 
-
-		creator.makeHiggsShape(inclSel,catSel,"_nobtag","EffCSVWeight0");
-		BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_nobtag",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
-				1,//parser.doubleValue("zExtrap"),
-				1,//parser.doubleValue("zExtrapErr"),
-				"EffCSVWeight0", //parser.stringValue("bTagSF");
-				"nbtag==0"
-				);
-	}
-
-
-	creator.close();
+    creator.close();
 }
 
 
