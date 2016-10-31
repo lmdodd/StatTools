@@ -1,7 +1,7 @@
 #!/bin/sh
 preselection='pt_1>27&&pt_2>20&&vertices>0&&dilepton_veto==0&&iso_1<0.1&&tightElectrons<=1&&tightMuons==0&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5'
 wselection='mt_1>0'
-signalselection='met>100&&m_vis<125'
+signalselection='met>125&&pth>50&&m_vis<125'
 qcdselection=$preselection
 trigselection='pt_1>27' #only for MC
 trigselectiondata='pt_1>27&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&nbtagNoSF==0'
@@ -17,7 +17,8 @@ tauID=0.90
 #bTagSF='EffCSVWeight0'
 topWeight='topWeight'
 zWeight='ZPt_reweight'
-vWeight='WPt_reweight'
+#vWeight='WPt_reweight'
+vWeight=1.21
 bins=30
 binning='binningHighStat=0.,10.,20.,30.,40.,50.,60.,70.,80.,90.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,225.,250.,275.,300.,325.,350. binningLowStat=0.,20.,40.,60.,80.,100.,120.,140.,160.,180.,200.,250.,300.,350.' 
 

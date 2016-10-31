@@ -15,7 +15,7 @@ trigselectiondata='(HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&lTrigger25>0)'
 #relaxedSelection=$preselection
 relaxedSelection='pt_1>26&&pt_2>20&&vertices>0&&dilepton_veto==0&&iso_1<0.3&&tightElectrons<=1&&tightMuons==0&&tauIsoMedium>0.5&&againstElectronLooseMVA6_2>0'
 luminosity=12900. #pb
-direc='/hdfs/store/user/laura/SMHiggs_MVAMET_weighted/'
+direc='/nfs_scratch/laura/SMHiggs_MVAMET_weighted/'
 datadirec=$direc
 zttScale=1.
 #zlftFactor=1.0
