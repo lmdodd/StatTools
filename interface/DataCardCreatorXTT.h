@@ -191,6 +191,32 @@ class DataCardCreatorXTT_MC {
             if(muID_==0&&eleID_!=0) {legCorr*=eleID_*tauID_;}
             std::cout<<"Make Higgs Shape"<<std::endl;
             //600 histos
+            //
+
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi1000.root","ZpBaryonic_Zp10000_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi10.root","ZpBaryonic_Zp10000_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi150.root","ZpBaryonic_Zp10000_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi1.root","ZpBaryonic_Zp10000_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi500.root","ZpBaryonic_Zp10000_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi50.root","ZpBaryonic_Zp10000_MChi50",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp1000_MChi1000.root","ZpBaryonic_Zp1000_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp1000_MChi150.root","ZpBaryonic_Zp1000_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp1000_MChi1.root","ZpBaryonic_Zp1000_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp500_MChi500.root","ZpBaryonic_Zp500_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp500_MChi150.root","ZpBaryonic_Zp500_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp500_MChi1.root","ZpBaryonic_Zp500_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+ 
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp100_MChi10.root","ZpBaryonic_Zp100_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp100_MChi1.root","ZpBaryonic_Zp100_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi1000.root","ZpBaryonic_Zp10_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi10.root","ZpBaryonic_Zp10_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi150.root","ZpBaryonic_Zp10_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi1.root","ZpBaryonic_Zp10_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi500.root","ZpBaryonic_Zp10_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi50.root","ZpBaryonic_Zp10_MChi50",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+
+
+            std::cout<<"Make Higgs Shape"<<std::endl;
             tmp= createHistogramAndShiftsFinal(dir_+"Zprime600A300h.root","Zprime600A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
             tmp= createHistogramAndShiftsFinal(dir_+"Zprime600A300h.root","ZprimeA300Z600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
             tmp= createHistogramAndShiftsFinal(dir_+"Zprime600A400h.root","Zprime600A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
@@ -354,6 +380,8 @@ class DataCardCreatorXTT_MC {
             //ZLShape
             //std::pair<float,float> zlftShape   = createHistogramAndShiftsFinal(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+relaxedSelection+"&&"+ZLFT_genLSel_+")*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
             std::pair<float,float> zlftShape   = createHistogramAndShiftsFinal(zllFile_,"ZL",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
+            std::pair<float,float> zlftShapeUp   = createHistogramAndShiftsFinal(zllFile_,"ZL_CMS_xtt_dyShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+Zweight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
+            std::pair<float,float> zlftShapeDown   = createHistogramAndShiftsFinal(zllFile_,"ZL_CMS_xtt_dyShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_),luminosity_*leg1Corr*zlftFactor_*zttScale_,prefix,false);
 
             std::pair<float,float> zlftInflYield  = inflateError(zlftYield,zlftErr_);
             printf("      Z (l->tau) in signal region = %f + %f \n",zlftInflYield.first,zlftInflYield.second);
@@ -378,6 +406,9 @@ class DataCardCreatorXTT_MC {
             //ZJ Shape
             //std::pair<float,float> zjftShape      = createHistogramAndShiftsFinal(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+relaxedSelection+"&&"+ZJFT_genLReject_+")*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
             std::pair<float,float> zjftShape      = createHistogramAndShiftsFinal(zllFile_,"ZJ",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZJFT_genLReject_+")*"+weight_+"*"+Zweight_),luminosity_*leg1Corr*zttScale_,prefix);    
+            std::pair<float,float> zjftShapeUp      = createHistogramAndShiftsFinal(zllFile_,"ZJ_CMS_xtt_dyShape_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZJFT_genLReject_+")*"+weight_+"*"+Zweight_+"*"+Zweight_),luminosity_*leg1Corr*zttScale_,prefix);    
+            std::pair<float,float> zjftShapeDown      = createHistogramAndShiftsFinal(zllFile_,"ZJ_CMS_xtt_dyShape_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZJFT_genLReject_+")*"+weight_),luminosity_*leg1Corr*zttScale_,prefix);    
+
 
             std::pair<float,float> zjftInflYield  = inflateError(zjftYield,zjftErr_);
             printf("      Z (j->tau) in signal region = %f + %f \n",zjftInflYield.first,zjftInflYield.second);
@@ -422,6 +453,17 @@ class DataCardCreatorXTT_MC {
                 return output;
             }
 
+
+            FixNegativeBinsMC(filelabel_+prefix,"W",false);
+            FixNegativeBinsMC(filelabel_+prefix,"QCD",false);
+            FixNegativeBins(filelabel_+prefix, "TT_CMS_xtt_ttbarShape_13TeVUp", false);
+            FixNegativeBins(filelabel_+prefix, "TT_CMS_xtt_ttbarShape_13TeVDown", false);
+            FixNegativeBins(filelabel_+prefix, "ZTT_CMS_xtt_dyShape_13TeVUp", false);
+            FixNegativeBins(filelabel_+prefix, "ZTT_CMS_xtt_dyShape_13TeVDown", false);
+            FixNegativeBins(filelabel_+prefix, "ZL_CMS_xtt_dyShape_13TeVUp", false);
+            FixNegativeBins(filelabel_+prefix, "ZL_CMS_xtt_dyShape_13TeVDown", false);
+            FixNegativeBins(filelabel_+prefix, "ZJ_CMS_xtt_dyShape_13TeVUp", false);
+            FixNegativeBins(filelabel_+prefix, "ZJ_CMS_xtt_dyShape_13TeVDown", false);
 
 
             std::cout<<std::endl;
@@ -633,7 +675,7 @@ class DataCardCreatorXTT_MC {
             float leg1Corr=1.0;
             if(muID_!=0) leg1Corr*=muID_;
             if(eleID_!=0) leg1Corr*=eleID_;
-            std::pair<float,float> dataQCDShape = createHistogramAndShifts(dataFile_,"QCD","("+relaxedSelection+"&&"+trigSelectionDATA_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
+            std::pair<float,float> dataQCDShape = createHistogramAndShiftsQCD(dataFile_,"QCD","("+relaxedSelection+"&&"+trigSelectionDATA_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
             printf("      Data events in SS Signal QCDShape sideband region = %f + %f \n",dataQCDShape.first,dataQCDShape.second);
             std::pair<float,float> ZQCDShape = createHistogramAndShifts(zttFile_,"ZQCD","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Zweight_,luminosity_,prefix); 
             printf("      Z events in SS Signal QCDShape sideband region = %f + %f \n",ZQCDShape.first,ZQCDShape.second);
@@ -726,6 +768,7 @@ class DataCardCreatorXTT_MC {
                 qcdSyst(filelabel_, prefix, "QCD", 1.2, 0.2);
             }
 
+            std::cout<<"QCDSystematics made"<<std::endl;
             return true;
 
 
@@ -803,11 +846,21 @@ class DataCardCreatorXTT_MC {
                 //    weightUp=weight_+"*EffCSVWeight0Up";
                 //    weightDown=weight_+"*EffCSVWeight0Down";
                 //}
+                TTree *ts=0;
+                TTree *td=0;
+                if (shifts_[i]=="MET"){
+                    ts= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
+                }
+                else{
+                    ts= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Up/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Down/eventTree").c_str());
+                }
 
-                TTree *ts= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Up/eventTree").c_str());
+
                 if(ts!=0) {
                     if(!keys)
-                        tmpYield = makeHistogram(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor);
+                        tmpYield = makeHistogram(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor,shifts_[i]+"Up");
                     else
                         tmpYield = makeTHKeys(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor);
 
@@ -815,10 +868,9 @@ class DataCardCreatorXTT_MC {
                         scaleHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",yield.first/tmpYield.first);
 
                 }
-                TTree *td= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Down/eventTree").c_str());
                 if(td!=0) {
                     if(!keys)
-                        tmpYield = makeHistogram(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor);
+                        tmpYield = makeHistogram(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor,shifts_[i]+"Down");
                     else
                         tmpYield = makeTHKeys(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor);
 
@@ -826,6 +878,31 @@ class DataCardCreatorXTT_MC {
                         scaleHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",yield.first/tmpYield.first);
 
                 }
+            }
+            f->Close();
+            return yield;
+        }
+
+
+        std::pair<float,float> createHistogramAndShiftsQCD(std::string file,std::string name, std::string cut,float scaleFactor = 1, std::string postfix = "",bool normUC  = true, bool keys=false,bool ShapeUncertainty=true) {
+            TFile *f  = new TFile(file.c_str());
+            if(f==0) printf("Not file Found\n");
+            //get the nominal tree first
+            TTree *t= (TTree*)f->Get((channel_+"EventTree/eventTree").c_str());
+            if(t==0) printf("Not Tree Found in file %s\n",file.c_str());
+            std::pair<float,float> yield;
+
+            if(!keys)
+                yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor);
+
+            //now the shifts
+            std::pair<float,float> tmpYield;
+            for(unsigned int i=0;i<shifts_.size();++i) {
+
+                tmpYield = makeHistogram(t,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor);
+
+                tmpYield = makeHistogram(t,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor);
+
             }
             f->Close();
             return yield;
@@ -849,11 +926,21 @@ class DataCardCreatorXTT_MC {
             //now the shifts
             std::pair<float,float> tmpYield;
             for(unsigned int i=0;i<shifts_.size();++i) {
-                //if shifts_[i]
-                TTree *ts= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Up/eventTree").c_str());
+                TTree *ts=0;
+                TTree *td=0;
+                if (shifts_[i]=="MET"){
+                    ts= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
+
+                }
+                else{
+                    ts= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Up/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Down/eventTree").c_str());
+                }
+
                 if(ts!=0) {
                     if(!keys)
-                        tmpYield = makeHistogram(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor);
+                        tmpYield = makeHistogram(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor,shifts_[i]+"Up");
                     else
                         tmpYield = makeTHKeys(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor);
 
@@ -861,10 +948,10 @@ class DataCardCreatorXTT_MC {
                         scaleHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",yield.first/tmpYield.first);
 
                 }
-                TTree *td= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Down/eventTree").c_str());
+
                 if(td!=0) {
                     if(!keys)
-                        tmpYield = makeHistogram(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor);
+                        tmpYield = makeHistogram(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor,shifts_[i]+"Down");
                     else
                         tmpYield = makeTHKeys(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor);
 
@@ -874,6 +961,9 @@ class DataCardCreatorXTT_MC {
                 }
 
             }
+            if (!(name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"))
+                FixNegativeBinsMC(filelabel_+postfix,name,false);
+
             f->Close();
             return yield;
         }
@@ -937,13 +1027,27 @@ class DataCardCreatorXTT_MC {
             return returnValue;
         }
 
-        std::pair<float,float> makeHistogram(TTree* tree,std::string folder,std::string name,std::string cut,float scaleFactor = 1.) {
+        std::pair<float,float> makeHistogram(TTree* tree,std::string folder,std::string name,std::string cut,float scaleFactor = 1.,std::string shift = "none") {
 
             if(fout_->Get(folder.c_str())==0)
                 fout_->mkdir(folder.c_str());
             TH1F *h=0;
 
             TString variableOld_=variable_;
+
+            if (shift=="METUp" && variable_=="mt12") 
+            {
+                variable_="pfmtEnUp";
+            }
+            if (shift=="METDown" && variable_=="mt12") {
+                variable_="pfmtEnDown";
+            }
+            if (shift=="METUp" && variable_=="met") {
+                variable_="pfmetEnUp";
+            }
+            if (shift=="METDown" && variable_=="met") {
+                variable_="pfmetEnDown";
+            }
             if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&(variable_=="ptmtEnUp"||variable_=="ptmtEnDown")){
                 variable_="mt12";
             }
@@ -1282,33 +1386,33 @@ class DataCardCreatorXTT_MC {
         }
 
 
-        void FixNegativeBins(std::string folder, std::string histo, bool is_qcd, bool verbose=false) {
+        void FixNegativeBins(std::string folder, std::string histo, bool verbose=false) {
 
             TH1F * hist =(TH1F*) fout_->Get((folder+"/"+histo).c_str());
             unsigned bins = hist->GetNbinsX();
             for (unsigned i = 1; i <= bins; ++i) {
-                if (hist->GetBinContent(i) < 0.){
-                    hist->SetBinContent(i,0);
+                if (hist->GetBinContent(i) < 0.000001){
+                    hist->SetBinContent(i,0.000001);
                     if(verbose)
-                        std::cout<<"Bin "<< i << " is negative, setting to 0"<<std::endl;
+                        std::cout<<"Bin "<< i << " is negative, setting to 1E6"<<std::endl;
                 }
             }
             hist->Write(hist->GetName(),TObject::kOverwrite);
         }
 
-        void FixNegativeBinsMC(std::string folder, std::string histo, bool is_qcd, bool verbose=false){
+        void FixNegativeBinsMC(std::string folder, std::string histo, bool verbose=false){
 
-            FixNegativeBins(folder, histo, is_qcd, verbose);
+            FixNegativeBins(folder, histo, verbose);
 
             for(unsigned int i=0;i<shifts_.size();++i) {
                 TH1F * hh =(TH1F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Up").c_str());
                 if(hh!=0) {
-                    FixNegativeBins(folder, (histo+"_"+shiftsPostFix_[i]+"Up").c_str(), is_qcd, verbose);
+                    FixNegativeBins(folder, (histo+"_"+shiftsPostFix_[i]+"Up").c_str(), verbose);
                 }
 
                 TH1F * hhh =(TH1F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Down").c_str());
                 if(hhh!=0) {
-                    FixNegativeBins(folder, (histo+"_"+shiftsPostFix_[i]+"Down").c_str(), is_qcd, verbose);
+                    FixNegativeBins(folder, (histo+"_"+shiftsPostFix_[i]+"Down").c_str(), verbose);
                 }
 
             }

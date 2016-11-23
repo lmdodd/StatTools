@@ -49,6 +49,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     lumi_sqrtS = "13 TeV";
     if (json=="FuckMuons") lumi_13TeV = channel+"    2016, 3.4 fb^{-1}";
     if (json=="Golden") lumi_13TeV = channel+"    2016, 12.9 fb^{-1}";
+    else lumi_13TeV = channel+"    2016, "+json+" fb^{-1}";
 
     int iPeriod = 4;    // 1=7TeV, 2=8TeV, 3=7+8TeV, 7=7+8+13TeV 
 

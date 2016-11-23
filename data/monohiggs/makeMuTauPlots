@@ -8,8 +8,10 @@ trigselection='pt_1>24' #only for MC
 trigselectiondata='pt_1>24&&(HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)&&nbtagNoSF==0' #only for Data
 relaxedSelection=$preselection
 #luminosity= 1470 #pb
-luminosity=12900 #pb
+luminosity=28800 #pb
+#luminosity=12900 #pb
 #luminosity=2246. #pb
+#direc='/nfs_scratch/laura/monohiggs_weighted/'
 direc='/hdfs/store/user/laura/monohiggs_weighted1Copy/'
 datadirec=$direc
 zttScale=1.

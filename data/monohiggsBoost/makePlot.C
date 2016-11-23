@@ -280,7 +280,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
                 TH1 *last = (TH1*)hs->GetStack()->Last();
                 float bkg = last->GetBinContent(i+1);
                 y = sig/(TMath::Sqrt(bkg + (0.09*bkg)*(0.09*bkg)));
-                if (y>=0.5) { 
+                if (y>=0.1) { 
                     std::cout<<" blinding bin "<<i+1<<std::endl;
                     data->SetBinContent(i+1,0);}
             }
