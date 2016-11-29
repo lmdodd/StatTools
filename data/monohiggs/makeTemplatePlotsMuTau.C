@@ -18,6 +18,7 @@ void makeTemplatePlotsMuTau(){
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_2","muTauPlots/muTau_mt_2.root","mt_inclusive",3,"#tau +MET m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt","muTauPlots/muTau_mt.root","mt_inclusive",3,"Total m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_ht","muTauPlots/muTau_ht.root","mt_inclusive",3,"Generator HT","GeV",false,"#tau_{#mu}#tau_{h}","28.8",true,false,true);
+   makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_dR","muTauPlots/muTau_dR.root","mt_inclusive",3," #mu #tau DR","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_iso_1","muTauPlots/muTau_iso_1.root","mt_inclusive",3,"Isolation #mu DR=0.3","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_iso04_1","muTauPlots/muTau_iso04_1.root","mt_inclusive",3,"Isolation #mu DR=0.4","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_met","muTauPlots/muTau_met.root","mt_inclusive",3,"ME_{T}","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);

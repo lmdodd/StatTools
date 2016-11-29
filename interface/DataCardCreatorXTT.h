@@ -193,129 +193,131 @@ class DataCardCreatorXTT_MC {
             //600 histos
             //
 
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi1000.root","ZpBaryonic_Zp10000_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi10.root","ZpBaryonic_Zp10000_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi150.root","ZpBaryonic_Zp10000_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi1.root","ZpBaryonic_Zp10000_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi500.root","ZpBaryonic_Zp10000_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10000_MChi50.root","ZpBaryonic_Zp10000_MChi50",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp1000_MChi1000.root","ZpBaryonic_Zp1000_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp1000_MChi150.root","ZpBaryonic_Zp1000_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp1000_MChi1.root","ZpBaryonic_Zp1000_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp500_MChi500.root","ZpBaryonic_Zp500_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp500_MChi150.root","ZpBaryonic_Zp500_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp500_MChi1.root","ZpBaryonic_Zp500_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10000_MChi1000.root","ZpBaryonic_Zp10000_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10000_MChi10.root","ZpBaryonic_Zp10000_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10000_MChi150.root","ZpBaryonic_Zp10000_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10000_MChi1.root","ZpBaryonic_Zp10000_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10000_MChi500.root","ZpBaryonic_Zp10000_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10000_MChi50.root","ZpBaryonic_Zp10000_MChi50",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp1000_MChi1000.root","ZpBaryonic_Zp1000_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp1000_MChi150.root","ZpBaryonic_Zp1000_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp1000_MChi1.root","ZpBaryonic_Zp1000_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp500_MChi500.root","ZpBaryonic_Zp500_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp500_MChi150.root","ZpBaryonic_Zp500_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp500_MChi1.root","ZpBaryonic_Zp500_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
  
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp100_MChi10.root","ZpBaryonic_Zp100_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp100_MChi1.root","ZpBaryonic_Zp100_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi1000.root","ZpBaryonic_Zp10_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi10.root","ZpBaryonic_Zp10_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi150.root","ZpBaryonic_Zp10_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi1.root","ZpBaryonic_Zp10_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi500.root","ZpBaryonic_Zp10_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            //tmp= createHistogramAndShiftsFinal(dir_+"ZpBaryonic_Zp10_MChi50.root","ZpBaryonic_Zp10_MChi50",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp100_MChi10.root","ZpBaryonic_Zp100_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp100_MChi1.root","ZpBaryonic_Zp100_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10_MChi1000.root","ZpBaryonic_Zp10_MChi1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10_MChi10.root","ZpBaryonic_Zp10_MChi10",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10_MChi150.root","ZpBaryonic_Zp10_MChi150",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10_MChi1.root","ZpBaryonic_Zp10_MChi1",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10_MChi500.root","ZpBaryonic_Zp10_MChi500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            //tmp= createHistogramAndShifts(dir_+"ZpBaryonic_Zp10_MChi50.root","ZpBaryonic_Zp10_MChi50",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
 
 
             std::cout<<"Make Higgs Shape"<<std::endl;
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime600A300h.root","Zprime600A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime600A300h.root","ZprimeA300Z600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime600A400h.root","Zprime600A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime600A400h.root","ZprimeA400Z600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime600A300h.root","Zprime600A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            std::cout<<"Make Higgs Shape 600300: "<<tmp.first <<std::endl;
+            tmp= createHistogramAndShifts(dir_+"Zprime600A300h.root","ZprimeA300Z600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime600A400h.root","Zprime600A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime600A400h.root","ZprimeA400Z600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
             //800 histos
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime800A300h.root","Zprime800A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime800A400h.root","Zprime800A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime800A500h.root","Zprime800A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime800A600h.root","Zprime800A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime800A300h.root","ZprimeA300Z800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime800A400h.root","ZprimeA400Z800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime800A500h.root","ZprimeA500Z800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime800A600h.root","ZprimeA600Z800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime800A300h.root","Zprime800A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime800A400h.root","Zprime800A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime800A500h.root","Zprime800A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime800A600h.root","Zprime800A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime800A300h.root","ZprimeA300Z800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime800A400h.root","ZprimeA400Z800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime800A500h.root","ZprimeA500Z800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime800A600h.root","ZprimeA600Z800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
 
             //1000 histos
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A300h.root","Zprime1000A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A400h.root","Zprime1000A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A500h.root","Zprime1000A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A600h.root","Zprime1000A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A700h.root","Zprime1000A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A800h.root","Zprime1000A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A300h.root","ZprimeA300Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A400h.root","ZprimeA400Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A500h.root","ZprimeA500Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A600h.root","ZprimeA600Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A700h.root","ZprimeA700Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1000A800h.root","ZprimeA800Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A300h.root","Zprime1000A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A400h.root","Zprime1000A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A500h.root","Zprime1000A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A600h.root","Zprime1000A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A700h.root","Zprime1000A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A800h.root","Zprime1000A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A300h.root","ZprimeA300Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A400h.root","ZprimeA400Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A500h.root","ZprimeA500Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A600h.root","ZprimeA600Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A700h.root","ZprimeA700Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1000A800h.root","ZprimeA800Z1000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
 
             //1200 histos
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A300h.root","ZprimeA300Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A400h.root","ZprimeA400Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A500h.root","ZprimeA500Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A600h.root","ZprimeA600Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A700h.root","ZprimeA700Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A800h.root","ZprimeA800Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A300h.root","Zprime1200A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A400h.root","Zprime1200A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A500h.root","Zprime1200A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A600h.root","Zprime1200A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A700h.root","Zprime1200A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1200A800h.root","Zprime1200A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A300h.root","ZprimeA300Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A400h.root","ZprimeA400Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A500h.root","ZprimeA500Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A600h.root","ZprimeA600Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A700h.root","ZprimeA700Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A800h.root","ZprimeA800Z1200",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A300h.root","Zprime1200A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A400h.root","Zprime1200A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A500h.root","Zprime1200A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A600h.root","Zprime1200A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A700h.root","Zprime1200A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1200A800h.root","Zprime1200A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
             //1400 histos
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A300h.root","Zprime1400A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A400h.root","Zprime1400A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A500h.root","Zprime1400A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A600h.root","Zprime1400A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A700h.root","Zprime1400A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A800h.root","Zprime1400A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A300h.root","ZprimeA300Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A400h.root","ZprimeA400Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A500h.root","ZprimeA500Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A600h.root","ZprimeA600Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A700h.root","ZprimeA700Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1400A800h.root","ZprimeA800Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A300h.root","Zprime1400A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            std::cout<<"Make Higgs Shape 1400300: "<<tmp.first <<std::endl;
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A400h.root","Zprime1400A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A500h.root","Zprime1400A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A600h.root","Zprime1400A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A700h.root","Zprime1400A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A800h.root","Zprime1400A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A300h.root","ZprimeA300Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A400h.root","ZprimeA400Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A500h.root","ZprimeA500Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A600h.root","ZprimeA600Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A700h.root","ZprimeA700Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1400A800h.root","ZprimeA800Z1400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
 
 
             //1700 histos
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A300h.root","Zprime1700A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A400h.root","Zprime1700A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A500h.root","Zprime1700A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A600h.root","Zprime1700A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A700h.root","Zprime1700A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A800h.root","Zprime1700A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A300h.root","ZprimeA300Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A400h.root","ZprimeA400Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A500h.root","ZprimeA500Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A600h.root","ZprimeA600Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A700h.root","ZprimeA700Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime1700A800h.root","ZprimeA800Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A300h.root","Zprime1700A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A400h.root","Zprime1700A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A500h.root","Zprime1700A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A600h.root","Zprime1700A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A700h.root","Zprime1700A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A800h.root","Zprime1700A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A300h.root","ZprimeA300Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A400h.root","ZprimeA400Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A500h.root","ZprimeA500Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A600h.root","ZprimeA600Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A700h.root","ZprimeA700Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime1700A800h.root","ZprimeA800Z1700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
 
 
 
             //2000 histos
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A300h.root","Zprime2000A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A400h.root","Zprime2000A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A500h.root","Zprime2000A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A600h.root","Zprime2000A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A700h.root","Zprime2000A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A800h.root","Zprime2000A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A300h.root","ZprimeA300Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A400h.root","ZprimeA400Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A500h.root","ZprimeA500Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A600h.root","ZprimeA600Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A700h.root","ZprimeA700Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2000A800h.root","ZprimeA800Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A300h.root","Zprime2000A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A400h.root","Zprime2000A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A500h.root","Zprime2000A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A600h.root","Zprime2000A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A700h.root","Zprime2000A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A800h.root","Zprime2000A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A300h.root","ZprimeA300Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A400h.root","ZprimeA400Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A500h.root","ZprimeA500Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A600h.root","ZprimeA600Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A700h.root","ZprimeA700Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2000A800h.root","ZprimeA800Z2000",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
 
             //2500 histos
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A300h.root","Zprime2500A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A400h.root","Zprime2500A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A500h.root","Zprime2500A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A600h.root","Zprime2500A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A700h.root","Zprime2500A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A800h.root","Zprime2500A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A300h.root","ZprimeA300Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A400h.root","ZprimeA400Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A500h.root","ZprimeA500Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A600h.root","ZprimeA600Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A700h.root","ZprimeA700Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
-            tmp= createHistogramAndShiftsFinal(dir_+"Zprime2500A800h.root","ZprimeA800Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A300h.root","Zprime2500A300",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A400h.root","Zprime2500A400",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A500h.root","Zprime2500A500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A600h.root","Zprime2500A600",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A700h.root","Zprime2500A700",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A800h.root","Zprime2500A800",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A300h.root","ZprimeA300Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A400h.root","ZprimeA400Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A500h.root","ZprimeA500Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A600h.root","ZprimeA600Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A700h.root","ZprimeA700Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
+            tmp= createHistogramAndShifts(dir_+"Zprime2500A800h.root","ZprimeA800Z2500",("("+preselection+"&&"+categoryselection+"&&"+trigSelection_+"&&"+osSignalSelection_+")*"+weight_),luminosity_*BR,prefix);
 
         }
 
@@ -681,13 +683,13 @@ class DataCardCreatorXTT_MC {
             printf("      Z events in SS Signal QCDShape sideband region = %f + %f \n",ZQCDShape.first,ZQCDShape.second);
             std::pair<float,float> TopQCDShape = createHistogramAndShifts(topFile_,"TopQCD","("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
             printf("      TOP events in SS Signal QCDShape sideband region = %f + %f \n",TopQCDShape.first,TopQCDShape.second);
-            std::pair<float,float> VVQCDShape       = createHistogramAndShifts(vvFile_,"VVQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
+            std::pair<float,float> VVQCDShape       = createHistogramAndShifts(vvFile_,"VVQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix);
             printf("      VV events in SS Signal QCDShape sideband region = %f + %f \n",VVQCDShape.first,VVQCDShape.second);
 
-            std::pair<float,float> SMHQCDShape       = createHistogramAndShifts(zhFile_,"SMHQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
+            std::pair<float,float> SMHQCDShape       = createHistogramAndShifts(zhFile_,"SMHQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix);
             printf("      SMH events in SS Signal QCDShape sideband region = %f + %f \n",SMHQCDShape.first,SMHQCDShape.second);
 
-            std::pair<float,float> WQCDLowShape       = createHistogramAndShifts(wFile_,"WQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix,false);
+            std::pair<float,float> WQCDLowShape       = createHistogramAndShifts(wFile_,"WQCD",("("+relaxedSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr,prefix);
 
 
 
@@ -698,12 +700,12 @@ class DataCardCreatorXTT_MC {
             printf("      Z events in SS Signal QCD sideband region = %f + %f \n",ZQCD.first,ZQCD.second);
             std::pair<float,float> TopQCD = createHistogramAndShifts(topFile_,"TopQCDYield","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+TTweight_,luminosity_,prefix); 
             printf("      TOP events in SS Signal QCD sideband region = %f + %f \n",TopQCD.first,TopQCD.second);
-            std::pair<float,float> VVQCD       = createHistogramAndShifts(vvFile_,"VVQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
+            std::pair<float,float> VVQCD       = createHistogramAndShifts(vvFile_,"VVQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix);
 
-            std::pair<float,float> SMHQCD       = createHistogramAndShifts(zhFile_,"SMHQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix,false);
+            std::pair<float,float> SMHQCD       = createHistogramAndShifts(zhFile_,"SMHQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix);
             printf("      SMH events in SS Signal QCD sideband region = %f + %f \n",SMHQCD.first,SMHQCD.second);
 
-            std::pair<float,float> ssWLow       = createHistogramAndShifts(wFile_,"WQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Vweight_),luminosity_*leg1Corr,prefix,false);
+            std::pair<float,float> ssWLow       = createHistogramAndShifts(wFile_,"WQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Vweight_),luminosity_*leg1Corr,prefix);
             printf("      (MonteCarlo) W events in SS region = %f + %f \n",ssWLow.first,ssWLow.second);
 
             /*
@@ -781,8 +783,8 @@ class DataCardCreatorXTT_MC {
             //WShape is relaxed
             //std::pair<float,float> wShape         = createHistogramAndShiftsFinal(wFile_,"W",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+relaxedSelection+")*"+weight_),luminosity_,prefix,false);
             //std::cout<<"Relaxed Selection: "<<relaxedSelection<<std::endl;
-            std::pair<float,float> wYield         = createHistogramAndShiftsFinal(wFile_,"W",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Vweight_),luminosity_,prefix,false);
-            std::pair<float,float> wShapeYield         = createHistogramAndShiftsFinal(wFile_,"WUnscaled",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Vweight_),1.0,prefix,false);
+            std::pair<float,float> wYield         = createHistogramAndShiftsFinal(wFile_,"W",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Vweight_),luminosity_,prefix);
+            std::pair<float,float> wShapeYield         = createHistogramAndShiftsFinal(wFile_,"WUnscaled",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+Vweight_),1.0,prefix);
             std::cout<<"Straight W MC Yield: "<<wYield.first<<" stat error:" <<wYield.second<<std::endl;
             std::cout<<"Straight W MC Yield: "<<preSelection+"&&"<<trigSelection_<<"&&"<<categorySelection<<"&&"<<osSignalSelection_<<std::endl; 
 
@@ -849,12 +851,12 @@ class DataCardCreatorXTT_MC {
                 TTree *ts=0;
                 TTree *td=0;
                 if (shifts_[i]=="MET"){
-                    ts= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
-                    td= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
+                    ts= (TTree*)f->Get((channel_+"EventTree/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTree/eventTree").c_str());
                 }
                 else{
-                    ts= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Up/eventTree").c_str());
-                    td= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Down/eventTree").c_str());
+                    ts= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Up/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Down/eventTree").c_str());
                 }
 
 

@@ -23,7 +23,7 @@ struct BkgOutput {
 	float QCD, dQCD;
 	float ZLFT, dZLFT;
 	float ZJFT, dZJFT;
-	//float SMH, dSMH;
+	float SMH, dSMH;
 	float TOP, dTOP;
 	float VV, dVV;
 	float ZVV, dZVV;
@@ -74,6 +74,7 @@ class DataCardCreatorBoost {
             wFile_    = parser.stringValue("wFile");
             vvFile_   = parser.stringValue("vvFile");
             zvvFile_   = parser.stringValue("zvvFile");
+            zhFile_   = parser.stringValue("zhFile");
             topFile_  = parser.stringValue("topFile");
             qcdFile_  = parser.stringValue("qcdFile");
             dataFile_  = parser.stringValue("dataFile");
@@ -401,13 +402,11 @@ class DataCardCreatorBoost {
                 std::cout<<"Error Creating TOP"<<std::endl;
                 return output;
             }
-            /*
-               std::cout<<"Create SMH"<<std::endl;
-               if(!runSMH(preSelection, prefix, zShape, topExtrap, output, categorySelection)){
-               std::cout<<"Error Creating SMH"<<std::endl;
-               return output;
-               }
-               */
+            std::cout<<"Create SMH"<<std::endl;
+            if(!runSMH(preSelection, prefix, zShape, topExtrap, output, categorySelection)){
+                std::cout<<"Error Creating SMH"<<std::endl;
+                return output;
+            }
 
             std::cout<<"Create W"<<std::endl;
             //Create W
@@ -514,6 +513,27 @@ class DataCardCreatorBoost {
             printf("      Selection ZTT events in signal region = %f + %f \n",ztt.first,ztt.second);
             return true;
         }
+
+
+        bool runSMH(std::string preSelection,std::string prefix,std::string zShape, float topExtrap, BkgOutput &output,
+                std::string categorySelection = "pt_1>-100", std::string relaxedSelection = "pt_1>-100"){
+
+            float leg1Corr=1.0;
+            if(muID_!=0) leg1Corr*=muID_;
+            if(eleID_!=0) leg1Corr*=eleID_;
+
+
+            std::pair<float,float> smh  = createHistogramAndShiftsFinal(zhFile_,"SMH",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_*leg1Corr*tauID_,prefix);
+
+            std::cout<<"      SMH Selection: "<<preSelection<<"&&"<<trigSelection_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl;
+            output.SMH  = smh.first;
+            output.dSMH = smh.second;
+
+            printf("      Selection SMH events in signal region = %f + %f \n",smh.first,smh.second);
+            return true;
+        }
+
+
 
 
         bool runTOP( std::string preSelection, std::string prefix, std::string zShape, float topExtrap, BkgOutput &output, 
@@ -703,14 +723,32 @@ class DataCardCreatorBoost {
             else
                 yield =makeTHKeys(t,filelabel_+postfix,name,cut,scaleFactor);
 
+
             //now the shifts
             std::pair<float,float> tmpYield;
             for(unsigned int i=0;i<shifts_.size();++i) {
 
-                TTree *ts= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Up/eventTree").c_str());
+                std::string weightUp=weight_;
+                std::string weightDown=weight_;
+                //if (weightShift=="EffCSVWeight0"){ 
+                //    weightUp=weight_+"*EffCSVWeight0Up";
+                //    weightDown=weight_+"*EffCSVWeight0Down";
+                //}
+                TTree *ts=0;
+                TTree *td=0;
+                if (shifts_[i]=="MET"){
+                    ts= (TTree*)f->Get((channel_+"EventTree/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTree/eventTree").c_str());
+                }
+                else{
+                    ts= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Up/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Down/eventTree").c_str());
+                }
+
+
                 if(ts!=0) {
                     if(!keys)
-                        tmpYield = makeHistogram(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor);
+                        tmpYield = makeHistogram(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor,shifts_[i]+"Up");
                     else
                         tmpYield = makeTHKeys(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor);
 
@@ -718,10 +756,9 @@ class DataCardCreatorBoost {
                         scaleHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",yield.first/tmpYield.first);
 
                 }
-                TTree *td= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Down/eventTree").c_str());
                 if(td!=0) {
                     if(!keys)
-                        tmpYield = makeHistogram(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor);
+                        tmpYield = makeHistogram(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor,shifts_[i]+"Down");
                     else
                         tmpYield = makeTHKeys(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor);
 
@@ -733,7 +770,6 @@ class DataCardCreatorBoost {
             f->Close();
             return yield;
         }
-
 
         std::pair<float,float> createHistogramAndShiftsFinal(std::string file,std::string name, std::string cut,float scaleFactor = 1, std::string postfix = "",bool normUC  = true, bool keys=false,bool ShapeUncertainty=true) {
             TFile *f  = new TFile(file.c_str());
@@ -839,15 +875,29 @@ class DataCardCreatorBoost {
             return returnValue;
         }
 
-        std::pair<float,float> makeHistogram(TTree* tree,std::string folder,std::string name,std::string cut,float scaleFactor = 1.) {
+        std::pair<float,float> makeHistogram(TTree* tree,std::string folder,std::string name,std::string cut,float scaleFactor = 1.,std::string shift = "none") {
 
             if(fout_->Get(folder.c_str())==0)
                 fout_->mkdir(folder.c_str());
             TH1F *h=0;
 
             TString variableOld_=variable_;
-            if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&variable_=="pt2ES"){
-                variable_="pt_2";
+
+            if (shift=="METUp" && variable_=="mt12") 
+            {
+                variable_="pfmtEnUp";
+            }
+            if (shift=="METDown" && variable_=="mt12") {
+                variable_="pfmtEnDown";
+            }
+            if (shift=="METUp" && variable_=="met") {
+                variable_="pfmetEnUp";
+            }
+            if (shift=="METDown" && variable_=="met") {
+                variable_="pfmetEnDown";
+            }
+            if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&(variable_=="ptmtEnUp"||variable_=="ptmtEnDown")){
+                variable_="mt12";
             }
 
 
@@ -880,6 +930,8 @@ class DataCardCreatorBoost {
 
             return std::make_pair(yield,error);
         }
+
+
 
 
         void close() {
@@ -1308,6 +1360,7 @@ class DataCardCreatorBoost {
         std::string wFile_;
         std::string vvFile_;
         std::string zvvFile_;
+        std::string zhFile_;
         std::string topFile_;
         std::string qcdFile_;
         std::string dataFile_;
