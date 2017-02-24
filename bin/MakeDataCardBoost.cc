@@ -1,5 +1,5 @@
 
-#include "UWAnalysis/StatTools/interface/DataCardCreatorXTT.h"
+#include "UWAnalysis/StatTools/interface/DataCardCreatorBoost.h"
 #include "PhysicsTools/FWLite/interface/CommandLineParser.h" 
 
 
@@ -18,14 +18,13 @@ int main (int argc, char* argv[])
 	parser.addOption("zhFile",optutl::CommandLineParser::kString,"File with the ZH","ZH.root");
 	parser.addOption("vvFile",optutl::CommandLineParser::kString,"File with the VV","VV.root");
 	parser.addOption("zvvFile",optutl::CommandLineParser::kString,"File with the ZVV","Znunu.root");
-	parser.addOption("ewkFile",optutl::CommandLineParser::kString,"File with the ZVV","EWK.root");
 	parser.addOption("topFile",optutl::CommandLineParser::kString,"File with the TOP","TOP.root");
 	parser.addOption("qcdFile",optutl::CommandLineParser::kString,"File with the QCD","QCD.root");
 	parser.addOption("dataFile",optutl::CommandLineParser::kString,"DATA! File","DATA.root");
 
 	//Input Selections
 	parser.addOption("preselection",optutl::CommandLineParser::kString,"preselection","");
-	//parser.addOption("inclselection",optutl::CommandLineParser::kString,"inclselection","");
+	parser.addOption("inclselection",optutl::CommandLineParser::kString,"inclselection","");
 	parser.addOption("signalselection",optutl::CommandLineParser::kString," Signal ","mt_1<100");
 	parser.addOption("signalselectionHigh",optutl::CommandLineParser::kString," Signal ","mt_1>100");
 	parser.addOption("wselection",optutl::CommandLineParser::kString,"W sideband defintion ","mt_1>70");
@@ -62,9 +61,9 @@ int main (int argc, char* argv[])
 	parser.addOption("qcdErr",optutl::CommandLineParser::kDouble,"QCD ERROR",0.30);
 	parser.addOption("smhErr",optutl::CommandLineParser::kDouble,"ZH RelativeError",0.3);   
 	parser.addOption("vvErr",optutl::CommandLineParser::kDouble,"DiBoson RelativeError",0.3);   
-	parser.addOption("zlftErr",optutl::CommandLineParser::kDouble,"Z Muon fakes tau error",0.1);
-	parser.addOption("zlftFactor",optutl::CommandLineParser::kString,"Z Muon fakes tau factor","1.0");
-	parser.addOption("zJFTErr",optutl::CommandLineParser::kDouble,"Z Jet fakes tau Error",0.1);
+	parser.addOption("zlftErr",optutl::CommandLineParser::kDouble,"Z Muon fakes tau error",0.25);
+	parser.addOption("zlftFactor",optutl::CommandLineParser::kDouble,"Z Muon fakes tau error",1.0);
+	parser.addOption("zjftErr",optutl::CommandLineParser::kDouble,"Z Jet fakes tau Error",0.1);
 	parser.addOption("zttScale",optutl::CommandLineParser::kDouble,"Z tau tau scale",1.00);
 	parser.addOption("zttScaleErr",optutl::CommandLineParser::kDouble,"Z tau tau scale error",0.04);
 	parser.addOption("muID",optutl::CommandLineParser::kDouble,"Mu ID",1.0);
@@ -103,7 +102,7 @@ int main (int argc, char* argv[])
 
 	parser.parseArguments (argc, argv);
 	std::vector<int> bitmask = parser.integerVector("bitMask");
-	DataCardCreatorXTT_MC creator(parser);
+	DataCardCreatorBoost creator(parser);
 
 	printf("HighStat has %d entries ,LowStat has %d entries\n",(int)parser.doubleVector("binningHighStat").size(),(int)parser.doubleVector("binningLowStat").size());
 
@@ -116,7 +115,7 @@ int main (int argc, char* argv[])
 
 	if(bitmask[0]==1){
 		printf(" -------------------------------------\n"); 
-		creator.setBinning(parser.doubleVector("binningLowStat"));
+		creator.setBinning(parser.doubleVector("binningHighStat"));
 
 		printf("INCLUSIVE:preselection -------------------------------------\n"); 
 		std::string relSel = parser.stringValue("relaxedselection"); 
@@ -134,7 +133,7 @@ int main (int argc, char* argv[])
 
 	if(bitmask[1]==1){
 		printf(" -------------------------------------\n"); 
-		creator.setBinning(parser.doubleVector("binningLowStat"));
+		creator.setBinning(parser.doubleVector("binningHighStat"));
 
 		printf("Low:preselection -------------------------------------\n"); 
 		std::string relSel = parser.stringValue("relaxedselection"); 
