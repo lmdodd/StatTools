@@ -259,7 +259,6 @@ class DataCardCreatorControlRegion {
             output.dEWKZ = ewkInflYield.second;
 
 
-
             //Create ZL and ZJ
 
             std::cout<<"Create ZLFT"<<std::endl;
@@ -348,17 +347,21 @@ class DataCardCreatorControlRegion {
             }
 
 
-            std::cout<<"Create W"<<std::endl;
-            //Create W
-            if(!runW(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection, wSel)){
-                std::cout<<"Error Creating W"<<std::endl;
-                return output;
-            }
-
             std::cout<<"Create QCD"<<std::endl;
             //Create QCD
             if(!runQCD(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection)){
                 std::cout<<"Error Creating QCD"<<std::endl;
+                return output;
+            }
+
+
+
+
+
+            std::cout<<"Create W"<<std::endl;
+            //Create W
+            if(!runW(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection, wSel)){
+                std::cout<<"Error Creating W"<<std::endl;
                 return output;
             }
 
@@ -518,6 +521,7 @@ class DataCardCreatorControlRegion {
             std::string chan = "mt";
             if(channel_ == "eleTau")
                 chan = "et";
+
             std::pair<float,float> dataQCDShape = createHistogramAndShiftsQCD(dataFile_,"QCD","("+relaxedSelection+"&&"+trigSelectionData_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
             //std::pair<float,float> dataQCDShape = createHistogramAndShifts(dataFile_,"QCD","("+relaxedSelection+"&&"+trigSelectionData_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
             std::pair<float,float> dataQCDShapeWUp = createHistogramAndShifts(dataFile_,"QCD_WSFUncert_"+chan+prefix+"_13TeVUp","("+relaxedSelection+"&&"+trigSelectionData_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
@@ -698,7 +702,6 @@ class DataCardCreatorControlRegion {
              */
             //First get data in Sideband
             std::pair<float,float> dataYSdb     = createHistogramAndShifts(dataFile_,"data_obs_sdb","("+preSelection+"&&"+trigSelectionData_+"&&"+categorySelection+"&&"+osWSelection_+")",scaleUp_,prefix);
-            //std::pair<float,float> dataYieldSdb     = createHistogramAndShifts(dataFile_,"data_obs_sdb","("+preSelection+"&&"+trigSelectionData_+"&&"+categorySelection+"&&"+osWSelection_+")",scaleUp_,prefix);
             std::pair<float,float> dataYieldSdb = convertToPoisson(dataYSdb);
 
             //then get ttbar in sideband
@@ -920,8 +923,6 @@ class DataCardCreatorControlRegion {
             if(t==0) printf("Not Tree Found in file %s\n",file.c_str());
             std::pair<float,float> yield;
             std::string tmpCut = cut+"*"+tmpWeight;
-            //std::string tmpCutUp = cut+"*"+tmpWeight;
-            //std::string tmpCutDown = cut+"*"+tmpWeight;
 
             if(!keys)
                 yield =makeHistogram(t,filelabel_+postfix,name,tmpCut,scaleFactor);
@@ -965,9 +966,9 @@ class DataCardCreatorControlRegion {
             std::pair<float,float> tmpYield;
             for(unsigned int i=0;i<shifts_.size();++i) {
 
-                tmpYield = makeHistogram(t,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor);
+                tmpYield = makeHistogram(t,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor,shifts_[i]+"Up",postfix);
 
-                tmpYield = makeHistogram(t,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor);
+                tmpYield = makeHistogram(t,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor,shifts_[i]+"Down",postfix);
 
             }
             f->Close();
@@ -1052,9 +1053,20 @@ class DataCardCreatorControlRegion {
 
             TString variableOld_=variable_;
             std::string newCuts_=cut;
-            if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")){
+
+            std::string qcd="QCD";
+            bool isQCD = (name.compare(0, qcd.length(), qcd) == 0);
+
+            //std::cout<<"############# Make Histo ###########"<<std::endl;
+            //std::cout<<"\t name: "<<name<<std::endl;
+            //std::cout<<"\t isQCD: "<<isQCD<<std::endl;
+
+            if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD"||isQCD)){
+                //std::cout<<"Replacing DATA cut: "<<cut<<std::endl;
                 if (variable_=="taupt") variable_="pt_2";
+
                 ReplaceStringInPlace(newCuts_, "taupt", "pt_2");
+                //std::cout<<"Replacing DATA cut: "<<newCuts_<<std::endl;
             }
             else if (shft=="TauUp"){
                 variable_="m_sv_UP";
@@ -1069,11 +1081,11 @@ class DataCardCreatorControlRegion {
             }
             else if (shft=="JetUp"){
                 ReplaceStringInPlace(newCuts_, "vbfMass", "vbfMass_TotalUp");
-                ReplaceStringInPlace(newCuts_, "njets", "njets_TotalUp");
+                ReplaceStringInPlace(newCuts_, "njets", "njet_TotalUp");
             }
             else if (shft=="JetDown"){
                 ReplaceStringInPlace(newCuts_, "vbfMass", "vbfMass_TotalDown");
-                ReplaceStringInPlace(newCuts_, "njets", "njets_TotalDown");
+                ReplaceStringInPlace(newCuts_, "njets", "njet_TotalDown");
             }
 
 

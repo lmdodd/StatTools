@@ -1057,14 +1057,16 @@ class DataCardCreatorFlatTree {
             TString variableOld_=variable_;
             TString variableUnrollOld_=variableUnroll_;
             std::string newCuts_=cut;
-            if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&variable_=="taupt"){
-                variable_="pt_2";
-            }
+
+
+            std::string qcd ="QCD" ;
+            bool isQCD = (name.compare(0, qcd.length(), qcd) == 0);
 
             //do not shift data variable
-            if ((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")){
+            if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD"||isQCD)){
                 variable_=variable_;
                 variableUnroll_=variableUnroll_;
+                if (variable_=="taupt") variable_="pt_2";
                 if (variableUnroll_=="taupt") variableUnroll_="pt_2";
 
                 ReplaceStringInPlace(newCuts_, "taupt", "pt_2");
@@ -1086,12 +1088,12 @@ class DataCardCreatorFlatTree {
             }
             else if (shft=="JetUp"){
                 if (prefix=="_vbf") variableUnroll_="vbfMass_TotalUp";
-                ReplaceStringInPlace(newCuts_, "njets", "njets_TotalUp");
+                ReplaceStringInPlace(newCuts_, "njets", "njet_TotalUp");
                 ReplaceStringInPlace(newCuts_, "vbfMass", "vbfMass_TotalUp");
             }
             else if (shft=="JetDown"){
                 if (prefix=="_vbf") variableUnroll_="vbfMass_TotalDown";
-                ReplaceStringInPlace(newCuts_, "njets", "njets_TotalDown");
+                ReplaceStringInPlace(newCuts_, "njets", "njet_TotalDown");
                 ReplaceStringInPlace(newCuts_, "vbfMass", "vbfMass_TotalDown");
             }
 
