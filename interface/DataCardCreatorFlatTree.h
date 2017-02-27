@@ -1065,6 +1065,8 @@ class DataCardCreatorFlatTree {
             if ((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")){
                 variable_=variable_;
                 variableUnroll_=variableUnroll_;
+                if (variableUnroll_=="taupt") variableUnroll_="pt_2";
+
                 ReplaceStringInPlace(newCuts_, "taupt", "pt_2");
             }
             else if (shft=="TauUp"){
