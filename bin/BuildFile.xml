@@ -11,6 +11,10 @@
 </bin>
 <bin   name="MakeDataCardHTT2D" file="MakeDataCardHTT2D.cc">
 </bin>
+<bin   name="MakeDataCardFlatTree" file="MakeDataCardFlatTree.cc">
+</bin>
+<bin   name="MakeDataCardControlRegion" file="MakeDataCardControlRegion.cc">
+</bin>
 <bin   name="MakeDataCardHTTCR" file="MakeDataCardHTTCR.cc">
 </bin>
 <bin   name="MakeDataCardQCD" file="MakeDataCardQCD.cc">
