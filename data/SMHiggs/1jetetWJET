@@ -1,0 +1,292 @@
+shiftL: t
+shiftL: j
+shiftsPostFix: CMS_scale_t_13TeV,CMS_scale_t_1prong_13TeV,CMS_scale_t_1prong1pizero_13TeV,CMS_scale_t_3prong_13TeV,CMS_scale_j_13TeV,CMS_scale_j_RelativeBal_13TeV,
+HighStat has 2 entries ,LowStat has 2 entries
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+========Running 1j selection========
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Made Higgs Shape
+Added WH samples
+======================
+Run Full Extrapolation
+categorySelection: (njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+Tau ID Scale Factor is 1.000 
+Select DATA
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+      DATA Yield: 0
+      DATA Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+Create DiBoson
+      Diboson events in signal region = 712.732483 + 13.688669 
+Create EWKZ
+      EWKZ events in signal region = 4.914845 + 1.071712 
+Create ZLFT
+      Z (l->tau) in signal region = 242.204453 + 14.510054 
+create histogram shifted
+Create ZJFT
+Create ZJFT 2
+Create ZJFT 3
+Create ZJFT 4
+      Z (j->tau) in signal region = 156.112122 + 8.927047 
+Create ZJFT 5
+Create ZTT
+      ZTT Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+      Selection ZTT events in signal region = 303.430695 + 13.541212 
+Create TOP
+      TTbar events in signal region = 1522.245972 + 24.560844 
+Create W
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50)))&&mtRecoil_1>80&&charge==0&&EffCSVWeight0==1)
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50)))&&mtRecoil_1>80&&charge==0&&EffCSVWeight0==1)}
+Yield =0.000000 Lo=0.000000 Hi=1.832582
+TTbar events in sideband region = 1522.245972 + 24.560844 
+Diboson events in sideband region = 712.732483 + 13.688669 
+Z events in sideband region = 701.747131 + 21.762312 
+Expected W events in sideband MC region btag  = 4952.757324 + 136.095444 
+Expected W events in sideband MC region  = 4952.757324 + 136.095444 
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50)))&&mtRecoil_1>80&&abs(charge)==2&&EffCSVWeight0==1)
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50)))&&mtRecoil_1>80&&abs(charge)==2&&EffCSVWeight0==1)}
+5. Extrapolate SS QCD -> OS QCD 
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+OS QCD estimation in high Mt sideband in wJets  =0.000000 *1.280000 = 0.000000 +- 2.304000 
+OS W Datadriven/Straight MC Estimation  = -0.593003 
+OS W Datadriven Estimation  =-2937.000000  
+OS W Estimation =4952.757324 *-0.593003  = -2937.000244 +- 2938.108643 
+Channel label is et
+OS W Straight MC Estimation  = 4952.757324 +- 136.095444 
+OS W Straight MC -> Full Sideband Estimation  = 0.000000 +- (stat)0.593227 +- full 0.000000 
+Create QCD
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+      Data events in SS Signal QCDShape sideband region = 0.000000 + 0.000000 
+      Z events in SS Signal QCDShape sideband region = 218.422714 + 10.703400 
+      TOP events in SS Signal QCDShape sideband region = 349.875031 + 11.888615 
+      VV events in SS Signal QCDShape sideband region = 167.292862 + 8.178067 
+      W events in SS Signal QCDShape sideband region = 2167.854980*-0.593003 =-1285.544556 + 57.681137 
+QCD Selections= (pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))}
+      Data events in SS Signal QCD sideband region = 0.000000 + 0.000000 
+      Z events in SS Signal QCD sideband region = 157.210052 + 9.159812 
+      TOP events in SS Signal QCD sideband region = 221.407242 + 9.456805 
+      VV events in SS Signal QCD sideband region = 115.004883 + 6.752799 
+      (MonteCarlo) W events in SS region = -810.569031 + 48.567524 
+QCD_WSFUncert_et_boosted_13TeVUp
+SS QCD in  core  =0.000000 --810.569031 -221.407242 -157.210052 -115.004883= 317.000000 +- 50.771431 
+5. Extrapolate SS QCD -> OS QCD 
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+OS QCD in  core  =317.000000 *1.280000 = 405.759979 +- 76.952133 
+Channel label is et
+
+=============Data Yields=============
+DATA: 0
+
+
+BKGD Yields 
+QCD: 405.76
+W: 1e-07
+TOP: 1522.25
+VV: 712.732
+EWKZ: 4.91485
+ZLFT: 242.204
+ZJFT: 156.112
+ZTT: 303.431
+BACKGROUND=3342.485596 +-2939.331299 
+Total Background & 3342.49 $\pm$ 2941.45 & - & - & - \\ 

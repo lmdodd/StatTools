@@ -1,0 +1,29 @@
+shiftL: t
+shiftL: j
+shiftsPostFix: CMS_scale_t_13TeV,CMS_scale_t_1prong_13TeV,CMS_scale_t_1prong1pizero_13TeV,CMS_scale_t_3prong_13TeV,CMS_scale_j_13TeV,CMS_scale_j_RelativeBal_13TeV,
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+========Running vbf selection========
+M_sv has 6 entries, mjj has 5 entries
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Made Higgs Shape
+Added WH samples
+======================
+Run Full Extrapolation
+categorySelection: njets>=2&&vbfMass>300&&taupt>30&&pt_sv>50
+Tau ID Scale Factor is 1.000 
+Select DATA
+      DATA Yield: 2088
+      DATA Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&njets>=2&&vbfMass>300&&taupt>30&&pt_sv>50
+Create EWKZ
+      EWKZ events in signal region = 52.175282 + 7.539356 
+Create DiBoson
+      VV no error inflation: 116.687
+Create ZLFT
+      Z (l->tau) in signal region = 54.839508 + 6.450528 
+create histogram shifted
+Create ZJFT
+      Z (j->tau) in signal region = 36.243828 + 4.205735 
+Create ZTT

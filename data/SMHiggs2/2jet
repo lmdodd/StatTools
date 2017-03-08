@@ -1,0 +1,29 @@
+shiftL: t
+shiftL: j
+shiftsPostFix: CMS_scale_t_13TeV,CMS_scale_t_1prong_13TeV,CMS_scale_t_1prong1pizero_13TeV,CMS_scale_t_3prong_13TeV,CMS_scale_j_13TeV,CMS_scale_j_RelativeBal_13TeV,
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+========Running vbf selection========
+M_sv has 6 entries, mjj has 5 entries
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Made Higgs Shape
+Added WH samples
+======================
+Run Full Extrapolation
+categorySelection: njets>=2&&vbfMass>300&&taupt>40&&pt_sv>50
+Tau ID Scale Factor is 1.000 
+Select DATA
+      DATA Yield: 2927
+      DATA Selection: pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&mtRecoil_1<50&&charge==0&&njets>=2&&vbfMass>300&&taupt>40&&pt_sv>50
+Create EWKZ
+      EWKZ events in signal region = 79.903427 + 9.665322 
+Create DiBoson
+      VV no error inflation: 161.151
+Create ZLFT
+      Z (l->tau) in signal region = 31.073841 + 4.603512 
+create histogram shifted
+Create ZJFT
+      Z (j->tau) in signal region = 19.433159 + 3.233301 
+Create ZTT

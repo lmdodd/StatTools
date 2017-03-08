@@ -1,0 +1,40 @@
+shiftL: t
+shiftL: j
+shiftsPostFix: CMS_scale_t_13TeV,CMS_scale_t_1prong_13TeV,CMS_scale_t_1prong1pizero_13TeV,CMS_scale_t_3prong_13TeV,CMS_scale_j_13TeV,CMS_scale_j_RelativeBal_13TeV,
+HighStat has 0 entries ,LowStat has 0 entries
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+========Running 1j selection========
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Made Higgs Shape
+Added WH samples
+======================
+Run Full Extrapolation
+categorySelection: (njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+Tau ID Scale Factor is 1.000 
+Select DATA
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50))))
+      DATA Yield: 905
+      DATA Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+Create DiBoson
+      Diboson events in signal region = 3.439596 + 0.562269 
+Create EWKZ
+      EWKZ events in signal region = 0.725256 + 0.513514 
+Create ZLFT
+      Z (l->tau) in signal region = 8.926744 + 2.085212 
+create histogram shifted
+Create ZJFT
+Create ZJFT 2
+Create ZJFT 3
+Create ZJFT 4
+      Z (j->tau) in signal region = 2.152653 + 0.594855 
+Create ZJFT 5
+Create ZTT
+      ZTT Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+      Selection ZTT events in signal region = 57.100716 + 3.428078 
+Create TOP
+      TTbar events in signal region = 20.962606 + 1.756391 
+Create W
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=30||pt_sv<=50)))&&mtRecoil_1>80&&charge==0&&EffCSVWeight0==1)

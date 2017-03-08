@@ -39,10 +39,10 @@ struct BkgOutput {
 
 
 
-class DataCardCreatorFlatTree {
+class DataCardCreatorTauDecayMode {
     public:
 
-        DataCardCreatorFlatTree(optutl::CommandLineParser parser) {
+        DataCardCreatorTauDecayMode(optutl::CommandLineParser parser) {
             channel_ = parser.stringValue("channel");
             shifts_  = parser.stringVector("shifts");
             energy_ = parser.stringValue("energy");
@@ -286,79 +286,32 @@ class DataCardCreatorFlatTree {
             //ZL Yield
             std::pair<float,float> zlftYield   = createHistogramAndShifts(zllFile_,"ZL","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"*"+ZUnrollweight_,luminosity_*leg1Corr*zttScale_,prefix);
 
-            std::pair<float,float> zlftShapeUp   = createHistogramAndShifts(zllFile_,"ZL_CMS_htt_dyShape_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"Up"+"*"+ZUnrollweight_,luminosity_*leg1Corr*zttScale_,prefix);
-            std::pair<float,float> zlftShapeDown   = createHistogramAndShifts(zllFile_,"ZL_CMS_htt_dyShape_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"Down"+"*"+ZUnrollweight_,luminosity_*leg1Corr*zttScale_,prefix);
+            std::pair<float,float> zlftShapeUp   = createHistogramAndShifts(zllFile_,"ZL_CMS_htt_dyShape_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"Up*"+"*"+ZUnrollweight_,luminosity_*leg1Corr*zttScale_,prefix);
+            std::pair<float,float> zlftShapeDown   = createHistogramAndShifts(zllFile_,"ZL_CMS_htt_dyShape_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"Down*"+"*"+ZUnrollweight_,luminosity_*leg1Corr*zttScale_,prefix);
 
             if (prefix=="_vbf"){
                 std::pair<float,float> zlftZMShapeUp   = createHistogramAndShifts(zllFile_,"ZL_CMS_htt_zmumuShape_VBF_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"*"+ZUnrollweight_+"*"+ZUnrollweight_,luminosity_*leg1Corr*zttScale_,prefix);
                 std::pair<float,float> zlftZMShapeDown   = createHistogramAndShifts(zllFile_,"ZL_CMS_htt_zmumuShape_VBF_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_,luminosity_*leg1Corr*zttScale_,prefix);
             }
-            else if (prefix=="_0jet"&&variableUnroll_=="tauDecayMode"){
-                std::pair<float,float> zlftZMShape0Up   = createHistogramAndShifts(zllFile_,"ZL_CMS_tauDMReco_1prong_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"*(1+((tauDecayMode==0)*0.03))",luminosity_*leg1Corr*zttScale_,prefix);
-                std::pair<float,float> zlftZMShape1Up   = createHistogramAndShifts(zllFile_,"ZL_CMS_tauDMReco_1prong1pizero_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"*(1+((tauDecayMode==1)*0.03))",luminosity_*leg1Corr*zttScale_,prefix);
-                std::pair<float,float> zlftZMShape10Up   = createHistogramAndShifts(zllFile_,"ZL_CMS_tauDMReco_3prong_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"*(1+((tauDecayMode==10)*0.03))",luminosity_*leg1Corr*zttScale_,prefix);
 
-                std::pair<float,float> zlftZMShape0Down   = createHistogramAndShifts(zllFile_,"ZL_CMS_tauDMReco_1prong_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"*(1-((tauDecayMode==0)*0.03))",luminosity_*leg1Corr*zttScale_,prefix);
-                std::pair<float,float> zlftZMShape1Down   = createHistogramAndShifts(zllFile_,"ZL_CMS_tauDMReco_1prong1pizero_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"*(1-((tauDecayMode==1)*0.03))",luminosity_*leg1Corr*zttScale_,prefix);
-                std::pair<float,float> zlftZMShape10Down   = createHistogramAndShifts(zllFile_,"ZL_CMS_tauDMReco_3prong_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")",weight_+"*"+Zweight_+"*(1-((tauDecayMode==10)*0.03))",luminosity_*leg1Corr*zttScale_,prefix);
 
-                renormalizeHistogram(filelabel_+prefix,"ZL_CMS_tauDMReco_1prong_13TeVUp",zlftYield.first);
-                renormalizeHistogram(filelabel_+prefix,"ZL_CMS_tauDMReco_1prong1pizero_13TeVUp",zlftYield.first);
-                renormalizeHistogram(filelabel_+prefix,"ZL_CMS_tauDMReco_3prong_13TeVUp",zlftYield.first);
-                renormalizeHistogram(filelabel_+prefix,"ZL_CMS_tauDMReco_1prong_13TeVDown",zlftYield.first);
-                renormalizeHistogram(filelabel_+prefix,"ZL_CMS_tauDMReco_1prong1pizero_13TeVDown",zlftYield.first);
-                renormalizeHistogram(filelabel_+prefix,"ZL_CMS_tauDMReco_3prong_13TeVDown",zlftYield.first);
-            }
             printf("      Z (l->tau) in signal region = %f + %f \n",zlftYield.first,zlftYield.second);
 
             output.ZLFT  = zlftYield.first;
             output.dZLFT  = zlftYield.second;
 
             std::cout<<"create histogram shifted"<<std::endl;
-            if (variableUnroll_!="tauDecayMode"){
-                if(shifts_.size()>0&&channel_=="eleTau"){
-                    std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_,"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_,"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                }
-                else if(shifts_.size()>0&&channel_=="muTau"){
-                    std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_,"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_,"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                }
+            if(shifts_.size()>0&&channel_=="eleTau"){
+                std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_,"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_,"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
             }
-            else{ //tauDEcayMode unroll/
-                if(shifts_.size()>0&&channel_=="eleTau"){
-                    std::pair<float,float> zlShift0      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==0)*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftUp0      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==0)*"+ZUnrollweight_),"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftDown0     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==0)*"+ZUnrollweight_),"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShift1      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==1)*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftUp1      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==1)*"+ZUnrollweight_),"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftDown1     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==1)*"+ZUnrollweight_),"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    subtractHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeVUp","ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeV"); 
-                    subtractHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeVDown","ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeV",false); 
-                    subtractHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeVUp","ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeV"); 
-                    subtractHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeVDown","ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeV",false); 
-                    addHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeVUp","ZL"); 
-                    addHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_et_0jet_1prong_13TeVDown","ZL"); 
-                    addHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeVUp","ZL"); 
-                    addHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_et_0jet_1prong1pizero_13TeVDown","ZL"); 
-                }
-                else if(shifts_.size()>0&&channel_=="muTau"){
-                    std::pair<float,float> zlShift0      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==0)*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftUp0      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==0)*"+ZUnrollweight_),"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftDown0     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==0)*"+ZUnrollweight_),"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShift1      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==1)*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftUp1      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==1)*"+ZUnrollweight_),"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftDown1     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==1)*"+ZUnrollweight_),"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    subtractHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeVUp","ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeV"); 
-                    subtractHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeVDown","ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeV"); 
-                    subtractHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeVUp","ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeV"); 
-                    subtractHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeVDown","ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeV",false); 
-                    addHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeVUp","ZL"); 
-                    addHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_mt_0jet_1prong_13TeVDown","ZL"); 
-                    addHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeVUp","ZL"); 
-                    addHistogram(filelabel_+prefix,"ZL_CMS_htt_ZLShape_mt_0jet_1prong1pizero_13TeVDown","ZL"); 
-                }
+            else if(shifts_.size()>0&&channel_=="muTau"){
+                std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_,"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_,"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
             }
+
+
+
 
 
 
@@ -826,14 +779,11 @@ class DataCardCreatorFlatTree {
                         +zSDB.second*zSDB.second));
 
             wFactorQCD_ =  osWHigh.first/osWMChigh.first;
-            //if (prefix=="_vbf") wFactorQCD_= 0.930007825143;
-            //if (prefix=="_vbf") wFactorQCD_= 0.930007825143;
+            std::pair<float,float> osWLow = std::make_pair(osWMChigh.first*wFactorQCD_,
+                    sqrt(osWMChigh.first*osWMChigh.first*wFactorQCD_*wFactorQCD_+osWMChigh.second*osWMChigh.second*wFactorQCD_*wFactorQCD_));
 
-            std::pair<float,float> osWLow = std::make_pair(wYield.first*wFactorQCD_,
-                    sqrt(wYield.first*wYield.first*wFactorQCD_*wFactorQCD_+wYield.second*wYield.second*wFactorQCD_*wFactorQCD_));
-
-            printf("OS W_high Datadriven Estimation  =%f  \n",osWHigh.first);
-            printf("OS W Low Estimation =%f *%f  = %f +- %f \n",wYield.first,wFactorQCD_,osWLow.first,osWLow.second);
+            printf("OS W Datadriven Estimation  =%f  \n",osWHigh.first);
+            printf("OS W Estimation =%f *%f  = %f +- %f \n",wYield.first,wFactorQCD_,osWLow.first,osWLow.second);
 
             if (osWLow.first<0.0000001) osWLow.first=0.0000001; 
             if(shifts_.size()>0){
@@ -904,8 +854,8 @@ class DataCardCreatorFlatTree {
             if(t==0) printf("Not Tree Found in file %s\n",file.c_str());
             std::pair<float,float> yield;
 
-            yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor,"",postfix);
-            //yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor,shift,postfix);
+            if(!keys)
+                yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor);
 
             //now the shifts
             std::pair<float,float> tmpYield;
@@ -945,8 +895,8 @@ class DataCardCreatorFlatTree {
             std::pair<float,float> yield;
             std::string tmpCut = cut+"*"+tmpWeight;
 
-            yield =makeHistogram(t,filelabel_+postfix,name,tmpCut,scaleFactor,"",postfix);
-            //yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor,"",postfix);
+            if(!keys)
+                yield =makeHistogram(t,filelabel_+postfix,name,tmpCut,scaleFactor);
 
             //now the shifts
             std::pair<float,float> tmpYield;
@@ -1023,7 +973,8 @@ class DataCardCreatorFlatTree {
             if(t==0) printf("Not Tree Found in file %s\n",file.c_str());
             std::pair<float,float> yield;
 
-            yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor);
+            if(!keys)
+                yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor);
 
             //now the shifts
             std::pair<float,float> tmpYield;
@@ -1126,10 +1077,8 @@ class DataCardCreatorFlatTree {
             std::string newCuts_=cut;
 
 
-            std::string zl ="ZL" ;
             std::string qcd ="QCD" ;
             bool isQCD = (name.compare(0, qcd.length(), qcd) == 0);
-            bool isZL = (name.compare(0, zl.length(), zl) == 0);
 
             //do not shift data variable
             if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD"||isQCD)){
@@ -1141,26 +1090,27 @@ class DataCardCreatorFlatTree {
 
                 ReplaceStringInPlace(newCuts_, "taupt", "pt_2");
             }
-            else if (isZL && prefix=="_0jet"){
-                variable_="m_vis_ZL";
-                if (shft=="TauUp") variable_="m_vis_ZL_UP";
-                if (shft=="TauDown") variable_="m_vis_ZL_DOWN";
-            }
             else if (shft=="TauUp"){
-                if (variable_=="m_sv") variable_= "m_sv_DOWN";
-                if (variable_=="m_vis_REDO") variable_="m_vis_UP";
-                if (variableUnroll_=="taupt") variableUnroll_="taupt_UP";
-                if (variableUnroll_=="pt_sv") variableUnroll_="pt_sv_UP";
+                variable_="m_sv_UP";
+
+                if (prefix=="_0jet") {
+                    variable_="m_vis_UP";
+                    variableUnroll_="taupt_UP";
+                }
+                else if (prefix=="_boosted") variableUnroll_="pt_sv_UP";
 
                 ReplaceStringInPlace(newCuts_, "pt_sv", "pt_sv_UP");
                 ReplaceStringInPlace(newCuts_, "taupt", "taupt_UP");
                 ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1UP");
+
             }
             else if (shft=="TauDown"){
-                if (variable_=="m_sv") variable_= "m_sv_DOWN";
-                if (variable_=="m_vis_REDO")  variable_="m_vis_DOWN";
-                if ( variableUnroll_=="taupt") variableUnroll_="taupt_DOWN";
-                if (variableUnroll_=="pt_sv") variableUnroll_="pt_sv_DOWN";
+                variable_="m_sv_DOWN";
+                if (prefix=="_0jet") {
+                    variable_="m_vis_DOWN";
+                    variableUnroll_="taupt_DOWN";
+                }
+                else if (prefix=="_boosted") variableUnroll_="pt_sv_DOWN";
 
                 ReplaceStringInPlace(newCuts_, "pt_sv", "pt_sv_DOWN");
                 ReplaceStringInPlace(newCuts_, "taupt", "taupt_DOWN");
@@ -1180,7 +1130,6 @@ class DataCardCreatorFlatTree {
                 ReplaceStringInPlace(newCuts_, "njets", njvar);
                 ReplaceStringInPlace(newCuts_, "vbfMass", vbfvar);
             }
-
 
 
             if(binning_.size()==0)
@@ -1387,22 +1336,22 @@ class DataCardCreatorFlatTree {
 
         }
 
-        void subtractHistogramShifts(std::string folder, std::string histo1, std::string histo2, bool floor=false )
+        void subtractHistogramShifts(std::string folder, std::string histo1, std::string histo2)
         {
             TH2F * h1 =(TH2F*) fout_->Get((folder+"/"+histo1).c_str());
             TH2F * h2 =(TH2F*) fout_->Get((folder+"/"+histo2).c_str());
             h1->Add(h2,-1.);
 
-            if (floor){
-                for(int i=1;i<h1->GetNbinsX();++i){
-                    for(int j=1;j<h1->GetNbinsX();++j){
-                        if(h1->GetBinContent(i,j)<0){
-                            h1->SetBinContent(i,j,0.00001);
-                            h1->SetBinError(i,j,1.2);
-                        }
+
+            for(int i=1;i<h1->GetNbinsX();++i){
+                for(int j=1;j<h1->GetNbinsX();++j){
+                    if(h1->GetBinContent(i,j)<0){
+                        h1->SetBinContent(i,j,0.00001);
+                        h1->SetBinError(i,j,1.2);
                     }
                 }
             }
+
             for(unsigned int i=0;i<shiftsPostFix_.size();++i) {
                 TH2F * hhu1 =(TH2F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Up").c_str());
                 TH2F * hhu2 =(TH2F*) fout_->Get((folder+"/"+histo2+"_"+shiftsPostFix_[i]+"Up").c_str());
@@ -1420,7 +1369,7 @@ class DataCardCreatorFlatTree {
             h1->Write(h1->GetName(),TObject::kOverwrite);
         }
 
-        void subtractHistogram(std::string folder, std::string histo1, std::string histo2,bool floor=false)
+        void subtractHistogram(std::string folder, std::string histo1, std::string histo2,bool floor=true)
         {
             TH2F * h1 =(TH2F*) fout_->Get((folder+"/"+histo1).c_str());
             TH2F * h2 =(TH2F*) fout_->Get((folder+"/"+histo2).c_str());

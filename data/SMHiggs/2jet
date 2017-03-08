@@ -1,0 +1,119 @@
+shiftL: t
+shiftL: j
+shiftsPostFix: CMS_scale_t_13TeV,CMS_scale_t_1prong_13TeV,CMS_scale_t_1prong1pizero_13TeV,CMS_scale_t_3prong_13TeV,CMS_scale_j_13TeV,CMS_scale_j_RelativeBal_13TeV,
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+========Running vbf selection========
+M_sv has 6 entries, mjj has 5 entries
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Made Higgs Shape
+Added WH samples
+======================
+Run Full Extrapolation
+categorySelection: njets>=2&&vbfMass>300&&taupt>40&&pt_sv>50
+Tau ID Scale Factor is 1.000 
+Select DATA
+      DATA Yield: 2927
+      DATA Selection: pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&mtRecoil_1<50&&charge==0&&njets>=2&&vbfMass>300&&taupt>40&&pt_sv>50
+Create EWKZ
+      EWKZ events in signal region = 76.701286 + 4.116881 
+Create DiBoson
+      VV no error inflation: 159.028
+Create ZLFT
+      Z (l->tau) in signal region = 29.423927 + 4.337277 
+create histogram shifted
+Create ZJFT
+      Z (j->tau) in signal region = 19.433159 + 3.233301 
+Create ZTT
+      ZTT Selection: pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&mtRecoil_1<50&&charge==0&&njets>=2&&vbfMass>300&&taupt>40&&pt_sv>50
+      Selection ZTT events in signal region = 1338.298828 + 26.764845 
+Create TOP
+      TTbar events in signal region = 1052.327881 + 20.292776 
+Create W
+Yield =725.000000 Lo=698.225891 Hi=752.785217
+TTbar events in sideband region = 324.842865 + 11.678205 
+Diboson events in sideband region = 105.694000 + 4.832208 
+Z events in sideband region = 49.819237 + 5.565663 
+Expected W events in sideband MC region btag  = 180.428680 + 20.468447 
+Expected W events in sideband MC region  = 192.540527 + 21.111229 
+5. Extrapolate SS QCD -> OS QCD 
+Shift not found = mt_vbf/QCD_SS_HMT_SDB_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_SS_HMT_SDB_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_SS_HMT_SDB_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_SS_HMT_SDB_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_SS_HMT_SDB_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_SS_HMT_SDB_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+OS QCD estimation in high Mt sideband in wJets  =68.000000 *1.000000 = 68.000000 +- 24.136229 
+OS W_high Datadriven Estimation  =177.000000  
+OS W Low Estimation =181.522293 *0.919287  = 166.871078 +- 168.059372 
+Channel label is mt
+OS W Straight MC Estimation  = 181.522293 +- 21.701332 
+OS W Datadriven/Straight MC Estimation  = 0.919287 
+OS W Straight MC -> Full Sideband Estimation  = 166.871078 +- (stat)1.845120 +- full 41.717770 
+Create QCD
+      Data events in SS Signal QCDShape sideband region = 548.000000 + 23.409399 
+      Z events in SS Signal QCDShape sideband region = 33.846531 + 4.294246 
+      TOP events in SS Signal QCDShape sideband region = 157.518600 + 7.893494 
+      VV events in SS Signal QCDShape sideband region = 30.986208 + 2.829247 
+      W events in SS Signal QCDShape sideband region = 103.744705*0.919287 =95.371155 + 14.113015 
+QCD MC Shape Selections= (pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&taupt>40&&pt_sv>50)
+      Data events in SS Signal QCD sideband region = 288.000000 + 16.970562 
+      Z events in SS Signal QCD sideband region = 24.577253 + 3.706164 
+      TOP events in SS Signal QCD sideband region = 90.551933 + 5.973788 
+      VV events in SS Signal QCD sideband region = 21.036921 + 2.391558 
+      (MonteCarlo) W events in SS region = 44.956352 + 9.609195 
+SS QCD in  core  =288.000000 -44.956352 -90.551933 -24.577253 -21.036921= 107.000000 +- 20.868109 
+5. Extrapolate SS QCD -> OS QCD 
+  Extrapolated SS QCD -> OS QCD= 107.000000 
+now renormalize QCD
+now renormalize WSFUncert
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVUp_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVUp_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVUp_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVUp_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVUp_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVUp_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVDown_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVDown_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVDown_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVDown_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVDown_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = mt_vbf/QCD_WSFUncert_mt_vbf_13TeVDown_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+OS QCD in  core  =107.000000 *1.000000 = 107.000000 +- 29.890432 
+Channel label is mt
+
+=============Data Yields=============
+DATA: 2927
+
+
+BKGD Yields 
+QCD: 107
+W: 166.871
+TOP: 1052.33
+VV: 159.028
+EWKZ: 76.7013
+ZLFT: 29.4239
+ZJFT: 19.4332
+ZTT: 1338.3
+BACKGROUND=2872.382812 +-174.138596 
+Total Background & 2872.38 $\pm$ 207.66 & - & - & - \\ 

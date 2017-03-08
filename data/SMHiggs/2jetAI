@@ -1,0 +1,178 @@
+shiftL: t
+shiftL: j
+shiftsPostFix: CMS_scale_t_13TeV,CMS_scale_t_1prong_13TeV,CMS_scale_t_1prong1pizero_13TeV,CMS_scale_t_3prong_13TeV,CMS_scale_j_13TeV,CMS_scale_j_RelativeBal_13TeV,
+HighStat has 0 entries ,LowStat has 0 entries
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+========Running vbf selection========
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Made Higgs Shape
+Added WH samples
+======================
+Run Full Extrapolation
+categorySelection: njets>=2&&vbfMass>300&&taupt>30&&pt_sv>50
+Tau ID Scale Factor is 1.000 
+Select DATA
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+      DATA Yield: 44
+      DATA Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&njets>=2&&vbfMass>300&&taupt>30&&pt_sv>50
+Create DiBoson
+      Diboson events in signal region = 0.431178 + 0.157419 
+Create EWKZ
+      EWKZ events in signal region = 0.156567 + 0.110784 
+Create ZLFT
+      Z (l->tau) in signal region = 0.000000 + 0.000000 
+create histogram shifted
+Create ZJFT
+Create ZJFT 2
+Create ZJFT 3
+Create ZJFT 4
+      Z (j->tau) in signal region = 0.000000 + 0.000000 
+Create ZJFT 5
+Create ZTT
+      ZTT Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&njets>=2&&vbfMass>300&&taupt>30&&pt_sv>50
+      Selection ZTT events in signal region = 4.388089 + 0.884524 
+Create TOP
+      TTbar events in signal region = 3.502268 + 0.761585 
+Create W
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50&&mtRecoil_1>80&&charge==0&&EffCSVWeight0==1)
+Yield =12.000000 Lo=8.600086 Hi=16.536337
+TTbar events in sideband region = 0.625674 + 0.328904 
+Diboson events in sideband region = 0.227856 + 0.121615 
+Z events in sideband region = 0.347695 + 0.257349 
+Expected W events in sideband MC region btag  = 0.382445 + 0.382445 
+Expected W events in sideband MC region  = 0.382445 + 0.382445 
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50&&mtRecoil_1>80&&abs(charge)==2&&EffCSVWeight0==1)
+5. Extrapolate SS QCD -> OS QCD 
+Shift not found = et_vbf/QCD_SS_HMT_SDB_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_SS_HMT_SDB_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_SS_HMT_SDB_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_SS_HMT_SDB_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_SS_HMT_SDB_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_SS_HMT_SDB_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+OS QCD estimation in high Mt sideband in wJets  =4.000000 *1.200000 = 4.800000 +- 2.698378 
+OS W Datadriven/Straight MC Estimation  = 0.937000 
+OS W Datadriven Estimation  =6.000000  
+OS W Estimation =0.000000 *0.937000  = 0.000000 +- 0.000000 
+Channel label is et
+OS W Straight MC Estimation  = 0.000000 +- 0.000000 
+OS W Straight MC -> Full Sideband Estimation  = 0.000000 +- (stat)inf +- full 0.000000 
+Create QCD
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+      Data events in SS Signal QCDShape sideband region = 21.000000 + 4.582576 
+      Z events in SS Signal QCDShape sideband region = 0.470764 + 0.272072 
+      TOP events in SS Signal QCDShape sideband region = 0.359113 + 0.253956 
+      VV events in SS Signal QCDShape sideband region = 0.246255 + 0.129601 
+      W events in SS Signal QCDShape sideband region = 0.000000*0.937000 =0.000000 + 0.000000 
+QCD Selections= (pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
+      Data events in SS Signal QCD sideband region = 11.000000 + 3.316625 
+      Z events in SS Signal QCD sideband region = 0.314848 + 0.222965 
+      TOP events in SS Signal QCD sideband region = 0.359113 + 0.253956 
+      VV events in SS Signal QCD sideband region = 0.139776 + 0.086797 
+      (MonteCarlo) W events in SS region = 0.000000 + 0.000000 
+QCD_WSFUncert_et_vbf_13TeVUp
+SS QCD in  core  =11.000000 -0.000000 -0.359113 -0.314848 -0.139776= 10.000000 +- 3.334928 
+5. Extrapolate SS QCD -> OS QCD 
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVUp_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVUp_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVUp_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVUp_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVUp_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVUp_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVDown_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVDown_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVDown_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVDown_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVDown_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVDown_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+OS QCD in  core  =10.000000 *1.200000 = 12.000000 +- 5.001531 
+Channel label is et
+
+=============Data Yields=============
+DATA: 44
+
+
+BKGD Yields 
+QCD: 12
+W: 1e-07
+TOP: 3.50227
+VV: 0.431178
+EWKZ: 0.156567
+ZLFT: 0
+ZJFT: 0
+ZTT: 4.38809
+BACKGROUND=20.321535 +-5.138335 
+Total Background & 20.32 $\pm$ 5.15 & - & - & - \\ 

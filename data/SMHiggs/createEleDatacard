@@ -1,0 +1,54 @@
+#!/bin/sh
+preselection='pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5'
+wselection='mtRecoil_1>80'
+signalselection='mtRecoil_1<50'
+zerojselection='njets==0'
+#onejselection='(njets==1||(njets==2&&vbfMass<300)||njets>2)'
+onejselection='(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))'
+#vbfselection='njets==2&&vbfMass>300'
+vbfselection='njets>=2&&vbfMass>300&&taupt>30&&pt_sv>50'
+vbfselectionHiggs=$vbfselection
+trigselection='hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0' #only for MC
+trigselectiondata='hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0'
+#relaxedSelection=$preselection
+relaxedSelection='pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0'
+luminosity=35870. #pb
+direc='/nfs_scratch/laura/SM_new/'
+datadirec=$direc
+zttScale=1.0
+zlftFactor=1.0
+#zlftFactor='EleTauFake'
+tauID=1.0
+topWeight='topWeight'
+#bTagSF=1.0
+bTagSF='EffCSVWeight0'
+zWeight='ZWEIGHT'
+qcdfactor=1.00
+
+bins=30
+#binning='binningHighStat=0.,10.,20.,30.,40.,50.,60.,70.,80.,90.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,225.,250.,275.,300.,325.,350. binningLowStat=0.,25.,50.,70.,90.,110.,130.,150.,200.,250.,300.' 
+binning='binningMVis0j=0.,60.,65.,70.,75.,80.,85.,90.,95.,100.,105.,110.,400. binningMSv1j=0.,80.,90.,100.,110.,120.,130.,140.,150.,160.,300. binningMSvVBF=0.,95.,115.,135.,155.,400. binningTauPt0j=0.,1.,2.,11. binningPth1j=0.,100.,150.,200.,250.,300.,5000. binningMjjVBF=300.,700.,1100.,1500.,10000.' 
+#binning='binningMVis0j=0.,60.,65.,70.,75.,80.,85.,90.,95.,100.,105.,110.,400. binningMSv1j=0.,80.,90.,100.,110.,120.,130.,140.,150.,160.,300. binningMSvVBF=0.,95.,115.,135.,155.,400. binningTauPt0j=30.,35.,40.,45.,50.,55.,300. binningPth1j=0.,100.,150.,200.,250.,300.,5000. binningMjjVBF=300.,700.,1100.,1500.,10000.' 
+mkdir datacards
+
+###############2012##############3
+wfactorErr=0.06
+qcdfactor=1.00
+qcdfactorerr=0.07
+ggHWeight='tauPdfScale'
+zWeightUnroll='1.0'
+nohup MakeDataCardFlatTree channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs  muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,1,0,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*TAUID*puweight*trackweight*idisoweight_REDO*trigweight_REDO'  luminosity=$luminosity    variable='m_vis_REDO' variableUnroll='tauDecayMode' bins=18 min=0 max=180 outputFile='datacards/htt_et.inputs-sm-13TeV-m_vis-1-2D.root' $binning >0jetET & 
+wfactorErr=0.06
+qcdfactor=1.28
+qcdfactorerr=0.13
+ggHWeight='pthPdfScale'
+zWeightUnroll=1.0
+nohup MakeDataCardFlatTree channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection  vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs    muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,0,1,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*TAUID*puweight*trackweight*idisoweight_REDO*trigweight_REDO'  luminosity=$luminosity    variable='m_sv' variableUnroll='pt_sv' bins=18 min=0 max=180 outputFile='datacards/htt_et.inputs-sm-13TeV-m_sv-2-2D.root' $binning >1jetET & 
+wfactorErr=0.25
+qcdfactor=1.00
+qcdfactorerr=0.2
+ggHWeight='mjjPdfScale'
+zWeightUnroll='zmumu_mjj'
+nohup MakeDataCardFlatTree channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection  vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs    muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,0,0,1 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*TAUID*puweight*trackweight*idisoweight_REDO*trigweight_REDO'  luminosity=$luminosity    variable='m_sv' variableUnroll='vbfMass' bins=18 min=0 max=180 outputFile='datacards/htt_et.inputs-sm-13TeV-m_sv-3-2D.root' $binning >2jetET  & 
+
+exit;

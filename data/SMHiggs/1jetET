@@ -1,0 +1,119 @@
+shiftL: t
+shiftL: j
+shiftsPostFix: CMS_scale_t_13TeV,CMS_scale_t_1prong_13TeV,CMS_scale_t_1prong1pizero_13TeV,CMS_scale_t_3prong_13TeV,CMS_scale_j_13TeV,CMS_scale_j_RelativeBal_13TeV,
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+========Running 1j selection========
+M_sv has 11 entries ,higgs Pt has 7 entries
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Made Higgs Shape
+Added WH samples
+======================
+Run Full Extrapolation
+categorySelection: (njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+Tau ID Scale Factor is 1.000 
+Select DATA
+      DATA Yield: 21250
+      DATA Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+Create EWKZ
+      EWKZ events in signal region = 73.888290 + 3.791120 
+Create DiBoson
+      VV no error inflation: 734.081
+Create ZLFT
+      Z (l->tau) in signal region = 1292.597046 + 34.934296 
+create histogram shifted
+Create ZJFT
+      Z (j->tau) in signal region = 703.485352 + 18.542746 
+Create ZTT
+      ZTT Selection: pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))
+      Selection ZTT events in signal region = 9291.615234 + 70.263893 
+Create TOP
+      TTbar events in signal region = 3765.532471 + 37.109856 
+Create W
+Yield =7912.000000 Lo=7823.541504 Hi=8001.456543
+TTbar events in sideband region = 1411.296021 + 23.662266 
+Diboson events in sideband region = 637.783691 + 13.074642 
+Z events in sideband region = 657.052368 + 21.073704 
+Expected W events in sideband MC region btag  = 4600.117676 + 131.528030 
+Expected W events in sideband MC region  = 4757.634277 + 133.165085 
+5. Extrapolate SS QCD -> OS QCD 
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_SS_HMT_SDB_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+OS QCD estimation in high Mt sideband in wJets  =578.000000 *1.280000 = 739.839966 +- 141.783310 
+OS W_high Datadriven Estimation  =4466.000000  
+OS W Low Estimation =3878.329346 *0.938702  = 3640.594727 +- 3642.265381 
+Channel label is et
+OS W Straight MC Estimation  = 3878.329346 +- 117.503883 
+OS W Datadriven/Straight MC Estimation  = 0.938702 
+OS W Straight MC -> Full Sideband Estimation  = 3640.594727 +- (stat)1.877834 +- full 218.435684 
+Create QCD
+      Data events in SS Signal QCDShape sideband region = 7877.000000 + 88.752464 
+      Z events in SS Signal QCDShape sideband region = 1013.857178 + 22.496588 
+      TOP events in SS Signal QCDShape sideband region = 824.903137 + 17.705952 
+      VV events in SS Signal QCDShape sideband region = 170.886795 + 7.804680 
+      W events in SS Signal QCDShape sideband region = 1669.230469*0.938702 =1566.909668 + 67.801445 
+QCD MC Shape Selections= (pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50))))
+      Data events in SS Signal QCD sideband region = 4502.000000 + 67.096947 
+      Z events in SS Signal QCD sideband region = 674.528503 + 18.537596 
+      TOP events in SS Signal QCD sideband region = 528.692749 + 14.175142 
+      VV events in SS Signal QCD sideband region = 120.868294 + 6.432645 
+      (MonteCarlo) W events in SS region = 901.978333 + 51.243652 
+SS QCD in  core  =4502.000000 -901.978333 -528.692749 -674.528503 -120.868294= 2276.000000 +- 87.828629 
+5. Extrapolate SS QCD -> OS QCD 
+  Extrapolated SS QCD -> OS QCD= 2913.280029 
+now renormalize QCD
+now renormalize WSFUncert
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVUp_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_boosted/QCD_WSFUncert_et_boosted_13TeVDown_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+OS QCD in  core  =2276.000000 *1.280000 = 2913.280029 +- 316.517548 
+Channel label is et
+
+=============Data Yields=============
+DATA: 21250
+
+
+BKGD Yields 
+QCD: 2913.28
+W: 3640.59
+TOP: 3765.53
+VV: 734.081
+EWKZ: 73.8883
+ZLFT: 1292.6
+ZJFT: 703.485
+ZTT: 9291.62
+BACKGROUND=22341.185547 +-3657.093506 
+Total Background & 22341.19 $\pm$ 3725.10 & - & - & - \\ 

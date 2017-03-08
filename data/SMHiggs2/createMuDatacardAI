@@ -1,0 +1,59 @@
+#!/bin/sh
+preselection='pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.3&&iso_1>0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1'
+wselection='mtRecoil_1>80'
+signalselection='mtRecoil_1<50'
+zerojselection='njets==0'
+#onejselection='(njets==1||(njets==2&&vbfMass<300)||njets>2)'
+onejselection='(njets==1||(njets>=2&&(vbfMass<300||taupt<=40||pt_sv<=50)))'
+#vbfselection='njets==2&&vbfMass>300'
+vbfselection='njets>=2&&vbfMass>300&&taupt>40&&pt_sv>50'
+vbfselectionHiggs=$vbfselection
+qcdselection=$preselection
+trigselection='((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))' 
+trigselectiondata='((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))' 
+#relaxedSelection=$preselection
+relaxedSelection='pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.3&&iso_1>0.15&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1'
+luminosity=35870. #pb
+direc='/nfs_scratch/laura/SM_2/'
+datadirec=$direc
+zttScale=1.00
+topWeight='topWeight'
+zlftFactor=1.0
+zWeight='ZWEIGHT'
+tauID=1.00
+qcdfactor=1.00
+bTagSF='EffCSVWeight0'
+
+bins=30
+
+binning='binningHighStat=0.,10.,20.,30.,40.,50.,60.,70.,80.,90.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,225.,250.,275.,300.,325.,350. binningLowStat=0.,20.,40.,60.,80.,100.,120.,140.,160.,180.,200.,250.,300.,350.' 
+
+
+mkdir datacards
+
+############nominal ##############
+#m_vis Madgraph
+
+#######OLD################
+wfactorErr=0.06
+qcdfactor=1.07
+qcdfactorerr=0.04
+ggHWeight='tauPdfScale'
+zWeightUnroll='1.0'
+nohup MakeDataCardControlRegion channel='muTau' shifts='Tau','Jet' dataFile=$datadirec'muDATA.root' qcdFile=$direc'muDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075 zlftFactor=$zlftFactor wfactorErr=$wfactorErr ggHWeight=$ggHWeight bTagSF=$bTagSF zerojselection=$zerojselection onejselection=$onejselection vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=0,1,0,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*TAUID1*puweight*trackweight*__QCDIDISO1__*__QCDTRIG1__'  luminosity=$luminosity  variable='m_vis_REDO' bins=4 min=40 max=200 outputFile='datacards/htt_mt.inputs-sm-13TeV-m_vis-1-antiiso.root' >0jetMuAI & 
+wfactorErr=0.06
+qcdfactor=1.06
+qcdfactorerr=0.06
+ggHWeight='pthPdfScale'
+zWeightUnroll=1.0
+nohup MakeDataCardControlRegion channel='muTau' shifts='Tau','Jet' dataFile=$datadirec'muDATA.root' qcdFile=$direc'muDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075 zlftFactor=$zlftFactor wfactorErr=$wfactorErr ggHWeight=$ggHWeight bTagSF=$bTagSF zerojselection=$zerojselection onejselection=$onejselection vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=0,0,1,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*TAUID1*puweight*trackweight*__QCDIDISO1__*__QCDTRIG1__'  luminosity=$luminosity variable='m_sv' bins=4 min=40 max=200 outputFile='datacards/htt_mt.inputs-sm-13TeV-m_sv-2-antiiso.root'  >1jetMuAI &
+wfactorErr=0.25
+qcdfactor=1.00
+qcdfactorerr=0.2
+ggHWeight='mjjPdfScale'
+zWeightUnroll='zmumu_mjj_REDO'
+nohup MakeDataCardControlRegion channel='muTau' shifts='Tau','Jet' dataFile=$datadirec'muDATA.root' qcdFile=$direc'muDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075 zlftFactor=$zlftFactor wfactorErr=$wfactorErr ggHWeight=$ggHWeight bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=0,0,0,1 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*TAUID1*puweight*trackweight*__QCDIDISO1__*__QCDTRIG1__'  luminosity=$luminosity  variable='m_sv' bins=4 min=40 max=200 outputFile='datacards/htt_mt.inputs-sm-13TeV-m_sv-3-antiiso.root' >2jetMuAI  & 
+exit;
+
+
+

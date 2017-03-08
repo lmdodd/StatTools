@@ -1,0 +1,45 @@
+shiftL: t
+shiftL: j
+shiftsPostFix: CMS_scale_t_13TeV,CMS_scale_t_1prong_13TeV,CMS_scale_t_1prong1pizero_13TeV,CMS_scale_t_3prong_13TeV,CMS_scale_j_13TeV,CMS_scale_j_RelativeBal_13TeV,
+HighStat has 2 entries ,LowStat has 2 entries
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+========Running 1j selection========
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Made Higgs Shape
+Added WH samples
+======================
+Run Full Extrapolation
+categorySelection: (njets==1||(njets>=2&&(vbfMass<300||taupt<=40||pt_sv<=50)))
+Tau ID Scale Factor is 1.000 
+Select DATA
+Replacing cut for data! (pt_1>20&&pt_2>30&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&EffCSVWeight0==1&&mtRecoil_1>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||pt_2<=40||pt_sv<=50))))
+      DATA Yield: 16035
+      DATA Selection: pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&EffCSVWeight0==1&&mtRecoil_1>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=40||pt_sv<=50)))
+Create DiBoson
+      Diboson events in signal region = 1441.435303 + 20.532017 
+Create EWKZ
+      EWKZ events in signal region = 4.873092 + 2.447291 
+Create ZLFT
+      Z (l->tau) in signal region = 176.299805 + 11.736523 
+create histogram shifted
+Error in <TTreeFormula::AnalyzeFunction>: We thought we had a function but we dont (in (njets==1||(njets>=2&&(vbfMass<300||taupt_UP<=40||pt_sv_UP<=50)))gen_match_2)
+
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "(njets==1||(njets>=2&&(vbfMass<300||taupt_UP<=40||pt_sv_UP<=50)))gen_match_2"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1UP,(pt_1>20&&taupt_UP>30&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&mtRecoil_1UP>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt_UP<=40||pt_sv_UP<=50)))gen_match_2<5)*__WEIGHT__*GENWEIGHT*TAUID1*puweight*EffCSVWeight0*trackweight*idisoweight_REDO*trigweight_REDO*ZWEIGHT*1.0}
+Error in <TTreeFormula::AnalyzeFunction>: We thought we had a function but we dont (in (njets==1||(njets>=2&&(vbfMass<300||taupt_DOWN<=40||pt_sv_DOWN<=50)))gen_match_2)
+
+Error in <TTreeFormula::Compile>:  Bad numerical expression : "(njets==1||(njets>=2&&(vbfMass<300||taupt_DOWN<=40||pt_sv_DOWN<=50)))gen_match_2"
+Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1DOWN,(pt_1>20&&taupt_DOWN>30&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&mtRecoil_1DOWN>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt_DOWN<=40||pt_sv_DOWN<=50)))gen_match_2<5)*__WEIGHT__*GENWEIGHT*TAUID1*puweight*EffCSVWeight0*trackweight*idisoweight_REDO*trigweight_REDO*ZWEIGHT*1.0}
+Create ZJFT
+Create ZJFT 2
+Create ZJFT 3
+Create ZJFT 4
+      Z (j->tau) in signal region = 190.774109 + 10.028297 
+Create ZJFT 5
+Create ZTT
+      ZTT Selection: pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1&&((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<=23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))&&mtRecoil_1>80&&charge==0&&(njets==1||(njets>=2&&(vbfMass<300||taupt<=40||pt_sv<=50)))
+      Selection ZTT events in signal region = 520.507446 + 18.431231 
+Create TOP
