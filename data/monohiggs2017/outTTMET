@@ -1,0 +1,148 @@
+shiftL: t
+shiftL: m
+HighStat has 14 entries ,LowStat has 16 entries
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+INCLUSIVE:preselection -------------------------------------
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Make Higgs Shape
+Make Higgs Shape 600300: 17.929
+Make Higgs Shape 1400300: 27.7028
+======================
+Run Full Extrapolation
+categorySelection: pth>50&&met>125&&m_vis<125&&dR<2.0
+weight: __WEIGHT__*GENWEIGHT*puweight*1.0
+Tau ID Scale Factor is 0.980 
+Select DATA
+      DATA Yield: 352
+      DATA Selection: pt_1>40&&pt_2>40&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&pt_1>40&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&Flag_eeBadScFilter_fired==1&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&pth>50&&met>125&&m_vis<125&&dR<2.0&&charge==0&&pth>50&&met>125&&m_vis<125&&dR<2.0
+Create DiBoson
+      VV before error inflation: 21.831
+      Diboson events in signal region = 21.830992 + 6.914555 
+      VV after error inflation: 21.831
+      ZVV events before inflation = 0.062864 + 0.047805 
+      ZVV events in signal region = 0.062864 + 0.051390 
+      EWK events before inflation = 0.000000 + 0.000000 
+      EWK events in signal region = 0.000000 + 0.000000 
+Create ZLFT with factor 1.0
+      Z (l->tau) in signal region = 93.622269 + 23.683857 
+Create ZJFT
+Create ZJFT 3
+      Z (j->tau) in signal region = 9.935287 + 2.540930 
+Create ZTT
+      ZTT Selection: pt_1>40&&pt_2>40&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&pt_1>40&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&pth>50&&met>125&&m_vis<125&&dR<2.0&&charge==0&&pth>50&&met>125&&m_vis<125&&dR<2.0
+      ZTT Selection GenTau Se: pt_1>40&&pt_2>40&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&pt_1>40&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&pth>50&&met>125&&m_vis<125&&dR<2.0&&charge==0&&pth>50&&met>125&&m_vis<125&&dR<2.0
+      Selection ZTT events in signal region = 172.288437 + 9.919192 
+Create SMH
+      SMH Selection: pt_1>40&&pt_2>40&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&pt_1>40&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&pth>50&&met>125&&m_vis<125&&dR<2.0&&charge==0&&pth>50&&met>125&&m_vis<125&&dR<2.0
+      Selection SMH events in signal region = 14.458521 + 0.871112 
+Create TOP
+Gen Tau Selection: genTaus==2    Gen Tau Rejection: genTaus!=2
+top weight: topWeight
+      TTbar events in before inflation region = 33.253883 + 2.624594 
+      TTJ events in before inflation region = 21.262892 + 2.107325 
+      TTT events in before inflation region = 11.990992 + 1.564505 
+      TTbar events in signal region = 33.253883 + 3.620599 
+Create W
+Relaxed Selection: pt_1>40&&pt_2>40&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)
+Straight W MC Yield: 13.1665 stat error:2.4694
+Straight W MC Yield: pt_1>40&&pt_2>40&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&pt_1>40&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&pth>50&&met>125&&m_vis<125&&dR<2.0&&pth>50&&met>125&&m_vis<125&&dR<2.0&&charge==0
+Create QCD
+      Data events in SS Signal QCDShape sideband region = 13.000000 + 3.605551 
+      Z events in SS Signal QCDShape sideband region = 4.057708 + 1.564860 
+      TOP events in SS Signal QCDShape sideband region = 3.913187 + 0.903864 
+      VV events in SS Signal QCDShape sideband region = 0.636360 + 0.411610 
+      SMH events in SS Signal QCDShape sideband region = 0.117094 + 0.078816 
+QCD Selections= (pt_1>40&&pt_2>40&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&pt_1>40&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&Flag_eeBadScFilter_fired==1&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&pth>50&&met>125&&m_vis<125&&dR<2.0&&abs(charge)==2&&pth>50&&met>125&&m_vis<125&&dR<2.0)
+      Data events in SS Signal QCD sideband region = 13.000000 + 3.605551 
+      Z events in SS Signal QCD sideband region = 4.057708 + 1.564860 
+      TOP events in SS Signal QCD sideband region = 3.913187 + 0.903864 
+      SMH events in SS Signal QCD sideband region = 0.117094 + 0.078816 
+      (MonteCarlo) W events in SS region = 3.549032 + 1.288336 
+SS QCD in  core  =13.000000 -3.549032 -3.913187 -4.057708 -0.636360= 1.000000 +- 4.253820 
+5. Extrapolate SS QCD -> OS QCD 
+OS QCD in  core  =1.000000 *1.000000 = 1.000000 +- 4.253868 
+Channel label is mt
+QCDSystematics made
+Does QCD have negative bins?
+Bin 15 is negative, setting to 1E6
+Bin 8 is negative, setting to 1E6
+Bin 9 is negative, setting to 1E6
+Bin 10 is negative, setting to 1E6
+Bin 11 is negative, setting to 1E6
+Bin 12 is negative, setting to 1E6
+Bin 14 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 8 is negative, setting to 1E6
+Bin 9 is negative, setting to 1E6
+Bin 10 is negative, setting to 1E6
+Bin 11 is negative, setting to 1E6
+Bin 12 is negative, setting to 1E6
+Bin 13 is negative, setting to 1E6
+Bin 14 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 5 is negative, setting to 1E6
+Bin 8 is negative, setting to 1E6
+Bin 9 is negative, setting to 1E6
+Bin 10 is negative, setting to 1E6
+Bin 11 is negative, setting to 1E6
+Bin 12 is negative, setting to 1E6
+Bin 13 is negative, setting to 1E6
+Bin 14 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 8 is negative, setting to 1E6
+Bin 9 is negative, setting to 1E6
+Bin 10 is negative, setting to 1E6
+Bin 11 is negative, setting to 1E6
+Bin 12 is negative, setting to 1E6
+Bin 13 is negative, setting to 1E6
+Bin 14 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Does VV have negative bins?
+Bin 13 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 13 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 13 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Does ZTT have negative bins?
+Does SMH have negative bins?
+Does ZVV have negative bins?
+Does W have negative bins?
+Does TTT have negative bins?
+Does TTJ have negative bins?
+Does TT_Up have negative bins?
+Does TT_Down have negative bins?
+Does ZTT_Up have negative bins?
+Does ZTT_Up have negative bins?
+Does ZL_Up have negative bins?
+Does ZL_Down have negative bins?
+Does ZJ_Up have negative bins?
+Does ZJ_Down have negative bins?
+Does ZJ JFT UP have negative bins?
+Does ZJ JFT Down have negative bins?
+Does TTJ JFT Up have negative bins?
+Does TTJ JFT Down have negative bins?
+Does W JFT Up have negative bins?
+Does W JFT Down have negative bins?
+
+=============Data Yields=============
+DATA: 352
+
+
+BKGD Yields 
+QCD: 1
+EWK: 0
+W: 13.1665
+TOP: 33.2539
+SMH: 14.4585
+VV: 21.831
+ZVV: 0.0628643
+ZLFT: 93.6223
+ZJFT: 9.93529
+ZTT: 172.288
+BACKGROUND=345.160278 +-27.404921 
+Total Background & 345.16 $\pm$ 30.17 & - & - & - \\ 

@@ -1,0 +1,37 @@
+#!/bin/sh
+preselection='pt_1>27&&pt_2>20&&vertices>0&&dilepton_veto==0&&iso_1<0.1&&tightElectrons<=1&&tightMuons==0&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0.5'
+wselection='pt_1>27&&pt_2>20&&vertices>0&&dilepton_veto==0&&iso_1<0.1&&tightElectrons<=1&&tightMuons==0&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2<0.5'
+#wselection='mt_1>0'
+signalselection='met>125&&pth>100&&m_vis<125&&dR<2.0'
+qcdselection=$preselection
+trigselection='pt_1>27' #only for MC
+#trigselection='pt_1>27&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0' #only for MC
+#trigselectiondata='pt_1>27&&nobtagSF==0'
+#trigselection='pt_1>27&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&Flag_eeBadScFilter_fired==1&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1'
+trigselection='pt_1>27&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1'
+trigselectiondata='pt_1>27&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&nbtagNoSF==0&&Flag_eeBadScFilter_fired==1&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1'
+relaxedSelection='pt_1>27&&pt_2>20&&vertices>0&&dilepton_veto==0&&iso_1<0.1&&tightElectrons<=1&&tightMuons==0&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0'
+luminosity=36814. #pb
+direc='/nfs_scratch/laura/monohiggs_2/'
+#datadirec='/nfs_scratch/laura/monohiggs_temp/'
+datadirec=$direc
+zttScale=1.
+qcdfactor=1.00
+zlftFactor='EleTauFake'
+#bTagSF=1.0
+bTagSF='EffCSVWeight0'
+topWeight=1.0
+#topWeight='topWeight'
+#zWeight='ZPt_reweight'
+zWeight='__ZWEIGHT__'
+vWeight='WPt_reweight'
+#vWeight=1.21
+tauID=0.99
+
+
+
+binning='binningLowStat=0.,20,40,60,90,120,150,180,210,250,300,350,400,450,500,600,700,1200,2000. binningHighStat=0.,20.,40.,60.,80.,100.,120.,140.,160.,180.,200.,250.,300.,350.' 
+
+mkdir eleTauPlots
+nohup MakeDataCardXTT channel='eleTau' blinding='mt12<200' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETSHT.root' vvFile=$direc'DiBoson.root'  zhFile=$direc'smH125.root' ewkFile=$direc'EWK.root' zvvFile=$direc'Znunu.root' topFile=$direc'TT.root'  preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   luminosityErr=0.062 qcdfactor=$qcdfactor qcdfactorErr=0.02 vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24 zlftFactor=$zlftFactor   topErr=0.075  bTagSF=$bTagSF 	muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=1,0,0,0 TTweight=$topWeight Zweight=$zWeight Vweight=$vWeight weight='__WEIGHT__*GENWEIGHT*puweight*POGid1*trigweight_1'  luminosity=$luminosity  variable='mt12' bins=20 min=0 max=200 outputFile='eleTauPlots/eleTau_mt.root' &
+exit;

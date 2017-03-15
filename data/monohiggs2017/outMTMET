@@ -1,0 +1,132 @@
+shiftL: t
+shiftL: m
+HighStat has 14 entries ,LowStat has 16 entries
+ -------------------------------------
+ --------New Variable--------
+ -------------------------------------
+INCLUSIVE:preselection -------------------------------------
+Make Higgs Shape
+Info in <TCanvas::MakeDefCanvas>:  created default TCanvas with name c1
+Make Higgs Shape
+Make Higgs Shape 600300: 16.0283
+Make Higgs Shape 1400300: 101.341
+======================
+Run Full Extrapolation
+categorySelection: met>125&&pth>100&&m_vis<125&&dR<2.0
+weight: __WEIGHT__*GENWEIGHT*puweight*POGid1*POGid2*POGtrigger*EffCSVWeight0
+Tau ID Scale Factor is 0.940 
+Select DATA
+      DATA Yield: 974
+      DATA Selection: pt_1>26&&pt_2>20&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&pt_1>26&&(HLT_IsoMu24_v_fired>0||HLT_IsoTkMu24_v_fired>0)&&nbtagNoSF==0&&Flag_eeBadScFilter_fired==1&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&met>125&&pth>100&&m_vis<125&&dR<2.0&&charge==0&&met>125&&pth>100&&m_vis<125&&dR<2.0
+Create DiBoson
+      VV before error inflation: 112.59
+      Diboson events in signal region = 112.590149 + 34.248379 
+      VV after error inflation: 112.59
+      ZVV events before inflation = 0.000000 + 0.000000 
+      ZVV events in signal region = 0.000000 + 0.000000 
+      EWK events before inflation = 0.000000 + 0.000000 
+      EWK events in signal region = 0.000000 + 0.000000 
+Create ZLFT with factor 1.0
+      Z (l->tau) in signal region = 8.139791 + 2.891300 
+Create ZJFT
+Create ZJFT 3
+      Z (j->tau) in signal region = 4.273520 + 1.681231 
+Create ZTT
+      ZTT Selection: pt_1>26&&pt_2>20&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&pt_1>26&&(HLT_IsoMu24_v_fired>0||HLT_IsoTkMu24_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&met>125&&pth>100&&m_vis<125&&dR<2.0&&charge==0&&met>125&&pth>100&&m_vis<125&&dR<2.0
+      ZTT Selection GenTau Se: pt_1>26&&pt_2>20&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&pt_1>26&&(HLT_IsoMu24_v_fired>0||HLT_IsoTkMu24_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&met>125&&pth>100&&m_vis<125&&dR<2.0&&charge==0&&met>125&&pth>100&&m_vis<125&&dR<2.0
+      Selection ZTT events in signal region = 538.736572 + 16.979900 
+Create SMH
+      SMH Selection: pt_1>26&&pt_2>20&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&pt_1>26&&(HLT_IsoMu24_v_fired>0||HLT_IsoTkMu24_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&met>125&&pth>100&&m_vis<125&&dR<2.0&&charge==0&&met>125&&pth>100&&m_vis<125&&dR<2.0
+      Selection SMH events in signal region = 18.492283 + 0.931219 
+Create TOP
+Gen Tau Selection: gen_match_2==5    Gen Tau Rejection: gen_match_2!=5
+top weight: topWeight
+      TTbar events in before inflation region = 153.668961 + 5.944323 
+      TTJ events in before inflation region = 65.278580 + 3.852603 
+      TTT events in before inflation region = 88.390404 + 4.526856 
+      TTbar events in signal region = 153.668961 + 12.967828 
+Create W
+Relaxed Selection: pt_1>26&&pt_2>20&&npv>0&&diLeptons==0&&iso_1<0.15&&byLooseIsolationMVArun2v1DBdR03oldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&nbtagNoSF==0&&(HLT_IsoMu24_v_fired>0||HLT_IsoTkMu24_v_fired>0)
+Straight W MC Yield: 177.237 stat error:13.0864
+Straight W MC Yield: pt_1>26&&pt_2>20&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&pt_1>26&&(HLT_IsoMu24_v_fired>0||HLT_IsoTkMu24_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&met>125&&pth>100&&m_vis<125&&dR<2.0&&met>125&&pth>100&&m_vis<125&&dR<2.0&&charge==0
+Create QCD
+      Data events in SS Signal QCDShape sideband region = 407.000000 + 20.174240 
+      Z events in SS Signal QCDShape sideband region = 12.478920 + 2.723945 
+      TOP events in SS Signal QCDShape sideband region = 106.281937 + 4.528357 
+      VV events in SS Signal QCDShape sideband region = 23.116270 + 2.336195 
+      SMH events in SS Signal QCDShape sideband region = 0.449285 + 0.163662 
+QCD Selections= (pt_1>26&&pt_2>20&&npv>0&&diLeptons==0&&iso_1<0.15&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&pt_1>26&&(HLT_IsoMu24_v_fired>0||HLT_IsoTkMu24_v_fired>0)&&nbtagNoSF==0&&Flag_eeBadScFilter_fired==1&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&met>125&&pth>100&&m_vis<125&&dR<2.0&&abs(charge)==2&&met>125&&pth>100&&m_vis<125&&dR<2.0)
+      Data events in SS Signal QCD sideband region = 141.000000 + 11.874342 
+      Z events in SS Signal QCD sideband region = 5.460863 + 1.807157 
+      TOP events in SS Signal QCD sideband region = 33.238579 + 2.704174 
+      SMH events in SS Signal QCD sideband region = 0.255093 + 0.127175 
+      (MonteCarlo) W events in SS region = 68.344109 + 9.693488 
+SS QCD in  core  =141.000000 -68.344109 -33.238579 -5.460863 -7.734713= 26.000000 +- 15.737975 
+5. Extrapolate SS QCD -> OS QCD 
+OS QCD in  core  =26.000000 *1.000000 = 26.000000 +- 15.746564 
+Channel label is mt
+QCDSystematics made
+Does QCD have negative bins?
+Bin 15 is negative, setting to 1E6
+Bin 7 is negative, setting to 1E6
+Bin 11 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 7 is negative, setting to 1E6
+Bin 11 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 5 is negative, setting to 1E6
+Bin 7 is negative, setting to 1E6
+Bin 11 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 5 is negative, setting to 1E6
+Bin 7 is negative, setting to 1E6
+Bin 11 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Does VV have negative bins?
+Does ZTT have negative bins?
+Does SMH have negative bins?
+Does ZVV have negative bins?
+Does W have negative bins?
+Does TTT have negative bins?
+Does TTJ have negative bins?
+Bin 15 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Bin 15 is negative, setting to 1E6
+Does TT_Up have negative bins?
+Bin 15 is negative, setting to 1E6
+Does TT_Down have negative bins?
+Bin 15 is negative, setting to 1E6
+Does ZTT_Up have negative bins?
+Does ZTT_Up have negative bins?
+Does ZL_Up have negative bins?
+Does ZL_Down have negative bins?
+Does ZJ_Up have negative bins?
+Does ZJ_Down have negative bins?
+Does ZJ JFT UP have negative bins?
+Does ZJ JFT Down have negative bins?
+Does TTJ JFT Up have negative bins?
+Bin 15 is negative, setting to 1E6
+Does TTJ JFT Down have negative bins?
+Bin 15 is negative, setting to 1E6
+Does W JFT Up have negative bins?
+Does W JFT Down have negative bins?
+
+=============Data Yields=============
+DATA: 974
+
+
+BKGD Yields 
+QCD: 26
+EWK: 0
+W: 177.237
+TOP: 153.669
+SMH: 18.4923
+VV: 112.59
+ZVV: 0
+ZLFT: 8.13979
+ZJFT: 4.27352
+ZTT: 538.737
+BACKGROUND=1020.645813 +-45.385315 
+Total Background & 1020.65 $\pm$ 59.98 & - & - & - \\ 
