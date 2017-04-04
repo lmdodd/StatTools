@@ -24,7 +24,7 @@ void optimizeSB(TString name,TString file,TString dir,TString sampleB, TString s
     lumi_7TeV  = "4.9 fb^{-1}";  // default is "5.1 fb^{-1}"
     lumi_sqrtS = "13 TeV";
     if (json=="FuckMuons") lumi_13TeV = channel+"    2016, 3.4 fb^{-1}";
-    if (json=="Golden") lumi_13TeV = channel+"    2016, 36.8 fb^{-1}";
+    if (json=="Golden") lumi_13TeV = channel+"    2016, 35.9 fb^{-1}";
 
     int iPeriod = 4;    // 1=7TeV, 2=8TeV, 3=7+8TeV, 7=7+8+13TeV 
 
@@ -181,7 +181,7 @@ void optimizeSB(TString name,TString file,TString dir,TString sampleB, TString s
         optimizeBest->SetMinimum(0.5);
     }
     else 
-        optimizeBest->SetMaximum(optimizeBest->GetMaximum()*1.8);
+        optimizeBest->SetMaximum(optimizeBest->GetMaximum()*3);
 
     optimizeBest->Draw();
     optimizeWorst->Draw("same");
@@ -200,7 +200,9 @@ void optimizeSB(TString name,TString file,TString dir,TString sampleB, TString s
     TLatex latex;
     char array[20];
     sprintf(array, "max=%0.2f at %0.2f",maxW,xW );
-    latex.DrawLatex(100,9,array);
+
+ 
+    latex.DrawLatex(xW,maxW/2,array);
 
     c->cd();
 
@@ -209,7 +211,7 @@ void optimizeSB(TString name,TString file,TString dir,TString sampleB, TString s
     TLegend *l = new TLegend(xR,0.6,xR+0.3,0.9);
 
     l->AddEntry(optimizeBest ,sampleB,"L");
-    l->AddEntry(optimizeWorst ,sampleW,"L");
+    //l->AddEntry(optimizeWorst ,sampleW,"L");
 
     l->SetBorderSize(0);
     l->SetFillColor(0);

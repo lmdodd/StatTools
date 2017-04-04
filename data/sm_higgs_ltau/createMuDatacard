@@ -16,14 +16,14 @@ relaxedSelection='pt_1>23&&pt_2>20&&npv>0&&diLeptons==0&&iso04_1<0.3&&byMediumIs
 #relaxedSelection='pt_1>23&&pt_2>20&&npv>0&&diLeptons==0&&iso04_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&tightMuons<=1&&tightElectrons==0&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0'
 luminosity=12900. #pb
 #luminosity=20100. #pb
-#direc='/nfs_scratch/laura/SMHiggs_1116_weighted/'
-direc='/nfs_scratch/laura/SMHiggs_1123_weighted/'
+#direc='/nfs_scratch/laura/SMHiggs_1123_weighted/'
 #direc='/nfs_scratch/laura/SMHiggs_SVfit_weighted/'
-#direc='/hdfs/store/user/laura/SMHiggs_weighted/'
+direc='/hdfs/store/user/laura/SMHiggs_1128_weighted/'
 datadirec=$direc
 zttScale=1.
 #topWeight=1.0
-topWeight='topWeight'
+topWeight='topWeight2'
+#topWeight='topWeight'
 #zlftFactor=1.0
 zlftFactor='MuTauFake'
 #zWeight=1.0

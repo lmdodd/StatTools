@@ -48,7 +48,9 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     lumi_7TeV  = "4.9 fb^{-1}";  // default is "5.1 fb^{-1}"
     lumi_sqrtS = "13 TeV";
     if (json=="ICHEP") lumi_13TeV = channel+"    2016, 12.9 fb^{-1}";
-    if (json=="Golden") lumi_13TeV = channel+"    2016, 20.1 fb^{-1}";
+    if (json=="Golden") lumi_13TeV = channel+"    2016, 35.9 fb^{-1}";
+    if (json=="GH") lumi_13TeV = channel+"    2016, 16.1 fb^{-1}";
+    if (json=="BCDEF") lumi_13TeV = channel+"    2016, 19.8 fb^{-1}";
 
     int iPeriod = 4;    // 1=7TeV, 2=8TeV, 3=7+8TeV, 7=7+8+13TeV 
 
@@ -124,23 +126,45 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
 
 
     TFile *f = new TFile(file);
-
+    float topError = 0.05;
+    float wError = 0.15;
+    float qcdError =0.3;
+    float zttError = 0.05;
+    float zlftError = 0.3;
+    float zjftError = 0.3;
 
     TH1F * data = (TH1F*)(f->Get(dir+"/data_obs"));
     if (dndm) convertToDNDM(data);
     applyDATAStyle(data);
 
     TH1F * QCD = (TH1F*)(f->Get(dir+"/QCD"));
+    for(int i=1;i<QCD->GetNbinsX()+1;i++){
+        float y = QCD->GetBinContent(0);
+        float r = y*qcdError;
+        QCD->SetBinError(i,0.1);
+    }
     if (dndm) convertToDNDM(QCD);
     applyStyle(QCD,kMagenta-10,1,1001);
 
     TH1F * ttbar = (TH1F*)(f->Get(dir+"/TT"));
+    for(int i=1;i<ttbar->GetNbinsX()+1;i++){
+        float y = ttbar->GetBinContent(i);
+        float r = y*topError;
+        ttbar->SetBinError(i,r);
+        //std::cout<<"Setting TOP Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+    }
     if (dndm) convertToDNDM(ttbar);
     applyStyle(ttbar,kBlue-8,1,1001);
 
 
     TH1F * EWK = (TH1F*)(f->Get(dir+"/W"));
     EWK->Add((TH1F*)(f->Get(dir+"/VV")));
+    for(int i=1;i<EWK->GetNbinsX()+1;i++){
+        float y = EWK->GetBinContent(i);
+        float r = y*wError;
+        EWK->SetBinError(i,r);
+        //std::cout<<"Setting EWK Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+    }
     if (dndm) convertToDNDM(EWK);
     applyStyle(EWK,kRed-6,1,1001);
 
@@ -153,12 +177,26 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     if(f->Get(dir+"/ZJ")!=0&&f->Get(dir+"/ZLL")==0)
         ZEE->Add((TH1F*)(f->Get(dir+"/ZJ")));
 
+    float zeeErr = std::max(zjftError,zlftError);
+    //std::cout<<"ZEE error: "<<zeeErr<<std::endl;
+    for(int i=1;i<ZEE->GetNbinsX()+1;i++){
+        float y = ZEE->GetBinContent(i);
+        float r = y*zeeErr;
+        ZEE->SetBinError(i,r);
+        //std::cout<<"Setting ZEE Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+    }
     if (dndm) convertToDNDM(ZEE);
     applyStyle(ZEE,kAzure-9,1,1001);	
 
 
     TH1F * ZTT = (TH1F*)(f->Get(dir+"/ZTT"));
     if (dndm) convertToDNDM(ZTT);
+    for(int i=1;i<ZTT->GetNbinsX()+1;i++){
+        float y = ZTT->GetBinContent(i);
+        float r = y*zttError;
+        ZTT->SetBinError(i,r);
+        //std::cout<<"Setting ZTT Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+    }
     applyStyle(ZTT,kOrange-4,1,1001);
 
     TH1F *signal=0;
@@ -189,6 +227,18 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         //hs->Add(SM);
     }
 
+    TH1F* errorBand = (TH1F*)ttbar->Clone();
+    errorBand->Add(EWK);
+    errorBand->Add(ZTT);
+    errorBand->Add(QCD);
+    errorBand->Add(ZEE);
+
+    errorBand->SetMarkerSize(0);
+    errorBand->SetFillColor(kGray+2);
+    errorBand->SetFillStyle(3001);
+    errorBand->SetLineWidth(1);
+
+
 
     hs->Draw("HIST");
     if(data->GetMaximum()*1.2+sqrt(data->GetMaximum())>hs->GetMaximum()) {
@@ -212,6 +262,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
 
 
     hs->Draw("HIST");
+    errorBand->Draw("e2same");
 
     if(doRatio){
         hs->GetXaxis()->SetLabelSize(0);
@@ -241,8 +292,9 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
             float bkg = last->GetBinContent(i+1);
             y = sig/(TMath::Sqrt(bkg + (0.09*bkg)*(0.09*bkg)));
             if (y>=0.25) { 
-                std::cout<<" blinding bin "<<i+1<<std::endl;
-                data->SetBinContent(i+1,0);}
+                std::cout<<"!Should be blinding bin "<<i+1<<std::endl;
+                //data->SetBinContent(i+1,0);}
+            }
         }
     }
 
@@ -253,6 +305,14 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
 
     if(doRatio){
         TH1F * data2 = (TH1F*)data->Clone("data");
+        TH1F * mcErr = (TH1F*) errorBand->Clone("errorBand");
+
+        mcErr->SetMarkerSize(0);
+        mcErr->SetFillColor(kGray+2);
+        mcErr->SetFillStyle(3001);
+        mcErr->SetLineWidth(1);
+
+
         TH1F * mc = (TH1F*)(ttbar);
         mc->Add(QCD);
         mc->Add(EWK);
@@ -270,6 +330,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         ratioPad->cd();
 
         data2->Divide(data2,mc);
+        mcErr->Divide(mcErr,mcErr);
 
         data2->SetMarkerStyle(20);
         data2->SetTitleSize  (0.12,"Y");
@@ -293,6 +354,8 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
             data2->GetXaxis()->SetTitle(labelX);
 
         data2->Draw("P");
+        mcErr->Draw("E2Same");
+        data2->Draw("PSame");
         line->Draw();
 
     }

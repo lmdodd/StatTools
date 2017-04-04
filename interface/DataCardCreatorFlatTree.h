@@ -313,32 +313,36 @@ class DataCardCreatorFlatTree {
             output.ZLFT  = zlftYield.first;
             output.dZLFT  = zlftYield.second;
 
+            if(shifts_.size()>0&&channel_=="eleTau"){
+
+                std::pair<float,float> zlShifteFakeUp0      = createHistogramShifted(zllFile_,"ZL_CMS_eFakeTau_1prong_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM0Up+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShifteFakeDown0      = createHistogramShifted(zllFile_,"ZL_CMS_eFakeTau_1prong_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM0Down+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShifteFakeUp1      = createHistogramShifted(zllFile_,"ZL_CMS_eFakeTau_1prong1pizero_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM1Up+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShifteFakeDown1      = createHistogramShifted(zllFile_,"ZL_CMS_eFakeTau_1prong1pizero_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM1Down+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+            }
+            else if(shifts_.size()>0&&channel_=="muTau"){
+
+                std::pair<float,float> zlShiftmFakeUp0      = createHistogramShifted(zllFile_,"ZL_CMS_mFakeTau_1prong_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM0Up+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftmFakeDown0      = createHistogramShifted(zllFile_,"ZL_CMS_mFakeTau_1prong_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM0Down+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftmFakeUp1      = createHistogramShifted(zllFile_,"ZL_CMS_mFakeTau_1prong1pizero_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM1Up+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+                std::pair<float,float> zlShiftmFakeDown1      = createHistogramShifted(zllFile_,"ZL_CMS_mFakeTau_1prong1pizero_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM1Down+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
+            }
+
+
+
             std::cout<<"create histogram shifted"<<std::endl;
             if (variableUnroll_!="tauDecayMode"){
                 if(shifts_.size()>0&&channel_=="eleTau"){
                     std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_+"*"+zlftWeight,"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
                     std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_et_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_+"*"+zlftWeight,"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
 
-                    std::pair<float,float> zlShifteFakeUp0      = createHistogramShifted(zllFile_,"ZL_CMS_eFakeTau_1prong_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM0Up+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShifteFakeDown0      = createHistogramShifted(zllFile_,"ZL_CMS_eFakeTau_1prong_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM0Down+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShifteFakeUp1      = createHistogramShifted(zllFile_,"ZL_CMS_eFakeTau_1prong1pizero_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM1Up+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShifteFakeDown1      = createHistogramShifted(zllFile_,"ZL_CMS_eFakeTau_1prong1pizero_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM1Down+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-
-
                 }
                 else if(shifts_.size()>0&&channel_=="muTau"){
                     std::pair<float,float> zlShiftUp      = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_13TeVUp","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_+"*"+zlftWeight,"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
                     std::pair<float,float> zlShiftDown     = createHistogramShifted(zllFile_,"ZL_CMS_htt_ZLShape_mt_13TeVDown","("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftFactor_+"*"+ZUnrollweight_+"*"+zlftWeight,"TauDown",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-
-                    std::pair<float,float> zlShiftmFakeUp0      = createHistogramShifted(zllFile_,"ZL_CMS_mFakeTau_1prong_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM0Up+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftmFakeDown0      = createHistogramShifted(zllFile_,"ZL_CMS_mFakeTau_1prong_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM0Down+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftmFakeUp1      = createHistogramShifted(zllFile_,"ZL_CMS_mFakeTau_1prong1pizero_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM1Up+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-                    std::pair<float,float> zlShiftmFakeDown1      = createHistogramShifted(zllFile_,"ZL_CMS_mFakeTau_1prong1pizero_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*"+zlftWeightDM1Down+"*"+ZUnrollweight_),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
-
-
                 }
             }
-            else{ //tauDEcayMode unroll/
+            else{ //tauDecayMode 0jet unroll
                 if(shifts_.size()>0&&channel_=="eleTau"){
                     std::pair<float,float> zlShift0      = createHistogramShifted(zllFile_,"ZL_CMS_ZLShape_et_0jet_1prong_13TeV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==0)*"+ZUnrollweight_+"*"+zlftWeight),"",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
                     std::pair<float,float> zlShiftUp0      = createHistogramShifted(zllFile_,"ZL_CMS_ZLShape_et_0jet_1prong_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZLFT_genLSel_+")*"+weight_+"*"+Zweight_+"*(tauDecayMode==0)*"+ZUnrollweight_+"*"+zlftWeight),"TauUp",luminosity_*leg1Corr*zttScale_*zExtrap,prefix);
@@ -441,28 +445,28 @@ class DataCardCreatorFlatTree {
                FixNegativeBinsMC(filelabel+prefix,"ZJ",false);
                FixNegativeBinsMC(filelabel+prefix,"ZTT",false);
                FixNegativeBinsMC(filelabel+prefix,"EWKZ",false);
-*/
-               std::cout<<std::endl;
-               std::cout<<"=============Data Yields============="<<std::endl;
-               std::cout<<"DATA: "<< output.DATA<<std::endl;
-               std::cout<<std::endl;
+               */
+            std::cout<<std::endl;
+            std::cout<<"=============Data Yields============="<<std::endl;
+            std::cout<<"DATA: "<< output.DATA<<std::endl;
+            std::cout<<std::endl;
 
 
-               std::cout<<std::endl;
-               std::cout<<"BKGD Yields "<<std::endl;
-               std::cout<<"QCD: "<< output.QCD<<std::endl;
-               std::cout<<"W: "<< output.W<<std::endl;
-               std::cout<<"TOP: "<< output.TOP<<std::endl;
-               std::cout<<"VV: "<< output.VV<<std::endl;
-               std::cout<<"EWKZ: "<< output.EWKZ<<std::endl;
-               std::cout<<"ZLFT: "<< output.ZLFT<<std::endl;
-               std::cout<<"ZJFT: "<< output.ZJFT<<std::endl;
-               std::cout<<"ZTT: "<< output.ZTT<<std::endl;
+            std::cout<<std::endl;
+            std::cout<<"BKGD Yields "<<std::endl;
+            std::cout<<"QCD: "<< output.QCD<<std::endl;
+            std::cout<<"W: "<< output.W<<std::endl;
+            std::cout<<"TOP: "<< output.TOP<<std::endl;
+            std::cout<<"VV: "<< output.VV<<std::endl;
+            std::cout<<"EWKZ: "<< output.EWKZ<<std::endl;
+            std::cout<<"ZLFT: "<< output.ZLFT<<std::endl;
+            std::cout<<"ZJFT: "<< output.ZJFT<<std::endl;
+            std::cout<<"ZTT: "<< output.ZTT<<std::endl;
 
 
-               float background    = output.QCD  + output.W  + output.TOP  + output.VV  + output.ZLFT  + output.ZJFT  + output.ZTT;
-               float backgroundErr = sqrt( pow(output.dQCD,2) + pow(output.dW,2) + pow(output.dTOP,2) + pow(output.dVV,2) + pow(output.dZLFT,2) + pow(output.dZJFT,2) + pow(output.dZTT,2));
-               printf("BACKGROUND=%f +-%f \n",background,backgroundErr);
+            float background    = output.QCD  + output.W  + output.TOP  + output.VV  + output.ZLFT  + output.ZJFT  + output.ZTT;
+            float backgroundErr = sqrt( pow(output.dQCD,2) + pow(output.dW,2) + pow(output.dTOP,2) + pow(output.dVV,2) + pow(output.dZLFT,2) + pow(output.dZJFT,2) + pow(output.dZTT,2));
+            printf("BACKGROUND=%f +-%f \n",background,backgroundErr);
 
             ///LATEX->Here since we want it for the note add all errors , even those that will go separate in the datacard
 
@@ -478,20 +482,20 @@ class DataCardCreatorFlatTree {
 
 
             float fullBackgroundErr = sqrt(pow(quadrature(output.VV,output.dVV,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
-            +pow(quadrature(output.TOP,output.dTOP,muIDErr_,eleIDErr_,tauIDErr_),2)
-            +pow(quadrature(output.ZJFT,output.dZJFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
-            +pow(quadrature(output.ZLFT,output.dZLFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
-            +pow(output.dQCD,2)
-            +pow(output.dW,2)
-            +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2));
+                    +pow(quadrature(output.TOP,output.dTOP,muIDErr_,eleIDErr_,tauIDErr_),2)
+                    +pow(quadrature(output.ZJFT,output.dZJFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
+                    +pow(quadrature(output.ZLFT,output.dZLFT,muIDErr_,eleIDErr_,zttScaleErr_),2)
+                    +pow(output.dQCD,2)
+                    +pow(output.dW,2)
+                    +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2));
 
             printf("Total Background & %.2f $\\pm$ %.2f & - & - & - \\\\ \n",background,sqrt(pow(quadrature(output.VV,    output.dVV,   muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)
-            +pow(quadrature(output.TOP,  output.dTOP,  muIDErr_,eleIDErr_,tauIDErr_),2)
-            +pow(quadrature(output.ZJFT, output.dZJFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
-            +pow(quadrature(output.ZLFT, output.dZLFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
-            +pow(output.dQCD,2)
-            +pow(output.dW,2)
-            +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)));
+                        +pow(quadrature(output.TOP,  output.dTOP,  muIDErr_,eleIDErr_,tauIDErr_),2)
+                        +pow(quadrature(output.ZJFT, output.dZJFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
+                        +pow(quadrature(output.ZLFT, output.dZLFT, muIDErr_,eleIDErr_,zttScaleErr_),2)
+                        +pow(output.dQCD,2)
+                        +pow(output.dW,2)
+                        +pow(quadrature(output.ZTT,output.dZTT,muIDErr_,eleIDErr_,zttScaleErr_,tauIDErr_),2)));
 
 
 

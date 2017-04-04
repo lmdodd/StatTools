@@ -13,10 +13,7 @@ trigselectiondata='(HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&lTrigger25>0)'
 relaxedSelection='pt_1>26&&pt_2>20&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronLooseMVA6_2>0'
 #relaxedSelection='pt_1>26&&pt_2>20&&dilepton_veto==0&&iso_1<0.3&&tightElectrons<=1&&tightMuons==0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronLooseMVA6_2>0'
 luminosity=12900. #pb
-#direc='/nfs_scratch/laura/SMHiggs_1116_weighted/'
-direc='/nfs_scratch/laura/SMHiggs_1123_weighted/'
-#direc='/nfs_scratch/laura/SMHiggs_SVfit_weighted/'
-#direc='/hdfs/store/user/laura/SMHiggs_weighted/'
+direc='/hdfs/store/user/laura/SMHiggs_1128_weighted/'
 datadirec=$direc
 zttScale=1.
 #zlftFactor=1.0

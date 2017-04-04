@@ -9,8 +9,8 @@ onejselection='(njets==1||(njets>=2&&(vbfMass<300||taupt<=40||pt_sv<=50)))'
 vbfselection='njets>=2&&vbfMass>300&&taupt>40&&pt_sv>50'
 vbfselectionHiggs=$vbfselection
 qcdselection=$preselection
-trigselection='((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))' 
-trigselectiondata='((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))' 
+trigselection='((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))' 
+trigselectiondata='((pt_1>23&&((HLT_IsoMu22_v_fired>0||HLT_IsoTkMu22_v_fired>0)||HLT_IsoMu22_eta2p1_v_fired>0||HLT_IsoTkMu22_eta2p1_v_fired>0))||(pt_1<23&&HLT_IsoMu19_eta2p1_LooseIsoPFTau20_SingleL1_v_fired>0&&hltOverlapFilterSingleIsoMu19LooseIsoPFTau20>0&&hltL3crIsoL1sSingleMu18erIorSingleMu20erL1f0L2f10QL3f19QL3trkIsoFiltered0p09>0))' 
 #relaxedSelection=$preselection
 relaxedSelection='pt_1>20&&taupt>30&&npv>0&&diLeptons==0&&iso_1<0.3&&iso_1>0.15&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstMuonTight3_2>0&&againstElectronVLooseMVA6_2>0&&diLeptons==0&&abs(eta_1)<2.1'
 luminosity=35870. #pb
@@ -38,7 +38,7 @@ mkdir datacards
 wfactorErr=0.06
 qcdfactor=1.07
 qcdfactorerr=0.04
-ggHWeight='tauPdfScale'
+ggHWeight='tauPdfScaleREDO'
 zWeightUnroll='1.0'
 nohup MakeDataCardControlRegion channel='muTau' shifts='Tau','Jet' dataFile=$datadirec'muDATA.root' qcdFile=$direc'muDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075 zlftFactor=$zlftFactor wfactorErr=$wfactorErr ggHWeight=$ggHWeight bTagSF=$bTagSF zerojselection=$zerojselection onejselection=$onejselection vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=0,1,0,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*TAUID*puweight*trackweight*__QCDIDISO__*__QCDTRIG__'  luminosity=$luminosity  variable='m_vis_REDO' bins=4 min=40 max=200 outputFile='datacards/htt_mt.inputs-sm-13TeV-m_vis-1-antiiso.root' >0jetMuAI & 
 wfactorErr=0.06

@@ -22,7 +22,7 @@ Create EWKZ
 Create DiBoson
       VV no error inflation: 274.943
 Create ZLFT
-      Z (l->tau) in signal region = 5264.999512 + 98.264977 
+      Z (l->tau) in signal region = 6914.762207 + 131.077042 
 create histogram shifted
 Create ZJFT
       Z (j->tau) in signal region = 752.613342 + 26.068760 
@@ -36,8 +36,8 @@ Yield =10923.000000 Lo=10819.064453 Hi=11027.933594
 TTbar events in sideband region = 153.391434 + 7.549387 
 Diboson events in sideband region = 497.216095 + 8.971325 
 Z events in sideband region = 900.868408 + 34.032730 
-Expected W events in sideband MC region btag  = 9703.804688 + 248.229660 
-Expected W events in sideband MC region  = 9771.273438 + 248.870071 
+Expected W events in sideband MC region btag  = 9621.993164 + 234.210358 
+Expected W events in sideband MC region  = 9684.032227 + 234.772980 
 5. Extrapolate SS QCD -> OS QCD 
 Shift not found = et_0jet/QCD_SS_HMT_SDB_CMS_scale_t_13TeVUp
 Shift not found
@@ -51,28 +51,28 @@ Shift not found = et_0jet/QCD_SS_HMT_SDB_CMS_scale_j_13TeVUp
 Shift not found
 Shift not found = et_0jet/QCD_SS_HMT_SDB_CMS_scale_j_RelativeBal_13TeVUp
 Shift not found
-OS QCD estimation in high Mt sideband in wJets  =569.000000 *1.000000 = 569.000000 +- 138.362015 
-OS W_high Datadriven Estimation  =8803.000000  
-OS W Low Estimation =8018.876953 *0.900906  = 7224.255371 +- 7227.080566 
+OS QCD estimation in high Mt sideband in wJets  =631.000000 *1.000000 = 631.000000 +- 125.865440 
+OS W_high Datadriven Estimation  =8741.000000  
+OS W Low Estimation =7910.107422 *0.902620  = 7139.820312 +- 7142.402344 
 Channel label is et
-OS W Straight MC Estimation  = 8018.876953 +- 224.288391 
-OS W Datadriven/Straight MC Estimation  = 0.900906 
-OS W Straight MC -> Full Sideband Estimation  = 7224.255371 +- (stat)1.802165 +- full 433.455322 
+OS W Straight MC Estimation  = 7910.107422 +- 212.744858 
+OS W Datadriven/Straight MC Estimation  = 0.902620 
+OS W Straight MC -> Full Sideband Estimation  = 7139.820312 +- (stat)1.805566 +- full 428.389221 
 Create QCD
       Data events in SS Signal QCDShape sideband region = 11875.000000 + 108.972473 
       Z events in SS Signal QCDShape sideband region = 800.250122 + 25.221027 
       TOP events in SS Signal QCDShape sideband region = 9.879519 + 1.936391 
       VV events in SS Signal QCDShape sideband region = 33.928780 + 2.968996 
-      W events in SS Signal QCDShape sideband region = 2433.824951*0.900906 =2192.647949 + 118.831779 
+      W events in SS Signal QCDShape sideband region = 2446.495605*0.902620 =2208.255615 + 112.307449 
 QCD MC Shape Selections= (pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets==0)
       Data events in SS Signal QCD sideband region = 6524.000000 + 80.771278 
       Z events in SS Signal QCD sideband region = 551.301575 + 21.606949 
       TOP events in SS Signal QCD sideband region = 7.774998 + 1.733361 
       VV events in SS Signal QCD sideband region = 25.447819 + 2.699204 
-      (MonteCarlo) W events in SS region = 1376.484619 + 88.253609 
-SS QCD in  core  =6524.000000 -1376.484619 -7.774998 -551.301575 -25.447819= 4563.000000 +- 121.613533 
+      (MonteCarlo) W events in SS region = 1389.910278 + 87.082344 
+SS QCD in  core  =6524.000000 -1389.910278 -7.774998 -551.301575 -25.447819= 4550.000000 +- 120.766243 
 5. Extrapolate SS QCD -> OS QCD 
-  Extrapolated SS QCD -> OS QCD= 4563.000000 
+  Extrapolated SS QCD -> OS QCD= 4550.000000 
 now renormalize QCD
 now renormalize WSFUncert
 Shift not found = et_0jet/QCD_WSFUncert_et_0jet_13TeVUp_CMS_scale_t_13TeVUp
@@ -99,7 +99,7 @@ Shift not found = et_0jet/QCD_WSFUncert_et_0jet_13TeVDown_CMS_scale_j_13TeVUp
 Shift not found
 Shift not found = et_0jet/QCD_WSFUncert_et_0jet_13TeVDown_CMS_scale_j_RelativeBal_13TeVUp
 Shift not found
-OS QCD in  core  =4563.000000 *1.000000 = 4563.000000 +- 341.778595 
+OS QCD in  core  =4550.000000 *1.000000 = 4550.000000 +- 340.626984 
 Channel label is et
 
 =============Data Yields=============
@@ -107,13 +107,13 @@ DATA: 41160
 
 
 BKGD Yields 
-QCD: 4563
-W: 7224.26
+QCD: 4550
+W: 7139.82
 TOP: 80.9942
 VV: 274.943
 EWKZ: 4.72051
-ZLFT: 5265
+ZLFT: 6914.76
 ZJFT: 752.613
 ZTT: 22474.6
-BACKGROUND=40635.433594 +-7237.556152 
-Total Background & 40635.43 $\pm$ 7415.88 & - & - & - \\ 
+BACKGROUND=42187.757812 +-7153.472656 
+Total Background & 42187.76 $\pm$ 7335.88 & - & - & - \\ 

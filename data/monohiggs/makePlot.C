@@ -226,11 +226,9 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
 
     TH1F * ZEE=0;
     if (channel == "#tau_{e}#tau_{h}"||channel == "#tau_{#mu}#tau_{h}"){
-        if(f->Get(dir+"/ZLL")!=0)
-            ZEE = (TH1F*)(f->Get(dir+"/ZLL"));	  	
-        if(f->Get(dir+"/ZL")!=0&&f->Get(dir+"/ZLL")==0)
+        if(f->Get(dir+"/ZL")!=0)
             ZEE = (TH1F*)(f->Get(dir+"/ZL"));
-        if(f->Get(dir+"/ZJ")!=0&&f->Get(dir+"/ZLL")==0)
+        if(f->Get(dir+"/ZJ")!=0)
             ZEE->Add((TH1F*)(f->Get(dir+"/ZJ")));
         std::cout<<"ZL error: "<<zlftError<<std::endl;
         std::cout<<"ZJ error: "<<zjftError<<std::endl;
@@ -267,8 +265,10 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     hs->Add(SMH);
     hs->Add(VV);
     hs->Add(EWK);
-    if(channel == "#tau_{e}#tau_{h}") hs->Add(ZEE);
-    if(channel == "#tau_{#mu}#tau_{h}") hs->Add(ZEE);
+    hs->Add(ZEE);
+    if (channel =="#tau_{e}#tau_{h}"||channel =="#tau_{#mu}#tau_{h}") hs->Add(ZEE);
+
+
     hs->Add(ZTT);
 
     if(s==3) {
@@ -302,7 +302,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
     errorBand->Add(ZTT);
     errorBand->Add(zvv);
     errorBand->Add(QCD);
-    //errorBand->Add(ZEE);
+    if (channel =="#tau_{e}#tau_{h}"||channel =="#tau_{#mu}#tau_{h}") errorBand->Add(ZEE);
     errorBand->SetMarkerSize(0);
     errorBand->SetFillColor(kGray+2);
     errorBand->SetFillStyle(3005);

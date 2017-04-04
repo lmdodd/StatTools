@@ -1,6 +1,7 @@
 #include "makePlot.C"
 
 void makeTemplatePlotsMuTau(){
+   makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_1_Wjets_CR","muTauPlots/muTau_mt_1_Wjets_CR.root","mt_inclusive",0,"#mu+ME_{T} m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_1","muTauPlots/muTau_mt_1.root","mt_inclusive",3,"#mu+ME_{T} m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt_2","muTauPlots/muTau_mt_2.root","mt_inclusive",3,"#tau+ME_{T} m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","28.8",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/XTT/muTau_mt","muTauPlots/muTau_mt.root","mt_inclusive",3,"Total m_{T}","GeV",false,"#tau_{#mu}#tau_{h}","28.8",true,false,true);

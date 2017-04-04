@@ -127,12 +127,13 @@ int main (int argc, char* argv[])
         creator.setBinning2D(parser.doubleVector("binningHighStat"),parser.doubleVector("binningHighStat"));
 
         printf("INCLUSIVE:preselection -------------------------------------\n"); 
-        std::string inclSel = parser.stringValue("preselection"); 
+        std::string relSel = parser.stringValue("relaxedSelection"); 
+        std::string inclSel = parser.stringValue("preSelection"); 
         std::string catSel = parser.stringValue("preselection"); 
         std::string bTagSF = parser.stringValue("bTagSF");					 
 
         creator.makeHiggsShape(inclSel,catSel,"_inclusive");
-        BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_inclusive",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
+        BkgOutput outputIncl = creator.runFullExtrapBtag(relSel,parser.stringValue("wselection"),inclSel,catSel,"_inclusive",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
                 1,//parser.doubleValue("zExtrap"),
                 1,//parser.doubleValue("zExtrapErr"),
                 bTagSF
@@ -146,12 +147,13 @@ int main (int argc, char* argv[])
 
         printf("INCLUSIVE: 0 Jets-------------------------------------\n"); 
         printf("M_vis has %d entries ,TauPt has %d entries\n",(int)parser.doubleVector("binningMVis0j").size(),(int)parser.doubleVector("binningTauPt0j").size());
+        std::string relSel = parser.stringValue("relaxedSelection"); 
         std::string inclSel = parser.stringValue("preselection"); 
         std::string catSel = parser.stringValue("zerojselection"); 
         std::string bTagSF = parser.stringValue("bTagSF");					 
 
         creator.makeHiggsShape(inclSel,catSel,"_0jet");
-        BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_0jet",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
+        BkgOutput outputIncl = creator.runFullExtrapBtag(relSel,parser.stringValue("wselection"),inclSel,catSel,"_0jet",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
                 1,//parser.doubleValue("zExtrap"),
                 1,//parser.doubleValue("zExtrapErr"),
                 bTagSF

@@ -36,7 +36,7 @@ void convertToDNDM(TH1F* histo) {
 
 
 
-makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString units = "GeV",bool left=false,TString channel = "",TString json = "Golden",bool log = false,bool dndm=false,bool doRatio = false)
+void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString units = "GeV",bool left=false,TString channel = "",TString json = "Golden",bool log = false,bool dndm=false,bool doRatio = false)
 {
 	setTDRStyle();
 
@@ -45,7 +45,7 @@ makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString
 	lumi_8TeV  = "19.1 fb^{-1}"; // default is "19.7 fb^{-1}"
 	lumi_7TeV  = "4.9 fb^{-1}";  // default is "5.1 fb^{-1}"
 	lumi_sqrtS = "13 TeV";
-	if (json=="Golden") lumi_13TeV = channel+"    2016, 2.0 fb^{-1}";
+	if (json=="Golden") lumi_13TeV = channel+"    2016, 35.9 fb^{-1}";
 
 	int iPeriod = 4;    // 1=7TeV, 2=8TeV, 3=7+8TeV, 7=7+8+13TeV 
 
@@ -87,34 +87,37 @@ makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString
 	}
 	c->cd();
 
-	if(doRatio){
-		TPad * plotPad = new TPad("pad1","",0.0,0.3,1.0,1.0);
-		plotPad->SetTicks(0,0);
-		plotPad->SetLeftMargin  (L/W);
-		plotPad->SetRightMargin (R/W);
-		plotPad->SetTopMargin   (T/H);
-		plotPad->SetBottomMargin(B_ratio/H); 
-		plotPad->SetFillColor(0);
-		plotPad->SetBottomMargin(0);
+    TPad * plotPad =0;
+    TPad * ratioPad =0;
+    if(doRatio){
+        plotPad = new TPad("pad1","",0.0,0.3,1.0,1.0);
+        //TPad * plotPad = new TPad("pad1","",0.0,0.3,1.0,1.0);
+        //plotPad->SetTicks(0,0);
+        plotPad->SetLeftMargin  (L/W);
+        plotPad->SetRightMargin (R/W);
+        plotPad->SetTopMargin   (T/H);
+        plotPad->SetBottomMargin(B_ratio/H); 
+        plotPad->SetFillColor(0);
+        plotPad->SetBottomMargin(0);
 
-		TPad * ratioPad = new TPad("pad2","",0.0,0.0,1.0,0.31);
-		ratioPad->SetLeftMargin  (L/W);
-		ratioPad->SetRightMargin (R/W);
-		ratioPad->SetTopMargin   (T_ratio/H);
-		ratioPad->SetBottomMargin(B_ratio_label/H);
-		ratioPad->SetGridy(1);
-		ratioPad->SetFillColor(4000);
-	}
-	else{
-		TPad * plotPad = new TPad("pad1","",0.0,0.0,1.0,1.0);
-		plotPad->SetLeftMargin     (L*1.4/W);
-		plotPad->SetRightMargin    (R/W);
-		plotPad->SetTopMargin      (T/H);
-		plotPad->SetBottomMargin   (B/H);
-	}
+        ratioPad = new TPad("pad2","",0.0,0.0,1.0,0.31);
+        ratioPad->SetLeftMargin  (L/W);
+        ratioPad->SetRightMargin (R/W);
+        ratioPad->SetTopMargin   (T_ratio/H);
+        ratioPad->SetBottomMargin(B_ratio_label/H);
+        ratioPad->SetGridy(1);
+        ratioPad->SetFillColor(4000);
+    }
+    else{
+        plotPad = new TPad("pad1","",0.0,0.0,1.0,1.0);
+        plotPad->SetLeftMargin     (L*1.4/W);
+        plotPad->SetRightMargin    (R/W);
+        plotPad->SetTopMargin      (T/H);
+        plotPad->SetBottomMargin   (B/H);
+    }
 
-	plotPad->Draw();
-	plotPad->cd();
+    plotPad->Draw();
+    plotPad->cd();
 
 
 	TFile *f = new TFile(file);
@@ -138,242 +141,237 @@ makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TString
 	if (dndm) convertToDNDM(EWK);
 	applyStyle(EWK,kRed-6,1,1001);
 
-	if(f->Get(dir+"/ZLL")!=0)
-		TH1F * ZEE = (TH1F*)(f->Get(dir+"/ZLL"));	  	
-	if(f->Get(dir+"/ZL")!=0&&f->Get(dir+"/ZLL")==0)
-		TH1F * ZEE = (TH1F*)(f->Get(dir+"/ZL"));
-	if(f->Get(dir+"/ZJ")!=0&&f->Get(dir+"/ZLL")==0)
-		ZEE->Add((TH1F*)(f->Get(dir+"/ZJ")));
+    TH1F * ZEE =0;
 
-	if (dndm) convertToDNDM(ZEE);
-	applyStyle(ZEE,kAzure-9,1,1001);	
+    if(f->Get(dir+"/ZLL")!=0)
+        ZEE = (TH1F*)(f->Get(dir+"/ZLL"));	  	
+    if(f->Get(dir+"/ZL")!=0&&f->Get(dir+"/ZLL")==0)
+        ZEE = (TH1F*)(f->Get(dir+"/ZL"));
+    if(f->Get(dir+"/ZJ")!=0&&f->Get(dir+"/ZLL")==0)
+        ZEE->Add((TH1F*)(f->Get(dir+"/ZJ")));
+
+    if (dndm) convertToDNDM(ZEE);
+    applyStyle(ZEE,kAzure-9,1,1001);	
 
 
-	//TH1F * ZTT = (TH1F*)(f->Get(dir+"/ZTT"));
-	//if (dndm) convertToDNDM(ZTT);
-	//applyStyle(ZTT,kOrange-4,1,1001);
-/*          std::pair<float,float> ztt  = createHistogramAndShifts(zttFile_,"ZTT",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
- *                                  std::pair<float,float> ztt1  = createHistogramAndShifts(zttFile_,"ZTT_1prong",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+"&&"+ZTT1PRONG_+")*"+weight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
- *                                                          std::pair<float,float> ztt2  = createHistogramAndShifts(zttFile_,"ZTT_1prong1pi0",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+"&&"+ZTT1PRONG1PI0_+")*"+weight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
- *                                                                                  std::pair<float,float> ztt3  = createHistogramAndShifts(zttFile_,"ZTT_3prong",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+"&&"+ZTT3PRONG_+")*"+weight_+"*"+Zweight_),luminosity_*zttScale_*leg1Corr*tauID_,prefix);
- *                                                                                  */
-	TH1F * ZTT1 = (TH1F*)(f->Get(dir+"/ZTT_1prong"));
-	if (dndm) convertToDNDM(ZTT1);
-	applyStyle(ZTT1,TColor::GetColor("#FF6633"),1,1001);
 
-	TH1F * ZTT2 = (TH1F*)(f->Get(dir+"/ZTT_1prong1pi0"));
-	if (dndm) convertToDNDM(ZTT2);
-	applyStyle(ZTT2,kOrange-4,1,1001);
+    TH1F * ZTT1 = (TH1F*)(f->Get(dir+"/ZTT_1prong"));
+    if (dndm) convertToDNDM(ZTT1);
+    applyStyle(ZTT1,TColor::GetColor("#FF6633"),1,1001);
 
-	TH1F * ZTT3 = (TH1F*)(f->Get(dir+"/ZTT_3prong"));
-	if (dndm) convertToDNDM(ZTT3);
-	applyStyle(ZTT3,TColor::GetColor("#FFFFCC"),1,1001);
+    TH1F * ZTT2 = (TH1F*)(f->Get(dir+"/ZTT_1prong1pi0"));
+    if (dndm) convertToDNDM(ZTT2);
+    applyStyle(ZTT2,kOrange-4,1,1001);
+
+    TH1F * ZTT3 = (TH1F*)(f->Get(dir+"/ZTT_3prong"));
+    if (dndm) convertToDNDM(ZTT3);
+    applyStyle(ZTT3,TColor::GetColor("#FFFFCC"),1,1001);
 
 
 
 
-	TH1F *signal=0;
+    TH1F *signal=0;
 
 
-	//more signal styles to be added later
-	if(s==3) {
-		TH1F * SM = (TH1F*)(f->Get(dir+"/ggH125"));
-		TH1F *sm = SM;
-		sm->Scale(100);//FIXME
-		//TH1F * SM2 = (TH1F*)(f->Get(dir+"/qqH125"));
-		//TH1F *sm2 = SM2;
-		//sm2->Scale(100);//FIXME
-		//sm->Add(sm2);
-		sm->SetLineStyle(11);
-		signal=sm;
+    //more signal styles to be added later
+    if(s==3) {
+        TH1F * SM = (TH1F*)(f->Get(dir+"/ggH125"));
+        TH1F *sm = SM;
+        sm->Scale(100);//FIXME
+        //TH1F * SM2 = (TH1F*)(f->Get(dir+"/qqH125"));
+        //TH1F *sm2 = SM2;
+        //sm2->Scale(100);//FIXME
+        //sm->Add(sm2);
+        sm->SetLineStyle(11);
+        signal=sm;
 
-		if (dndm) convertToDNDM(signal);
+        if (dndm) convertToDNDM(signal);
 
-		applySignalStyle(signal);
-	}
+        applySignalStyle(signal);
+    }
 
-	THStack *hs = new THStack("hs","");
-	//hs->SetLineWidth(2);
-	hs->Add(ttbar);
-	hs->Add(QCD);
-	hs->Add(EWK);
-	if(channel == "#tau_{e}#tau_{h}") hs->Add(ZEE);
-	if(channel == "#tau_{#mu}#tau_{h}") hs->Add(ZEE);
-	hs->Add(ZTT1);
-	hs->Add(ZTT2);
-	hs->Add(ZTT3);
+    THStack *hs = new THStack("hs","");
+    //hs->SetLineWidth(2);
+    hs->Add(ttbar);
+    hs->Add(QCD);
+    hs->Add(EWK);
+    if(channel == "#tau_{e}#tau_{h}") hs->Add(ZEE);
+    if(channel == "#tau_{#mu}#tau_{h}") hs->Add(ZEE);
+    hs->Add(ZTT1);
+    hs->Add(ZTT2);
+    hs->Add(ZTT3);
 
-	//if(s>0&(!log))
-	//  hs->Add(signal);
-	//if(sm) {
-	//  TH1F * SM = (TH1F*)(f->Get(dir+"/ggH125"));
-	//  SM->Add((TH1F*)(f->Get(dir+"/qqH125")));
-	//  applyStyle(SM,kGray+2,1,3005);
-	//  hs->Add(SM);
-	// }
-	//  else {
-	//  hs->Add(MSSM);
-
-
-
-	hs->Draw("HIST");
-	if(data->GetMaximum()*1.2+sqrt(data->GetMaximum())>hs->GetMaximum()) {
-		float max=0.0;
-		if(data->GetMaximum()>hs->GetMaximum())
-			max=data->GetMaximum();
-		else
-			max=hs->GetMaximum();
-
-		if(log) {
-			max*=10;
-			hs->SetMinimum(0.5);
-		}
-		hs->SetMaximum(max*1.5+sqrt(data->GetMaximum()));
-
-	}
-	else{
-		hs->SetMaximum(hs->GetMaximum()*1.8);
-	}
-	if(dndm)       hs->SetMinimum(0.001);
+    //if(s>0&(!log))
+    //  hs->Add(signal);
+    //if(sm) {
+    //  TH1F * SM = (TH1F*)(f->Get(dir+"/ggH125"));
+    //  SM->Add((TH1F*)(f->Get(dir+"/qqH125")));
+    //  applyStyle(SM,kGray+2,1,3005);
+    //  hs->Add(SM);
+    // }
+    //  else {
+    //  hs->Add(MSSM);
 
 
-	hs->Draw("HIST");
 
-	if(doRatio){
-		hs->GetXaxis()->SetLabelSize(0);
-	}
-	else
-	{
-		if(units!="")
-			hs->GetXaxis()->SetTitle(labelX+" ["+units+"]");
-		else
-			hs->GetXaxis()->SetTitle(labelX);
-	}
+    hs->Draw("HIST");
+    if(data->GetMaximum()*1.2+sqrt(data->GetMaximum())>hs->GetMaximum()) {
+        float max=0.0;
+        if(data->GetMaximum()>hs->GetMaximum())
+            max=data->GetMaximum();
+        else
+            max=hs->GetMaximum();
 
-	hs->GetYaxis()->SetTitle("Events");
-	hs->GetYaxis()->SetTitleOffset(1);
-	if (!doRatio) hs->GetYaxis()->SetTitleOffset(1.4);
+        if(log) {
+            max*=10;
+            hs->SetMinimum(0.5);
+        }
+        hs->SetMaximum(max*1.7+sqrt(data->GetMaximum()));
 
-	if(dndm)
-		hs->GetYaxis()->SetTitle("dN/d"+labelX);
-
-	if(s>0)
-		signal->Draw("HIST,SAME");
-
-	data->Draw("e,SAME");
+    }
+    else{
+        hs->SetMaximum(hs->GetMaximum()*1.8);
+    }
+    if(dndm)       hs->SetMinimum(0.001);
 
 
-	c->cd();
+    hs->Draw("HIST");
 
-	if(doRatio){
-		TH1F * data2 = (TH1F*)data->Clone("data");
-		TH1F * mc = (TH1F*)(ttbar);
-		mc->Add(QCD);
-		mc->Add(EWK);
-		mc->Add(ZTT1);
-		mc->Add(ZTT2);
-		mc->Add(ZTT3);
-		if (channel =="#tau_{e}#tau_{h}") mc->Add(ZEE);
-		if (channel =="#tau_{#mu}#tau_{h}") mc->Add(ZEE);
+    if(doRatio){
+        hs->GetXaxis()->SetLabelSize(0);
+    }
+    else
+    {
+        if(units!="")
+            hs->GetXaxis()->SetTitle(labelX+" ["+units+"]");
+        else
+            hs->GetXaxis()->SetTitle(labelX);
+    }
 
-		double xmin = mc->GetXaxis()->GetXmin();
-		double xmax = mc->GetXaxis()->GetXmax();
-		TLine *line = new TLine(xmin,1.0,xmax,1.0);
-		line->SetLineWidth(1);
-		line->SetLineColor(kBlack);
+    hs->GetYaxis()->SetTitle("Events");
+    hs->GetYaxis()->SetTitleOffset(1);
+    if (!doRatio) hs->GetYaxis()->SetTitleOffset(1.4);
 
-		ratioPad->Draw();
-		ratioPad->cd();
+    if(dndm)
+        hs->GetYaxis()->SetTitle("dN/d"+labelX);
 
-		data2->Divide(data2,mc);
+    if(s>0)
+        signal->Draw("HIST,SAME");
 
-		data2->SetMarkerStyle(20);
-		data2->SetTitleSize  (0.12,"Y");
-		data2->SetTitleOffset(0.40,"Y");
-		data2->SetTitleSize  (0.12,"X");
-		data2->SetLabelSize  (0.10,"X");
-		data2->SetLabelSize  (0.08,"Y");
-		data2->GetYaxis()->SetRangeUser(0.5,1.5);
-		//data2->GetYaxis()->SetRangeUser(0.62,1.38);
-		data2->GetYaxis()->SetNdivisions(305);
-		data2->GetYaxis()->SetTitle("Obs/Exp   ");
-
-		//What does this do
-		//->this affects the stat box style
-		//gStyle->SetOptTitle(0);
+    data->Draw("e,SAME");
 
 
-		if (units!="")
-			data2->GetXaxis()->SetTitle(labelX+" ["+units+"]");
-		else
-			data2->GetXaxis()->SetTitle(labelX);
+    c->cd();
 
-		data2->Draw("P");
-		line->Draw();
+    if(doRatio){
+        TH1F * data2 = (TH1F*)data->Clone("data");
+        TH1F * mc = (TH1F*)(ttbar);
+        mc->Add(QCD);
+        mc->Add(EWK);
+        mc->Add(ZTT1);
+        mc->Add(ZTT2);
+        mc->Add(ZTT3);
+        if (channel =="#tau_{e}#tau_{h}") mc->Add(ZEE);
+        if (channel =="#tau_{#mu}#tau_{h}") mc->Add(ZEE);
 
-	}
+        double xmin = mc->GetXaxis()->GetXmin();
+        double xmax = mc->GetXaxis()->GetXmax();
+        TLine *line = new TLine(xmin,1.0,xmax,1.0);
+        line->SetLineWidth(1);
+        line->SetLineColor(kBlack);
 
-	c->cd();
-	plotPad->cd();  
+        ratioPad->Draw();
+        ratioPad->cd();
 
-	TLegend *l = new TLegend(xR,0.6,xR+0.5,0.9);
-	l->AddEntry(data,"Observed","P");
+        data2->Divide(data2,mc);
 
-	l->AddEntry(ZTT1,"Z#rightarrow#tau#tau: h^{#pm}","F");
-	l->AddEntry(ZTT2,"Z#rightarrow#tau#tau: h^{#pm} #pi^{0}s ","F");
-	l->AddEntry(ZTT3,"Z#rightarrow#tau#tau: h^{#pm}h^{#mp}h^{#pm}","F");
-	if(channel == "#tau_{e}#tau_{h}") l->AddEntry(ZEE,"Z#rightarrowee","F");
-	if(channel == "#tau_{#mu}#tau_{h}") l->AddEntry(ZEE,"Z#rightarrow#mu#mu","F");
-	l->AddEntry(EWK,"Electroweak","F");
-	l->AddEntry(QCD,"QCD","F");
-	l->AddEntry(ttbar,"t#bar{t}","F");
+        data2->SetMarkerStyle(20);
+        data2->SetTitleSize  (0.12,"Y");
+        data2->SetTitleOffset(0.40,"Y");
+        data2->SetTitleSize  (0.12,"X");
+        data2->SetLabelSize  (0.10,"X");
+        data2->SetLabelSize  (0.08,"Y");
+        data2->GetYaxis()->SetRangeUser(0.5,1.5);
+        //data2->GetYaxis()->SetRangeUser(0.62,1.38);
+        data2->GetYaxis()->SetNdivisions(305);
+        data2->GetYaxis()->SetTitle("Obs/Exp   ");
 
-
-	if(log){
-		if(s==3)
-			l->AddEntry(signal,"100xSM H(125)#rightarrow#tau#tau","L");
-	}
-	else{
-		if(s==3)
-			l->AddEntry(signal,"100xSM H(125)#rightarrow#tau#tau","F");
-	}
-
-	l->SetBorderSize(0);
-	l->SetFillColor(0);
-	l->SetFillStyle (0);
-
-	l->Draw();
+        //What does this do
+        //->this affects the stat box style
+        //gStyle->SetOptTitle(0);
 
 
-	float factor=0.0;
-	if(left) factor = 1./2.2;
-	else factor = 1.05;
+        if (units!="")
+            data2->GetXaxis()->SetTitle(labelX+" ["+units+"]");
+        else
+            data2->GetXaxis()->SetTitle(labelX);
 
-	float xL = hs->GetXaxis()->GetXmin()+(hs->GetXaxis()->GetXmax()-hs->GetXaxis()->GetXmin())*xR*factor;
-	float yL = hs->GetMaximum()*0.35;
+        data2->Draw("P");
+        line->Draw();
 
-	if(log)
-		yL = hs->GetMaximum()*0.35;
+    }
 
-	float offsetF=yL-0.1*hs->GetMaximum();
-	float offsetFF=yL-0.2*hs->GetMaximum();
+    c->cd();
+    plotPad->cd();  
 
-	if(log) {
+    TLegend *l = new TLegend(xR,0.6,xR+0.5,0.9);
+    l->AddEntry(data,"Observed","P");
 
-		offsetF=yL/2.;
-		offsetFF=yL/5.;
-	}
+    l->AddEntry(ZTT1,"Z#rightarrow#tau#tau: h^{#pm}","F");
+    l->AddEntry(ZTT2,"Z#rightarrow#tau#tau: h^{#pm} #pi^{0}s ","F");
+    l->AddEntry(ZTT3,"Z#rightarrow#tau#tau: h^{#pm}h^{#mp}h^{#pm}","F");
+    if(channel == "#tau_{e}#tau_{h}") l->AddEntry(ZEE,"Z#rightarrowee","F");
+    if(channel == "#tau_{#mu}#tau_{h}") l->AddEntry(ZEE,"Z#rightarrow#mu#mu","F");
+    l->AddEntry(EWK,"Electroweak","F");
+    l->AddEntry(QCD,"QCD","F");
+    l->AddEntry(ttbar,"t#bar{t}","F");
 
-	CMS_lumi(c,4,11);
-	plotPad->Draw();
-	CMS_lumi(c,4,11);
-	if(log)
-		plotPad->SetLogy();
 
-	//c->RedrawAxis(); 
-	c->SaveAs(name+".png");
-	c->SaveAs(name+".pdf");
-	c->SaveAs(name+".root");
+    if(log){
+        if(s==3)
+            l->AddEntry(signal,"100xSM H(125)#rightarrow#tau#tau","L");
+    }
+    else{
+        if(s==3)
+            l->AddEntry(signal,"100xSM H(125)#rightarrow#tau#tau","F");
+    }
+
+    l->SetBorderSize(0);
+    l->SetFillColor(0);
+    l->SetFillStyle (0);
+
+    l->Draw();
+
+
+    float factor=0.0;
+    if(left) factor = 1./2.2;
+    else factor = 1.05;
+
+    float xL = hs->GetXaxis()->GetXmin()+(hs->GetXaxis()->GetXmax()-hs->GetXaxis()->GetXmin())*xR*factor;
+    float yL = hs->GetMaximum()*0.35;
+
+    if(log)
+        yL = hs->GetMaximum()*0.35;
+
+    float offsetF=yL-0.1*hs->GetMaximum();
+    float offsetFF=yL-0.2*hs->GetMaximum();
+
+    if(log) {
+
+        offsetF=yL/2.;
+        offsetFF=yL/5.;
+    }
+
+    CMS_lumi(c,4,11);
+    plotPad->Draw();
+    CMS_lumi(c,4,11);
+    if(log)
+        plotPad->SetLogy();
+
+    //c->RedrawAxis(); 
+    c->SaveAs(name+".png");
+    c->SaveAs(name+".pdf");
+    c->SaveAs(name+".root");
 
 }
 

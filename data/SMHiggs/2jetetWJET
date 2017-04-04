@@ -498,8 +498,8 @@ Yield =0.000000 Lo=0.000000 Hi=1.832582
 TTbar events in sideband region = 263.055145 + 10.075400 
 Diboson events in sideband region = 71.477531 + 4.396871 
 Z events in sideband region = 0.000000 + 0.000000 
-Expected W events in sideband MC region btag  = 230.902512 + 23.191170 
-Expected W events in sideband MC region  = 230.902512 + 23.191170 
+Expected W events in sideband MC region btag  = 229.178955 + 18.759678 
+Expected W events in sideband MC region  = 229.178955 + 18.759678 
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50&&mtRecoil_1>80&&abs(charge)==2&&EffCSVWeight0==1)
 Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
 Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50&&mtRecoil_1>80&&abs(charge)==2&&EffCSVWeight0==1)}
@@ -547,10 +547,10 @@ Shift not found
 OS QCD estimation in high Mt sideband in wJets  =0.000000 *1.000000 = 0.000000 +- 1.800000 
 OS W Datadriven/Straight MC Estimation  = 0.937000 
 OS W Datadriven Estimation  =-335.000000  
-OS W Estimation =230.902512 *0.937000  = 216.355652 +- 217.444168 
+OS W Estimation =229.178955 *0.937000  = 214.740677 +- 215.458908 
 Channel label is et
-OS W Straight MC Estimation  = 230.902512 +- 23.191170 
-OS W Straight MC -> Full Sideband Estimation  = 216.355652 +- (stat)1.878714 +- full 54.088913 
+OS W Straight MC Estimation  = 229.178955 +- 18.759678 
+OS W Straight MC -> Full Sideband Estimation  = 214.740677 +- (stat)1.877134 +- full 53.685169 
 Create QCD
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
 Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
@@ -629,7 +629,7 @@ Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,
       Z events in SS Signal QCDShape sideband region = 0.000000 + 0.000000 
       TOP events in SS Signal QCDShape sideband region = 42.314892 + 4.103936 
       VV events in SS Signal QCDShape sideband region = 23.249348 + 2.610626 
-      W events in SS Signal QCDShape sideband region = 125.450569*0.937000 =117.547180 + 16.165613 
+      W events in SS Signal QCDShape sideband region = 131.551849*0.937000 =123.264084 + 13.420918 
 QCD Selections= (pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2)
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
 Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
@@ -780,9 +780,9 @@ Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,
       Z events in SS Signal QCD sideband region = 0.000000 + 0.000000 
       TOP events in SS Signal QCD sideband region = 27.159184 + 3.273482 
       VV events in SS Signal QCD sideband region = 15.350949 + 2.092217 
-      (MonteCarlo) W events in SS region = 68.410385 + 12.108806 
+      (MonteCarlo) W events in SS region = 71.506775 + 9.963594 
 QCD_WSFUncert_et_vbf_13TeVUp
-SS QCD in  core  =0.000000 -68.410385 -27.159184 -0.000000 -15.350949= 0.000000 +- 1.200000 
+SS QCD in  core  =0.000000 -71.506775 -27.159184 -0.000000 -15.350949= 0.000000 +- 1.200000 
 5. Extrapolate SS QCD -> OS QCD 
 Shift not found = et_vbf/QCD_WSFUncert_et_vbf_13TeVUp_CMS_scale_t_13TeVUp
 Shift not found
@@ -817,12 +817,12 @@ DATA: 0
 
 BKGD Yields 
 QCD: 1e-07
-W: 216.356
+W: 214.741
 TOP: 263.055
 VV: 71.4775
 EWKZ: 0
 ZLFT: 0
 ZJFT: 0
 ZTT: 0
-BACKGROUND=550.888306 +-217.725174 
-Total Background & 550.89 $\pm$ 218.42 & - & - & - \\ 
+BACKGROUND=549.273376 +-215.742508 
+Total Background & 549.27 $\pm$ 216.44 & - & - & - \\ 

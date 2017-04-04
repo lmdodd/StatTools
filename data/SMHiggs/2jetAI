@@ -42,8 +42,8 @@ Yield =12.000000 Lo=8.600086 Hi=16.536337
 TTbar events in sideband region = 0.625674 + 0.328904 
 Diboson events in sideband region = 0.227856 + 0.121615 
 Z events in sideband region = 0.347695 + 0.257349 
-Expected W events in sideband MC region btag  = 0.382445 + 0.382445 
-Expected W events in sideband MC region  = 0.382445 + 0.382445 
+Expected W events in sideband MC region btag  = 0.377456 + 0.283159 
+Expected W events in sideband MC region  = 0.377456 + 0.283159 
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50&&mtRecoil_1>80&&abs(charge)==2&&EffCSVWeight0==1)
 5. Extrapolate SS QCD -> OS QCD 
 Shift not found = et_vbf/QCD_SS_HMT_SDB_CMS_scale_t_13TeVUp
@@ -61,10 +61,10 @@ Shift not found
 OS QCD estimation in high Mt sideband in wJets  =4.000000 *1.200000 = 4.800000 +- 2.698378 
 OS W Datadriven/Straight MC Estimation  = 0.937000 
 OS W Datadriven Estimation  =6.000000  
-OS W Estimation =0.000000 *0.937000  = 0.000000 +- 0.000000 
+OS W Estimation =0.301901 *0.937000  = 0.282881 +- 0.367681 
 Channel label is et
-OS W Straight MC Estimation  = 0.000000 +- 0.000000 
-OS W Straight MC -> Full Sideband Estimation  = 0.000000 +- (stat)inf +- full 0.000000 
+OS W Straight MC Estimation  = 0.301901 +- 0.250669 
+OS W Straight MC -> Full Sideband Estimation  = 0.282881 +- (stat)2.154885 +- full 0.070720 
 Create QCD
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
@@ -85,7 +85,7 @@ Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.
       Z events in SS Signal QCDShape sideband region = 0.470764 + 0.272072 
       TOP events in SS Signal QCDShape sideband region = 0.359113 + 0.253956 
       VV events in SS Signal QCDShape sideband region = 0.246255 + 0.129601 
-      W events in SS Signal QCDShape sideband region = 0.000000*0.937000 =0.000000 + 0.000000 
+      W events in SS Signal QCDShape sideband region = 0.275495*0.937000 =0.258139 + 0.258139 
 QCD Selections= (pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2)
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&mtRecoil_1<50&&abs(charge)==2&&njets>=2&&vbfMass>300&&pt_2>30&&pt_sv>50)
@@ -167,12 +167,12 @@ DATA: 44
 
 BKGD Yields 
 QCD: 12
-W: 1e-07
+W: 0.282881
 TOP: 3.50227
 VV: 0.431178
 EWKZ: 0.156567
 ZLFT: 0
 ZJFT: 0
 ZTT: 4.38809
-BACKGROUND=20.321535 +-5.138335 
-Total Background & 20.32 $\pm$ 5.15 & - & - & - \\ 
+BACKGROUND=20.604416 +-5.151473 
+Total Background & 20.60 $\pm$ 5.17 & - & - & - \\ 

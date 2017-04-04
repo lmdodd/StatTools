@@ -3,17 +3,19 @@ preselection='pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&iso_1>0.1&&against
 wselection='mtRecoil_1>80'
 signalselection='mtRecoil_1<50'
 zerojselection='njets==0'
-onejselection='(njets==1||(njets==2&&vbfMass<300)||njets>2)'
-vbfselection='njets==2&&vbfMass>300'
+#onejselection='(njets==1||(njets==2&&vbfMass<300)||njets>2)'
+onejselection='(njets==1||(njets>=2&&(vbfMass<300||taupt<=30||pt_sv<=50)))'
+vbfselection='njets>=2&&vbfMass>300&&taupt>30&&pt_sv>50'
+#vbfselection='njets==2&&vbfMass>300'
 vbfselectionHiggs=$vbfselection
 trigselection='pt_1>26' #only for MC
 trigselection='hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0' #only for MC
 trigselectiondata='hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0' #only for MC
-relaxedSelection='pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0'
+relaxedSelection=$preselection
 luminosity=35870. #pb
 direc='/nfs_scratch/laura/SM_new/'
 datadirec=$direc
-zttScale=1.
+zttScale=1.02
 zlftFactor=1.0
 #zlftFactor='EleTauFake'
 tauID=0.95
@@ -32,18 +34,19 @@ qcdfactor=1.0
 qcdfactorerr=0.15
 ggHWeight='tauPdfScale'
 zWeightUnroll='1.0'
-nohup MakeDataCardControlRegion channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs  muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,1,0,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*LFake*puweight*__QCDIDISO__*__QCDTRIG__'  luminosity=$luminosity    variable='m_vis'  bins=4 min=40 max=200 outputFile='datacards/htt_et.inputs-sm-13TeV-m_vis-1-antiiso.root'  >0jetAI&  
+nohup MakeDataCardControlRegion channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs  muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,1,0,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*LFake*puweight*trackweight*__QCDIDISO__*__QCDTRIG__'  luminosity=$luminosity    variable='m_vis_REDO'  bins=4 min=40 max=200 outputFile='datacards/htt_et.inputs-sm-13TeV-m_vis-1-antiiso.root'  >0jetAI&  
 wfactorErr=0.06
 qcdfactor=1.15
 qcdfactorerr=0.15
 ggHWeight='pthPdfScale'
 zWeightUnroll='zmumu_pth'
-nohup MakeDataCardControlRegion channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection  vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs    muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,0,1,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*LFake*puweight*__QCDIDISO__*__QCDTRIG__'  luminosity=$luminosity  variable='m_sv' bins=4 min=40 max=200 outputFile='datacards/htt_et.inputs-sm-13TeV-m_sv-2-antiiso.root'  >1jetAI& 
+nohup MakeDataCardControlRegion channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection  vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs    muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,0,1,0 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*LFake*puweight*trackweight*__QCDIDISO__*__QCDTRIG__'  luminosity=$luminosity  variable='m_sv' bins=4 min=40 max=200 outputFile='datacards/htt_et.inputs-sm-13TeV-m_sv-2-antiiso.root'  >1jetAI& 
 wfactorErr=0.25
 qcdfactor=1.20
 qcdfactorerr=0.3
 ggHWeight='mjjPdfScale'
-zWeightUnroll='zmumu_mjj'
-nohup MakeDataCardControlRegion channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection  vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs    muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,0,0,1 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*LFake*puweight*__QCDIDISO__*__QCDTRIG__'  luminosity=$luminosity   variable='m_sv' bins=4 min=40 max=200 outputFile='datacards/htt_et.inputs-sm-13TeV-m_sv-3-antiiso.root'  >2jetAI&
+#zWeightUnroll='zmumu_mjj'
+zWeightUnroll='zmumu_mjj_REDO'
+nohup MakeDataCardControlRegion channel='eleTau' shifts='Tau','Jet' dataFile=$datadirec'eleDATA.root' qcdFile=$direc'eleDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWKZ.root' topFile=$direc'TT.root' inclselection=$inclselection preselection=$preselection  wselection=$wselection relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection    qcdfactor=$qcdfactor qcdfactorErr=$qcdfactorerr zttScale=$zttScale zlftFactor=$zlftFactor wFactorErr=$wfactorErr ggHWeight=$ggHWeight  bTagSF=$bTagSF zerojselection=$zerojselection  onejselection=$onejselection  vbfselection=$vbfselection vbfselectionHiggs=$vbfselectionHiggs    muID=1.00  eleID=0.0 tauID=$tauID  dir=$direc'' bitmask=0,0,0,1 TTweight=$topWeight Zweight=$zWeight ZUnrollweight=$zWeightUnroll weight='__WEIGHT__*GENWEIGHT*LFake*puweight*trackweight*__QCDIDISO__*__QCDTRIG__'  luminosity=$luminosity   variable='m_sv' bins=4 min=40 max=200 outputFile='datacards/htt_et.inputs-sm-13TeV-m_sv-3-antiiso.root'  >2jetAI&
 
 exit;

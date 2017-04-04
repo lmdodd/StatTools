@@ -165,7 +165,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         float y = QCD->GetBinContent(0);
         float r = y*qcdError;
         QCD->SetBinError(i,0.1);
-        std::cout<<"Setting QCD Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+        //std::cout<<"Setting QCD Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
     }  
     if (dndm) convertToDNDM(QCD);
     applyStyle(QCD,kMagenta-10,1,1001);
@@ -176,7 +176,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         float y = ttbar->GetBinContent(i);
         float r = y*topError;
         ttbar->SetBinError(i,r);
-        std::cout<<"Setting TOP Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+        //std::cout<<"Setting TOP Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
     }
     if (dndm) convertToDNDM(ttbar);
     applyStyle(ttbar,kBlue-8,1,1001);
@@ -187,7 +187,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         float y = zvv->GetBinContent(i);
         float r = y*zvvError;
         zvv->SetBinError(i,r);
-        std::cout<<"Setting ZVV Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+        //std::cout<<"Setting ZVV Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
     }
     if (dndm) convertToDNDM(zvv);
     applyStyle(zvv,kRed-9,1,1001);
@@ -200,7 +200,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         float y = EWK->GetBinContent(i);
         float r = y*wError;
         EWK->SetBinError(i,r);
-        std::cout<<"Setting EWK Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+        //std::cout<<"Setting EWK Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
     }
     if (dndm) convertToDNDM(EWK);
     applyStyle(EWK,kRed-6,1,1001);
@@ -211,7 +211,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         float y = VV->GetBinContent(i);
         float r = y*vvError;
         VV->SetBinError(i,r);
-        std::cout<<"Setting VV Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+        //std::cout<<"Setting VV Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
     }
     if (dndm) convertToDNDM(VV);
     applyStyle(VV,kMagenta+2,1,1001);
@@ -222,7 +222,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         float y = SMH->GetBinContent(i);
         float r = y*smhError;
         SMH->SetBinError(i,r);
-        std::cout<<"Setting SMH Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+        //std::cout<<"Setting SMH Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
     }
     if (dndm) convertToDNDM(SMH);
     applyStyle(SMH,kAzure-3,1,1001);
@@ -243,7 +243,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
             float y = ZEE->GetBinContent(i);
             float r = y*zeeErr;
             ZEE->SetBinError(i,r);
-            std::cout<<"Setting ZEE Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+            //std::cout<<"Setting ZEE Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
        // }
         if (dndm) convertToDNDM(ZEE);
         applyStyle(ZEE,kAzure-9,1,1001);	
@@ -255,7 +255,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
         float y = ZTT->GetBinContent(i);
         float r = y*zttError;
         ZTT->SetBinError(i,r);
-        std::cout<<"Setting ZTT Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
+        //std::cout<<"Setting ZTT Bin "<<i<<" with Bin Content "<<y<<" with Bin Error "<<r<<std::endl;
     }
     if (dndm) convertToDNDM(ZTT);
     applyStyle(ZTT,kOrange-4,1,1001);
@@ -373,7 +373,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
                 TH1 *last = (TH1*)hs->GetStack()->Last();
                 float bkg = last->GetBinContent(i+1);
                 y = sig/(TMath::Sqrt(bkg + (0.09*bkg)*(0.09*bkg)));
-                if (y>=500) { 
+                if (y>=10000000) { 
                     std::cout<<" blinding bin "<<i+1<<std::endl;
                     data->SetBinContent(i+1,0);
                 }

@@ -2,6 +2,11 @@
 
 
 void makeTemplatePlotsMuTau(){
+   makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_0jet_m_sv","muTauPlotsTyler/htt_mt.inputs-sm-13TeV-m_sv-0jet.root","mt_0jet",3,"SVFit Mass","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",false,false,true);
+   makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_0jet_m_vis","muTauPlotsTyler/htt_mt.inputs-sm-13TeV-m_vis-0jet.root","mt_0jet",3,"Visible Mass","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",false,false,true);
+   makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_incl_mt1","muTauPlotsTyler/htt_mt.inputs-sm-13TeV-mt_1-incl.root","mt_0jet",3,"Transverse Mass","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",false,false,true);
+   makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_incl_met","muTauPlotsTyler/htt_mt.inputs-sm-13TeV-met-incl.root","mt_0jet",3,"MET","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",true,false,false);
+    /*
    makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_npvs","muTauPlots/muTau_npv.root","mt_inclusive",3,"visible mass","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_npvs_noweight","muTauPlots/muTau_npv_noweight.root","mt_inclusive",3,"visible mass","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_m_sv","muTauPlots/muTau_m_sv.root","mt_inclusive",3,"SVfit mass","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",false,false,true);
@@ -74,4 +79,5 @@ void makeTemplatePlotsMuTau(){
 
    makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_jpt_1","muTauPlots/muTau_jpt_1.root","mt_inclusive",3,"Leading jet Pt","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",false,false,true);
    makeLTauStack("~/www/ztt/2016/MuTau/TauPOG/muTau_jpt_2","muTauPlots/muTau_jpt_2.root","mt_inclusive",3,"Sub-Leading jet Pt","GeV",false,"#tau_{#mu}#tau_{h}","ICHEP",false,false,true);
+   */
 }

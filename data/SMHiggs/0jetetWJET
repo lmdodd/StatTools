@@ -25,8 +25,32 @@ Create DiBoson
 Create EWKZ
       EWKZ events in signal region = 0.672363 + 0.386861 
 Create ZLFT
-      Z (l->tau) in signal region = 315.112366 + 22.834875 
+      Z (l->tau) in signal region = 344.140656 + 23.860018 
 create histogram shifted
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVUp_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVUp_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVUp_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVUp_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVUp_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVUp_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVDown_CMS_scale_t_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVDown_CMS_scale_t_1prong_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVDown_CMS_scale_t_1prong1pizero_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVDown_CMS_scale_t_3prong_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVDown_CMS_scale_j_13TeVUp
+Shift not found
+Shift not found = et_0jet/ZL_CMS_eFakeTau_0jet_tauDMReco_13TeVDown_CMS_scale_j_RelativeBal_13TeVUp
+Shift not found
 Create ZJFT
 Create ZJFT 2
 Create ZJFT 3
@@ -46,8 +70,8 @@ Yield =0.000000 Lo=0.000000 Hi=1.832582
 TTbar events in sideband region = 129.441742 + 6.941842 
 Diboson events in sideband region = 455.329498 + 8.623405 
 Z events in sideband region = 893.217346 + 33.870163 
-Expected W events in sideband MC region btag  = 9707.345703 + 248.216873 
-Expected W events in sideband MC region  = 9707.345703 + 248.216873 
+Expected W events in sideband MC region btag  = 9632.761719 + 234.312622 
+Expected W events in sideband MC region  = 9632.761719 + 234.312622 
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&njets==0&&mtRecoil_1>80&&abs(charge)==2&&EffCSVWeight0==1)
 Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
 Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,(pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&njets==0&&mtRecoil_1>80&&abs(charge)==2&&EffCSVWeight0==1)}
@@ -65,12 +89,12 @@ Shift not found
 Shift not found = et_0jet/QCD_SS_HMT_SDB_CMS_scale_j_RelativeBal_13TeVUp
 Shift not found
 OS QCD estimation in high Mt sideband in wJets  =0.000000 *1.000000 = 0.000000 +- 1.800000 
-OS W Datadriven/Straight MC Estimation  = -0.152256 
+OS W Datadriven/Straight MC Estimation  = -0.153435 
 OS W Datadriven Estimation  =-1478.000000  
-OS W Estimation =9707.345703 *-0.152256  = -1478.000000 +- 1478.483032 
+OS W Estimation =9632.761719 *-0.153435  = -1478.000000 +- 1478.437134 
 Channel label is et
-OS W Straight MC Estimation  = 9707.345703 +- 248.216873 
-OS W Straight MC -> Full Sideband Estimation  = 0.000000 +- (stat)0.152306 +- full 0.000000 
+OS W Straight MC Estimation  = 9632.761719 +- 234.312622 
+OS W Straight MC -> Full Sideband Estimation  = 0.000000 +- (stat)0.153480 +- full 0.000000 
 Create QCD
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&njets==0)
 Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
@@ -121,7 +145,7 @@ Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,
       Z events in SS Signal QCDShape sideband region = 138.259354 + 9.023270 
       TOP events in SS Signal QCDShape sideband region = 11.465268 + 2.082101 
       VV events in SS Signal QCDShape sideband region = 53.624359 + 3.969397 
-      W events in SS Signal QCDShape sideband region = 2935.328613*-0.152256 =-446.920898 + 22.350122 
+      W events in SS Signal QCDShape sideband region = 2911.835205*-0.153435 =-446.776581 + 20.667044 
 QCD Selections= (pt_1>26&&taupt>30&&dilepton_veto==0&&iso_1<0.3&&byMediumIsolationMVArun2v1DBoldDMwLT_2>0.5&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2)
 Replacing cut for data! (pt_1>26&&pt_2>30&&dilepton_veto==0&&iso_1<0.1&&againstElectronTightMVA6_2>0&&againstMuonLoose3_2>0&&byTightIsolationMVArun2v1DBoldDMwLT_2>0.5&&hltEle25erWPTightGsfTrackIsoFilter&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&EffCSVWeight==1&&mtRecoil_1>80&&abs(charge)==2&&njets==0)
 Error in <TTreeFormula::Compile>:  Bad numerical expression : "EffCSVWeight"
@@ -244,9 +268,9 @@ Info in <TSelectorDraw::AbortProcess>: Variable compilation failed: {mtRecoil_1,
       Z events in SS Signal QCD sideband region = 88.087341 + 6.975785 
       TOP events in SS Signal QCD sideband region = 7.818328 + 1.717497 
       VV events in SS Signal QCD sideband region = 40.369202 + 3.340012 
-      (MonteCarlo) W events in SS region = -280.556946 + 18.610447 
+      (MonteCarlo) W events in SS region = -273.859406 + 16.303490 
 QCD_WSFUncert_et_0jet_13TeVUp
-SS QCD in  core  =0.000000 --280.556946 -7.818328 -88.087341 -40.369202= 144.000000 +- 20.226610 
+SS QCD in  core  =0.000000 --273.859406 -7.818328 -88.087341 -40.369202= 138.000000 +- 18.126522 
 5. Extrapolate SS QCD -> OS QCD 
 Shift not found = et_0jet/QCD_WSFUncert_et_0jet_13TeVUp_CMS_scale_t_13TeVUp
 Shift not found
@@ -272,7 +296,7 @@ Shift not found = et_0jet/QCD_WSFUncert_et_0jet_13TeVDown_CMS_scale_j_13TeVUp
 Shift not found
 Shift not found = et_0jet/QCD_WSFUncert_et_0jet_13TeVDown_CMS_scale_j_RelativeBal_13TeVUp
 Shift not found
-OS QCD in  core  =144.000000 *1.000000 = 144.000000 +- 22.599163 
+OS QCD in  core  =138.000000 *1.000000 = 138.000000 +- 20.539873 
 Channel label is et
 
 =============Data Yields=============
@@ -280,13 +304,13 @@ DATA: 0
 
 
 BKGD Yields 
-QCD: 144
+QCD: 138
 W: 1e-07
 TOP: 129.442
 VV: 455.329
 EWKZ: 0.672363
-ZLFT: 315.112
+ZLFT: 344.141
 ZJFT: 113.534
 ZTT: 435.543
-BACKGROUND=1592.959839 +-1479.068848 
-Total Background & 1592.96 $\pm$ 1479.83 & - & - & - \\ 
+BACKGROUND=1615.988159 +-1479.009155 
+Total Background & 1615.99 $\pm$ 1479.78 & - & - & - \\ 

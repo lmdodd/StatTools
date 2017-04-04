@@ -142,12 +142,13 @@ int main (int argc, char* argv[])
 		creator.setBinning(parser.doubleVector("binningHighStat"));
 
         printf("INCLUSIVE: 0 Jets-------------------------------------\n"); 
+        std::string relSel = parser.stringValue("relaxedSelection");//To be relaxed Btag discriminator 
         std::string inclSel = parser.stringValue("preselection"); 
         std::string catSel = parser.stringValue("zerojselection"); 
         std::string bTagSF = parser.stringValue("bTagSF");					 
 
         creator.makeHiggsShape(inclSel,catSel,"_0jet");
-        BkgOutput outputIncl = creator.runFullExtrapBtag(inclSel,parser.stringValue("wselection"),inclSel,catSel,"_0jet",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
+        BkgOutput outputIncl = creator.runFullExtrapBtag(relSel,parser.stringValue("wselection"),inclSel,catSel,"_0jet",parser.stringValue("zEmbeddedSample"),parser.doubleValue("topSF"),
                 1,//parser.doubleValue("zExtrap"),
                 1,//parser.doubleValue("zExtrapErr"),
                 bTagSF

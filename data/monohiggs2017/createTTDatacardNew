@@ -1,19 +1,17 @@
 #!/bin/sh
-preselection='pt_1>40&&pt_2>40&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)'
+preselection='pt_1>50&&pt_2>50&&npv>0&&tightMuons==0&&tightElectrons==0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_1>0&&byTightIsolationMVArun2v1DBdR03oldDMwLT_2>0&&againstMuonLoose3_1>0&&againstMuonLoose3_2>0&&againstElectronVLooseMVA6_1>0&&againstElectronVLooseMVA6_2>0&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)'
 wselection='mt_1>0'
 #signalselection='met>100&&pth>100'
-signalselection='pth>50&&met>125&&m_vis<125&&dR<2.0'
+signalselection='pth>65&&met>105&&m_vis<125&&dR<2.0'
 qcdselection=$preselection
-trigselection='pt_1>40&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1' #only for MC
-trigselectiondata='pt_1>40&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&Flag_eeBadScFilter_fired==1&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1'
+trigselection='pt_1>50&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&BadMuonFilter==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1' #only for MC
+trigselectiondata='pt_1>50&&(HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0||HLT_DoubleMediumCombinedIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0)&&BadMuonFilter==1&&Flag_eeBadScFilter_fired==1&&Flag_HBHENoiseFilter_fired==1&&Flag_HBHENoiseIsoFilter_fired==1&&Flag_globalTightHalo2016Filter_fired==1&&Flag_goodVertices_fired==1&&Flag_EcalDeadCellTriggerPrimitiveFilter_fired==1&&EffCSVWeight0==1'
 #trigselectiondata='pt_1>35&&HLT_DoubleMediumIsoPFTau35_Trk1_eta2p1_Reg_v_fired>0'
 relaxedSelection=$preselection
-luminosity=36814. #pb
-#direc='/hdfs/store/user/laura/monohiggs_weighted1Copy/'
-direc='/nfs_scratch/laura/monohiggs_2/'
-#datadirec='/nfs_scratch/laura/monohiggs_DATA/'
+luminosity=35870. #pb
+direc='/nfs_scratch/laura/monohiggs_weighted/'
 datadirec=$direc
-zttScale=1.
+zttScale=1.16
 topWeight='topWeight'
 #topWeight=1.0
 bTagSF=1.0 #'EffCSVWeight0'
@@ -22,17 +20,17 @@ zWeight='__ZWEIGHT__'
 #zWeight='ZPt_reweight'
 vWeight='WPt_reweight'
 #vWeight=1.21
-tauID=0.98
+tauID=1.0
 qcdfactor=1.0
 bins=30
 
-#binning='binningLowStat=0.,20,40,60,90,120,150,180,210,250,300,350,400,450,500,600,700,1200,2000. binningHighStat=0.,20.,40.,60.,80.,100.,120.,140.,160.,180.,200.,250.,300.,350.' 
+binningPhil='binningLowStat=0.,20,40,60,90,120,150,180,200. binningHighStat=0.,20.,40.,60.,80.,100.,120.,140.,160.,180.,200.,250.,300.,350.' 
+
 binning='binningLowStat=0.,20,40,60,90,120,150,180,210,250,300,350,400,450,600.,2000. binningHighStat=0.,20.,40.,60.,80.,100.,120.,140.,160.,180.,200.,250.,300.,350.' 
-mkdir tauTauPlots 
 
-nohup MakeDataCardXTT channel='diTau' shifts='Tau,MET'  dataFile=$datadirec'tauDATA.root' qcdFile=$direc'tauDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETSHT.root' zhFile=$direc'smH125.root' zvvFile=$direc'Znunu.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWK.root' topFile=$direc'TT.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   qcdselection=$qcdselection luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=0.02 smhErr=0.3 vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075  bTagSF=$bTagSF 	muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=1,0,0,0 TTweight=$topWeight Zweight=$zWeight Vweight=$vWeight weight='__WEIGHT__*GENWEIGHT*puweight'  luminosity=$luminosity  variable='m_vis' bins=12 min=0 max=125 outputFile='tauTauPlots/tautau-m_vis.root' $binning & 
+mkdir datacards 
 
-nohup MakeDataCardXTT channel='diTau' shifts='Tau,MET'  dataFile=$datadirec'tauDATA.root' qcdFile=$direc'tauDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETSHT.root' zhFile=$direc'smH125.root' zvvFile=$direc'Znunu.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWK.root' topFile=$direc'TT.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   qcdselection=$qcdselection luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=0.02 smhErr=0.3 vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075  bTagSF=$bTagSF 	muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=1,0,0,0 TTweight=$topWeight Zweight=$zWeight Vweight=$vWeight weight='__WEIGHT__*GENWEIGHT*puweight'  luminosity=$luminosity  variable='mt12' bins=200 min=0 max=2000 outputFile='datacards/xtt_tt.inputs-13TeV-mt.root' $binning & 
+MakeDataCardXTT channel='diTau' blinding='mt12<200' shifts='Tau,MET,Jet'  dataFile=$datadirec'tauDATA.root' qcdFile=$direc'tauDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' zhFile=$direc'smH125.root' zvvFile=$direc'Znunu.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWK.root' topFile=$direc'TT2.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   qcdselection=$qcdselection luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=0.02 smhErr=0.3 vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075  bTagSF=$bTagSF 	muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=1,0,0,0 TTweight=$topWeight Zweight=$zWeight Vweight=$vWeight weight='__WEIGHT__*GENWEIGHT*puweight*EffCSVWeight0*trigweight_REDO*TAUID'  luminosity=$luminosity  variable='mt12' bins=200 min=0 max=2000 outputFile='datacards/xtt_tt.inputs-13TeV-mt_phil.root' $binningPhil > ttyield & 
+MakeDataCardXTT channel='diTau' blinding='mt12<210' shifts='Tau,MET,Jet'  dataFile=$datadirec'tauDATA.root' qcdFile=$direc'tauDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETS.root' zhFile=$direc'smH125.root' zvvFile=$direc'Znunu.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWK.root' topFile=$direc'TT2.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   qcdselection=$qcdselection luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=0.02 smhErr=0.3 vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075  bTagSF=$bTagSF 	muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=1,0,0,0 TTweight=$topWeight Zweight=$zWeight Vweight=$vWeight weight='__WEIGHT__*GENWEIGHT*puweight*EffCSVWeight0*trigweight_REDO*TAUID'  luminosity=$luminosity  variable='mt12' bins=200 min=0 max=2000 outputFile='datacards/xtt_tt.inputs-13TeV-mt.root' $binning > ttyield & 
 
-nohup MakeDataCardXTT channel='diTau' shifts='Tau,MET'  dataFile=$datadirec'tauDATA.root' qcdFile=$direc'tauDATA.root' zttFile=$direc'ZJETS.root' zllFile=$direc'ZJETS.root' wFile=$direc'WJETSHT.root' zhFile=$direc'smH125.root'  zvvFile=$direc'Znunu.root' vvFile=$direc'DiBoson.root' ewkFile=$direc'EWK.root' topFile=$direc'TT.root' preselection=$preselection  wselection=$wselection  relaxedSelection=$relaxedSelection trigselection=$trigselection trigselectiondata=$trigselectiondata  signalselection=$signalselection   qcdselection=$qcdselection luminosityErr=0.045 qcdfactor=$qcdfactor qcdfactorErr=0.02 smhErr=0.3 vvErr=0.3   zttScale=$zttScale zttScaleErr=0.033    wFactorErr=0.06    zjfterr=0.1  zlfterr=0.24   topErr=0.075  bTagSF=$bTagSF 	muID=1.00 muIDErr=0.01 eleID=0.0 eleIDErr=0.0 tauID=$tauID tauIDErr=0.06  dir=$direc''  bID=1.0  bIDErr=0.10  bMisID=1.0  bMisIDErr=0.17    bitmask=1,0,0,0 TTweight=$topWeight Zweight=$zWeight Vweight=$vWeight weight='__WEIGHT__*GENWEIGHT*puweight'  luminosity=$luminosity  variable='met' bins=200 min=0 max=2000 outputFile='datacards/xtt_tt.inputs-13TeV-met.root' $binning >outTTMET& 
 exit;

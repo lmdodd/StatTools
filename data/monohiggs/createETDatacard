@@ -4,11 +4,12 @@ wselection='mt_1>0'
 signalselection='pth>50&&met>125&&m_vis<125'
 qcdselection=$preselection
 trigselection='pt_1>27' #only for MC
-trigselectiondata='pt_1>27&&HLT_Ele25_WPTight_Gsf_v_fired>0&&nbtagNoSF==0'
+trigselectiondata='pt_1>27&&HLT_Ele25_eta2p1_WPTight_Gsf_v_fired>0&&nbtagNoSF==0'
 relaxedSelection=$preselection
 luminosity=36200. #pb
 #luminosity=2246. #pb
-direc='/nfs_scratch/laura/monohiggs_weighted/'
+#direc='/nfs_scratch/laura/monohiggs_weighted/'
+direc='/hdfs/store/user/laura/monohiggs_weightedNov28/'
 #direc='/hdfs/store/user/laura/monohiggs_weighted1Copy/'
 datadirec=$direc
 zttScale=1.

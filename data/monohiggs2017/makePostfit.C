@@ -48,7 +48,7 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
 	lumi_7TeV  = "4.9 fb^{-1}";  // default is "5.1 fb^{-1}"
 	lumi_sqrtS = "13 TeV";
 	if (json=="FuckMuons") lumi_13TeV = channel+"    2016, 3.4 fb^{-1}";
-	if (json=="Golden") lumi_13TeV = channel+"    2016, 12.9 fb^{-1}";
+	if (json=="Golden") lumi_13TeV = channel+"    2016, 35.9 fb^{-1}";
 
 	int iPeriod = 4;    // 1=7TeV, 2=8TeV, 3=7+8TeV, 7=7+8+13TeV 
 
@@ -122,33 +122,41 @@ void makeLTauStack(TString name,TString file,TString dir,int s,TString labelX,TS
 	plotPad->Draw();
 	plotPad->cd();
 
-
+    std::cout<<"here"<<std::endl;
 	TFile *f = new TFile(file);
 
 
+    std::cout<<"here 1"<<std::endl;
 	TH1F * data = (TH1F*)(f->Get(dir+"/data_obs"));
 	if (dndm) convertToDNDM(data);
 	applyDATAStyle(data);
 
+    std::cout<<"here 2"<<std::endl;
 	TH1F * QCD = (TH1F*)(f->Get(dir+"/QCD"));
 	if (dndm) convertToDNDM(QCD);
 	applyStyle(QCD,kMagenta-10,1,1001);
 
-	TH1F * ttbar = (TH1F*)(f->Get(dir+"/TT"));
+    std::cout<<"here 3"<<std::endl;
+	TH1F * ttbar = (TH1F*)(f->Get(dir+"/TTT"));
+    ttbar->Add((TH1F*)(f->Get(dir+"/TTJ")));
 	if (dndm) convertToDNDM(ttbar);
 	applyStyle(ttbar,kBlue-8,1,1001);
 
+    std::cout<<"here 4"<<std::endl;
 	TH1F * zvv = (TH1F*)(f->Get(dir+"/ZVV"));
 	if (dndm) convertToDNDM(zvv);
 	applyStyle(zvv,kRed-9,1,1001);
 
 
 
+    std::cout<<"here 5"<<std::endl;
 	TH1F * EWK = (TH1F*)(f->Get(dir+"/W"));
 	if (dndm) convertToDNDM(EWK);
 	applyStyle(EWK,kRed-6,1,1001);
 
-	TH1F * VV = (TH1F*)(f->Get(dir+"/VV"));
+    std::cout<<"here 6"<<std::endl;
+	TH1F * VV = (TH1F*)(f->Get(dir+"/VVJ"));
+    VV->Add((TH1F*)(f->Get(dir+"/VVT")));
 	if (dndm) convertToDNDM(VV);
 	applyStyle(VV,kMagenta+2,1,1001);
 
