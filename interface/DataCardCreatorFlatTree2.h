@@ -39,10 +39,10 @@ struct BkgOutput {
 
 
 
-class DataCardCreatorFlatTree {
+class DataCardCreatorFlatTree2 {
     public:
 
-        DataCardCreatorFlatTree(optutl::CommandLineParser parser) {
+        DataCardCreatorFlatTree2(optutl::CommandLineParser parser) {
             channel_ = parser.stringValue("channel");
             shifts_  = parser.stringVector("shifts");
             energy_ = parser.stringValue("energy");
@@ -69,11 +69,18 @@ class DataCardCreatorFlatTree {
                         else shiftsPostFix_.push_back("CMS_scale_"+shiftL+"_"+jetshifts_[j]+"_"+energy_);
                     }
                 }
-                else { 
+                else if(shifts_[i]=="Tau") { 
                     shiftsPostFix_.push_back("CMS_scale_"+shiftL+"_"+energy_);
                     for (unsigned int t=0;t<taushifts_.size();t++)
                         shiftsPostFix_.push_back("CMS_scale_"+shiftL+"_"+taushifts_[t]+"_"+energy_);
                 }
+                else if (shifts_[i] =="UES"){
+                    shiftsPostFix_.push_back("CMS_scale_met_unclustered_"+energy_);
+                }
+                else if (shifts_[i] =="CES"){
+                    shiftsPostFix_.push_back("CMS_scale_met_clustered_"+energy_);
+                }
+
             }
 
             std::cout<<"shiftsPostFix: ";
@@ -1050,6 +1057,14 @@ class DataCardCreatorFlatTree {
                     addHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i+3]+"Down",name); //Down 10 + Nom 0
 
                 }
+                else if (shifts_[i]=="UES"){
+                    tmpYield = makeHistogram(t,filelabel_+postfix,name+"_CMS_scale_met_unclustered_13TeVUp",tmpCut,scaleFactor,shifts_[i]+"Up",postfix);
+                    tmpYield = makeHistogram(t,filelabel_+postfix,name+"_CMS_scale_met_unclustered_13TeVDown",tmpCut,scaleFactor,shifts_[i]+"Down",postfix);
+                }
+                else if (shifts_[i]=="CES"){
+                    tmpYield = makeHistogram(t,filelabel_+postfix,name+"_CMS_scale_met_clustered_13TeVUp",tmpCut,scaleFactor,shifts_[i]+"Up",postfix);
+                    tmpYield = makeHistogram(t,filelabel_+postfix,name+"_CMS_scale_met_clustered_13TeVDown",tmpCut,scaleFactor,shifts_[i]+"Down",postfix);
+                }
 
                 if(!normUC){
                     scaleHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",yield.first/tmpYield.first);
@@ -1186,40 +1201,67 @@ class DataCardCreatorFlatTree {
                 if (variable_=="taupt") variable_="pt_2";
                 if (variable_=="m_vis_REDO") variable_="m_vis";
                 if (variableUnroll_=="taupt") variableUnroll_="pt_2";
+                if (variableUnroll_=="pttot_REDO") variableUnroll_="fullPt";
 
                 ReplaceStringInPlace(newCuts_, "taupt", "pt_2");
+                ReplaceStringInPlace(newCuts_, "pttot_REDO", "fullPt");
             }
             else if (isZL && prefix=="_0jet"){
-                if (variable_=="m_vis_REDO") 
-                {
+                if (variable_=="m_vis_REDO") {
                     variable_="m_vis_ZL1";
-                    if (shft=="TauUp") variable_="m_vis_ZL1_UP";
-                    if (shft=="TauDown") variable_="m_vis_ZL1_DOWN";
+                    if (shft=="TauUp"){
+                        variable_="m_vis_ZL1_UP";
+                        ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_UP");
+                        ReplaceStringInPlace(newCuts_, "taupt", "taupt_UP");
+                        ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1UP");
+                    }
+                    if (shft=="TauDown"){
+                        variable_="m_vis_ZL1_DOWN";
+                        ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_UP");
+                        ReplaceStringInPlace(newCuts_, "taupt", "taupt_UP");
+                        ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1UP");
+
+                    }
+                    if (shft=="JetUp"){
+                        std::string vbfvar = "vbfMass_"+jetshifts_[j]+"Up";
+                        std::string njvar = "njet_"+jetshifts_[j]+"Up";
+                        if (prefix=="_vbf") variableUnroll_=vbfvar;
+                        ReplaceStringInPlace(newCuts_, "njets", njvar);
+                        ReplaceStringInPlace(newCuts_, "vbfMass", vbfvar);
+                    }
+                    else if (shft=="JetDown"){
+                        std::string vbfvar = "vbfMass_"+jetshifts_[j]+"Down";
+                        std::string njvar = "njet_"+jetshifts_[j]+"Down";
+                        if (prefix=="_vbf") variableUnroll_=vbfvar;
+                        ReplaceStringInPlace(newCuts_, "njets", njvar);
+                        ReplaceStringInPlace(newCuts_, "vbfMass", vbfvar);
+                    }
+                    else if (shft=="UESUp"){
+                        ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_UES_UP");
+                        ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1UESUP");
+                    }
+                    else if (shft=="UESDown"){
+                        ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_UES_DOWN");
+                        ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1UESDOWN");
+                    }
+                    else if (shft=="CESUp"){
+                        ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_CES_UP");
+                        ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1CESUP");
+                    }
+                    else if (shft=="CESDown"){
+                        ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_CES_DOWN");
+                        ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1CESDOWN");
+                    }
                 }
 
-                if (shft=="JetUp"){
-                    std::string vbfvar = "vbfMass_"+jetshifts_[j]+"Up";
-                    std::string njvar = "njet_"+jetshifts_[j]+"Up";
-                    if (prefix=="_vbf") variableUnroll_=vbfvar;
-                    ReplaceStringInPlace(newCuts_, "njets", njvar);
-                    ReplaceStringInPlace(newCuts_, "vbfMass", vbfvar);
-                }
-                else if (shft=="JetDown"){
-                    std::string vbfvar = "vbfMass_"+jetshifts_[j]+"Down";
-                    std::string njvar = "njet_"+jetshifts_[j]+"Down";
-                    if (prefix=="_vbf") variableUnroll_=vbfvar;
-                    ReplaceStringInPlace(newCuts_, "njets", njvar);
-                    ReplaceStringInPlace(newCuts_, "vbfMass", vbfvar);
-                }
-            }
-
+            }//end 0 jet ZL
             else if (shft=="TauUp"){
                 if (variable_=="m_sv") variable_= "m_sv_UP";
                 if (variable_=="m_vis_REDO") variable_="m_vis_UP";
                 if (variableUnroll_=="taupt") variableUnroll_="taupt_UP";
-                if (variableUnroll_=="pt_sv") variableUnroll_="pt_sv_UP";
+                if (variableUnroll_=="pttot_REDO") variableUnroll_="pttot_UP";
 
-                ReplaceStringInPlace(newCuts_, "pt_sv", "pt_sv_UP");
+                ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_UP");
                 ReplaceStringInPlace(newCuts_, "taupt", "taupt_UP");
                 ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1UP");
             }
@@ -1227,9 +1269,9 @@ class DataCardCreatorFlatTree {
                 if (variable_=="m_sv") variable_= "m_sv_DOWN";
                 if (variable_=="m_vis_REDO")  variable_="m_vis_DOWN";
                 if ( variableUnroll_=="taupt") variableUnroll_="taupt_DOWN";
-                if (variableUnroll_=="pt_sv") variableUnroll_="pt_sv_DOWN";
+                if (variableUnroll_=="pttot_REDO") variableUnroll_="pttot_DOWN";
 
-                ReplaceStringInPlace(newCuts_, "pt_sv", "pt_sv_DOWN");
+                ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_DOWN");
                 ReplaceStringInPlace(newCuts_, "taupt", "taupt_DOWN");
                 ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1DOWN");
             }
@@ -1247,6 +1289,36 @@ class DataCardCreatorFlatTree {
                 ReplaceStringInPlace(newCuts_, "njets", njvar);
                 ReplaceStringInPlace(newCuts_, "vbfMass", vbfvar);
             }
+            else if (shft=="UESUp"){
+                if (variable_=="m_sv") variable_= "m_sv_UES_UP";
+                if (variableUnroll_=="pttot_REDO") variableUnroll_="pttot_UES_UP";
+
+                ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_UES_UP");
+                ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1UESUP");
+            }
+            else if (shft=="UESDown"){
+                if (variable_=="m_sv") variable_= "m_sv_UES_DOWN";
+                if (variableUnroll_=="pttot_REDO") variableUnroll_="pttot_UES_DOWN";
+
+                ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_UES_DOWN");
+                ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1UESDOWN");
+            }
+            else if (shft=="CESUp"){
+                if (variable_=="m_sv") variable_= "m_sv_CES_UP";
+                if (variableUnroll_=="pttot_REDO") variableUnroll_="pttot_CES_UP";
+
+                ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_CES_UP");
+                ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1CESUP");
+            }
+            else if (shft=="CESDown"){
+                if (variable_=="m_sv") variable_= "m_sv_CES_DOWN";
+                if (variableUnroll_=="pttot_REDO") variableUnroll_="pttot_CES_DOWN";
+
+                ReplaceStringInPlace(newCuts_, "pttot_REDO", "pttot_CES_DOWN");
+                ReplaceStringInPlace(newCuts_, "mtRecoil_1", "mtRecoil_1CESDOWN");
+            }
+
+
 
 
 
@@ -1674,6 +1746,7 @@ class DataCardCreatorFlatTree {
             private:
         std::string channel_;
         std::string filelabel_;
+        std::vector<std::string> metshifts_ = {"unclustered","clustered"};
         std::vector<std::string> taushifts_ = {"1prong","1prong1pizero","3prong"};
         std::vector<std::string> jetshifts_ ={"Total","RelativeBal"};
         //std::vector<std::string> jetshifts_ ={"Total","AbsoluteFlavMap"};
