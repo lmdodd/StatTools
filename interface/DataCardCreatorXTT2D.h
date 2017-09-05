@@ -5,6 +5,7 @@
 #include "TChain.h"
 #include "TH1.h"
 #include "TF1.h"
+#include "TH2.h"
 #include "PhysicsTools/FWLite/interface/CommandLineParser.h" 
 #include <math.h>
 #include <boost/algorithm/string.hpp>
@@ -41,10 +42,10 @@ struct BkgOutput {
 
 
 
-class DataCardCreatorXTT_MC {
+class DataCardCreatorXTT_2D {
     public:
 
-        DataCardCreatorXTT_MC(optutl::CommandLineParser parser) {
+        DataCardCreatorXTT_2D(optutl::CommandLineParser parser) {
             channel_ = parser.stringValue("channel");
             shifts_  = parser.stringVector("shifts");
             energy_ = parser.stringValue("energy");
@@ -82,8 +83,6 @@ class DataCardCreatorXTT_MC {
             vvFile_   = parser.stringValue("vvFile");
             zvvFile_   = parser.stringValue("zvvFile");
             ewkFile_   = parser.stringValue("ewkFile");
-            ewkFileW_   = parser.stringValue("ewkFileW");
-            ewkFileZ_   = parser.stringValue("ewkFileZ");
             topFile_  = parser.stringValue("topFile");
             qcdFile_  = parser.stringValue("qcdFile");
             dataFile_  = parser.stringValue("dataFile");
@@ -146,6 +145,7 @@ class DataCardCreatorXTT_MC {
 
             //read the basic varibale you will put in the histogram
             variable_      = parser.stringValue("variable");
+            variableUnroll_      = parser.stringValue("variableUnroll");
 
             //read the event weight for MC and embedded
             weight_        = parser.stringValue("weight");
@@ -379,31 +379,23 @@ class DataCardCreatorXTT_MC {
             std::cout<<"      DATA Yield: "<< output.DATA<<std::endl;
             std::cout<<"      DATA Selection: "<<preSelection<<"&&"<<trigSelectionDATA_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<std::endl; 
 
-            if(!runQCD(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection)){
-                std::cout<<"Error Creating QCD"<<std::endl;
-                return output;
-            }
-
-
 
             std::cout<<"Create DiBoson"<<std::endl;
-            std::cout<<"("<<preSelection<<"&&"<<trigSelection_<<"&&"<<osSignalSelection_<<"&&"<<categorySelection<<")*"<<weight_<<"*"<<VVweight_<<std::endl;
             //Create Diboson
             std::pair<float,float> vvYield      = createHistogramAndShifts(vvFile_,"VV",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+VVweight_),luminosity_*leg1Corr*tauID_,prefix);
 
             std::cout<<"      VV before error inflation: "<<vvYield.first<<std::endl;
+
             output.VV  = vvYield.first;
             output.dVV = vvYield.second;
 
-            std::cout<<"    ZZ weight: "<<VVweight_<<std::endl;
             std::pair<float,float> vvTShape      = createHistogramAndShifts(vvFile_,"VVT",("("+relaxedSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_),luminosity_*leg1Corr*tauID_,prefix);
             std::pair<float,float> vvTYield      = createHistogramAndShifts(vvFile_,"VVTTmp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_),luminosity_*leg1Corr*tauID_,prefix);
             renormalizeHistogram(filelabel_+prefix,"VVT",vvTYield.first);
 
-            std::cout<<"      VVT before error inflation: "<<vvTYield.first<<std::endl;
 
             std::pair<float,float> vvTYield_hightauptUp      = createHistogramAndShifts(vvFile_,"VVTTMP_CMS_xtt_highTauEffi_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_+"*(1+__highTauEffi__)"),luminosity_*leg1Corr*tauID_,prefix);
-            std::pair<float,float> vvTYield_hightauptDown      = createHistogramAndShifts(vvFile_,"VVTTMP_CMS_xtt_highTauEffi_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*(1-__highTauEffi__)"),luminosity_*leg1Corr*tauID_,prefix);
+            std::pair<float,float> vvTYield_hightauptDown      = createHistogramAndShifts(vvFile_,"VVTTMP_CMS_xtt_highTauEffi_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_+"*(1-__highTauEffi__)"),luminosity_*leg1Corr*tauID_,prefix);
 
             std::pair<float,float> vvTShape_hightauptUp      = createHistogramAndShifts(vvFile_,"VVT_CMS_xtt_highTauEffi_13TeVUp",("("+relaxedSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_+"*(1+__highTauEffi__)"),luminosity_*leg1Corr*tauID_,prefix);
             std::pair<float,float> vvTShape_hightauptDown      = createHistogramAndShifts(vvFile_,"VVT_CMS_xtt_highTauEffi_13TeVDown",("("+relaxedSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_+"*(1-__highTauEffi__)"),luminosity_*leg1Corr*tauID_,prefix);
@@ -411,7 +403,7 @@ class DataCardCreatorXTT_MC {
             renormalizeHistogram(filelabel_+prefix,"VVT_CMS_xtt_highTauEffi_13TeVUp",vvTYield_hightauptUp.first);
             renormalizeHistogram(filelabel_+prefix,"VVT_CMS_xtt_highTauEffi_13TeVDown",vvTYield_hightauptDown.first);
 
-            std::pair<float,float> vvTYield_WWNLOewkUp      = createHistogramAndShifts(vvFile_,"VVTTMP_CMS_xtt_WWNLOewk_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_+"*(1+WWNLOewk)"),luminosity_*leg1Corr*tauID_,prefix);
+          std::pair<float,float> vvTYield_WWNLOewkUp      = createHistogramAndShifts(vvFile_,"VVTTMP_CMS_xtt_WWNLOewk_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_+"*(1+WWNLOewk)"),luminosity_*leg1Corr*tauID_,prefix);
             std::pair<float,float> vvTYield_WWNLOewkDown      = createHistogramAndShifts(vvFile_,"VVTTMP_CMS_xtt_WWNLOewk_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_+"*(1-WWNLOewk)"),luminosity_*leg1Corr*tauID_,prefix);
 
             std::pair<float,float> vvTShape_WWNLOewkUp      = createHistogramAndShifts(vvFile_,"VVT_CMS_xtt_WWNLOewk_13TeVUp",("("+relaxedSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+ZTT_genTauSel_+")*"+weight_+"*"+VVweight_+"*(1+WWNLOewk)"),luminosity_*leg1Corr*tauID_,prefix);
@@ -432,11 +424,9 @@ class DataCardCreatorXTT_MC {
 
 
 
-
             std::pair<float,float> vvJYield      = createHistogramAndShifts(vvFile_,"VVJTmp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+Z_genFakeTau_+")*"+weight_+"*"+VVweight_),luminosity_*leg1Corr*tauID_,prefix);
             std::pair<float,float> vvJShape      = createHistogramAndShifts(vvFile_,"VVJ",("("+relaxedSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+Z_genFakeTau_+")*"+weight_+"*"+VVweight_),luminosity_*leg1Corr*tauID_,prefix);
             renormalizeHistogram(filelabel_+prefix,"VVJ",vvJYield.first);
-            std::cout<<"      VVJ before error inflation: "<<vvJYield.first<<std::endl;
 
             std::pair<float,float> vvJYield_jetToTauFakeUp      = createHistogramAndShifts(vvFile_,"VVJTmp_CMS_xtt_jetToTauFake_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+Z_genFakeTau_+")*"+weight_+"*"+VVweight_+"*fakeTauEffiUp"),luminosity_*leg1Corr*tauID_,prefix);
             std::pair<float,float> vvJYield_jetToTauFakeDown      = createHistogramAndShifts(vvFile_,"VVJTmp_CMS_xtt_jetToTauFake_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+Z_genFakeTau_+")*"+weight_+"*"+VVweight_+"*fakeTauEffiDown"),luminosity_*leg1Corr*tauID_,prefix);
@@ -447,6 +437,7 @@ class DataCardCreatorXTT_MC {
 
             renormalizeHistogram(filelabel_+prefix,"VVJ_CMS_xtt_jetToTauFake_13TeVUp",vvJShape_jetToTauFakeUp.first);
             renormalizeHistogram(filelabel_+prefix,"VVJ_CMS_xtt_jetToTauFake_13TeVDown",vvJShape_jetToTauFakeDown.first);
+
 
             std::pair<float,float> vvJYield_WWNLOewkUp      = createHistogramAndShifts(vvFile_,"VVJTmp_CMS_xtt_WWNLOewk_13TeVUp",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+Z_genFakeTau_+")*"+weight_+"*"+VVweight_+"*(1+WWNLOewk)"),luminosity_*leg1Corr*tauID_,prefix);
             std::pair<float,float> vvJYield_WWNLOewkDown      = createHistogramAndShifts(vvFile_,"VVJTmp_CMS_xtt_WWNLOewk_13TeVDown",("("+preSelection+"&&"+trigSelection_+"&&"+osSignalSelection_+"&&"+categorySelection+"&&"+Z_genFakeTau_+")*"+weight_+"*"+VVweight_+"*(1-WWNLOewk)"),luminosity_*leg1Corr*tauID_,prefix);
@@ -567,6 +558,11 @@ class DataCardCreatorXTT_MC {
                 return output;
             }
             //Create QCD
+            if(!runQCD(preSelection, prefix, zShape, topExtrap, output, categorySelection, relaxedSelection)){
+                std::cout<<"Error Creating QCD"<<std::endl;
+                return output;
+            }
+
 
 
             std::cout<<"Create TOP"<<std::endl;
@@ -591,26 +587,19 @@ class DataCardCreatorXTT_MC {
             std::cout<<"Does VV have negative bins?"<<std::endl;
             FixNegativeBinsMC(filelabel_+prefix,"VV",true);
             FixNegativeBinsMC(filelabel_+prefix,"VVJ",true);
-            FixEmptyBins(filelabel_+prefix,"VVJ");
             FixNegativeBinsMC(filelabel_+prefix,"VVT",true);
-            FixEmptyBins(filelabel_+prefix,"VVT");
             std::cout<<"Does ZTT have negative bins?"<<std::endl;
             FixNegativeBinsMC(filelabel_+prefix,"ZTT",true);
-            FixEmptyBins(filelabel_+prefix,"ZTT");
             std::cout<<"Does SMH have negative bins?"<<std::endl;
             FixNegativeBinsMC(filelabel_+prefix,"SMH",true);
-            FixEmptyBins(filelabel_+prefix,"SMH");
             std::cout<<"Does ZVV have negative bins?"<<std::endl;
             FixNegativeBinsMC(filelabel_+prefix,"ZVV",true);
             std::cout<<"Does W have negative bins?"<<std::endl;
             FixNegativeBinsMC(filelabel_+prefix,"W",true);
-            FixEmptyBins(filelabel_+prefix,"W");
             std::cout<<"Does TTT have negative bins?"<<std::endl;
             FixNegativeBinsMC(filelabel_+prefix,"TTT",true);
-            FixEmptyBins(filelabel_+prefix,"TTT");
             std::cout<<"Does TTJ have negative bins?"<<std::endl;
             FixNegativeBinsMC(filelabel_+prefix,"TTJ",true);
-            FixEmptyBins(filelabel_+prefix,"TTJ");
             std::cout<<"Does TT_Up have negative bins?"<<std::endl;
             FixNegativeBins(filelabel_+prefix, "TT_CMS_xtt_ttbarShape_13TeVUp", true);
             FixNegativeBins(filelabel_+prefix, "TTT_CMS_xtt_ttbarShape_13TeVUp", true);
@@ -619,11 +608,6 @@ class DataCardCreatorXTT_MC {
             FixNegativeBins(filelabel_+prefix, "TT_CMS_xtt_ttbarShape_13TeVDown", true);
             FixNegativeBins(filelabel_+prefix, "TTT_CMS_xtt_ttbarShape_13TeVDown", true);
             FixNegativeBins(filelabel_+prefix, "TTJ_CMS_xtt_ttbarShape_13TeVDown", true);
-
-            FixEmptyBins(filelabel_+prefix,"EWK");
-            FixEmptyBins(filelabel_+prefix,"ZTT");
-            FixEmptyBins(filelabel_+prefix,"ZJ");
-            FixEmptyBins(filelabel_+prefix,"ZL");
 
             std::cout<<"Does ZTT_Up have negative bins?"<<std::endl;
             FixNegativeBins(filelabel_+prefix, "ZTT_CMS_xtt_dyShape_13TeVUp", true);
@@ -971,14 +955,6 @@ class DataCardCreatorXTT_MC {
             float leg1Corr=1.0;
             if(muID_!=0) leg1Corr*=muID_;
             if(eleID_!=0) leg1Corr*=eleID_;
-            std::string genTauSel_="gen_match_2==5";
-            std::string genTauRej_="gen_match_2!=5";
-
-            if (channel_=="diTau"){
-                genTauSel_ = "gen_match_2==5&&gen_match_1==5";
-                genTauRej_  = "!(gen_match_2==5&&gen_match_1==5)";
-            }
-
 
             std::cout<<"RElaxed QCD Data Selections= "<<"("<<relaxedSelection_<<"&&"<<trigSelectionDATA_<<"&&"<<ssSignalSelection_<<"&&"<<categorySelection<<")"<<std::endl;
             std::pair<float,float> dataQCDShape = createHistogramAndShiftsQCD(dataFile_,"QCD","("+relaxedSelection+"&&"+trigSelectionDATA_+"&&"+ssSignalSelection_+"&&"+categorySelection+")",scaleUp_,prefix); 
@@ -1009,12 +985,7 @@ class DataCardCreatorXTT_MC {
             std::pair<float,float> TopQCD = createHistogramAndShifts(topFile_,"TopQCDYield","("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_,luminosity_,prefix); 
             printf("      TOP events in SS Signal QCD sideband region = %f + %f \n",TopQCD.first,TopQCD.second);
             std::pair<float,float> VVQCD       = createHistogramAndShifts(vvFile_,"VVQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_+"*"+VVweight_),luminosity_,prefix);
-            //genTauSel_
-            std::pair<float,float> VVTQCD       = createHistogramAndShifts(vvFile_,"VVTQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+"&&"+genTauSel_+")*"+weight_+"*"+VVweight_),luminosity_,prefix);
-            std::pair<float,float> VVJQCD       = createHistogramAndShifts(vvFile_,"VVJQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+"&&"+genTauRej_+")*"+weight_+"*"+VVweight_),luminosity_,prefix);
             printf("      VV events in SS Signal QCD sideband region = %f + %f \n",VVQCD.first,VVQCD.second);
-            printf("      VVT events in SS Signal QCD sideband region = %f + %f \n",VVTQCD.first,VVTQCD.second);
-            printf("      VVJ events in SS Signal QCD sideband region = %f + %f \n",VVJQCD.first,VVJQCD.second);
 
             std::pair<float,float> SMHQCD       = createHistogramAndShifts(zhFile_,"SMHQCDYield",("("+preSelection+"&&"+trigSelection_+"&&"+ssSignalSelection_+"&&"+categorySelection+")*"+weight_),luminosity_,prefix);
             printf("      SMH events in SS Signal QCD sideband region = %f + %f \n",SMHQCD.first,SMHQCD.second);
@@ -1093,7 +1064,7 @@ class DataCardCreatorXTT_MC {
 
             //if(shifts_.size()>0){
             //    qcdSyst(filelabel_, prefix, "QCD", 1.2, 0.2);
-           //}
+            //}
 
             std::cout<<"QCDSystematics made"<<std::endl;
             return true;
@@ -1149,7 +1120,7 @@ class DataCardCreatorXTT_MC {
             std::cout<<"In AddHistogramZTT"<<std::endl;
             addHistogram(folder,histo1,histo2);
             for(unsigned int i=0;i<shifts_.size();++i) {
-                TH1F * h1 =(TH1F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Up").c_str());
+                TH2F * h1 =(TH2F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Up").c_str());
                 if(h1!=0) 
                 {
                     addHistogram(folder,(histo1+"_"+shiftsPostFix_[i]+"Up").c_str(),histo2);
@@ -1158,7 +1129,7 @@ class DataCardCreatorXTT_MC {
                 {
                     printf("Shift not found = %s\n",(folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Up").c_str());
                 }
-                TH1F * h2 =(TH1F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Down").c_str());
+                TH2F * h2 =(TH2F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Down").c_str());
                 if(h2!=0)
                 {
                     addHistogram(folder,(histo1+"_"+shiftsPostFix_[i]+"Down").c_str(),histo2);
@@ -1182,9 +1153,9 @@ class DataCardCreatorXTT_MC {
 
             yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor);
 
+
             //now the shifts
             std::pair<float,float> tmpYield;
-            if (name!="data_obs")
             for(unsigned int i=0;i<shifts_.size();++i) {
 
                 std::string weightUp=weight_;
@@ -1199,14 +1170,15 @@ class DataCardCreatorXTT_MC {
                     ts= (TTree*)f->Get((channel_+"EventTree/eventTree").c_str());
                     td= (TTree*)f->Get((channel_+"EventTree/eventTree").c_str());
                 }
-                //else{
-                //    ts= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Up/eventTree").c_str());
-                //    td= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Down/eventTree").c_str());
-                // }
+                else{
+                    ts= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Up/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTree"+shifts_[i]+"Down/eventTree").c_str());
+                }
 
 
                 if(ts!=0) {
                     tmpYield = makeHistogram(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor,shifts_[i]+"Up");
+
                     if(!normUC)
                         scaleHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",yield.first/tmpYield.first);
 
@@ -1219,6 +1191,57 @@ class DataCardCreatorXTT_MC {
 
                 }
             }
+            f->Close();
+            return yield;
+        }
+
+
+        std::pair<float,float> createHistogramAndShiftsFinal(std::string file,std::string name, std::string cut,float scaleFactor = 1, std::string postfix = "",bool normUC  = true, bool keys=false,bool ShapeUncertainty=true) {
+            TFile *f  = new TFile(file.c_str());
+            if(f==0) printf("Not file Found\n");
+            //get the nominal tree first
+            TTree *t= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
+            if(t==0) printf("No Tree Found in file %s\n",file.c_str());
+
+            std::pair<float,float> yield;
+
+            yield =makeHistogram(t,filelabel_+postfix,name,cut,scaleFactor);
+
+            //now the shifts
+            std::pair<float,float> tmpYield;
+            for(unsigned int i=0;i<shifts_.size();++i) {
+                TTree *ts=0;
+                TTree *td=0;
+                if (shifts_[i]=="MET"||shifts_[i]=="Jet"){
+                    ts= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTreeFinal/eventTree").c_str());
+
+                }
+                else{
+                    ts= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Up/eventTree").c_str());
+                    td= (TTree*)f->Get((channel_+"EventTreeFinal"+shifts_[i]+"Down/eventTree").c_str());
+                }
+
+                if(ts!=0) {
+                    tmpYield = makeHistogram(ts,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",cut,scaleFactor,shifts_[i]+"Up");
+
+                    if(!normUC)
+                        scaleHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Up",yield.first/tmpYield.first);
+
+                }
+
+                if(td!=0) {
+                    tmpYield = makeHistogram(td,filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",cut,scaleFactor,shifts_[i]+"Down");
+
+                    if(!normUC)
+                        scaleHistogram(filelabel_+postfix,name+"_"+shiftsPostFix_[i]+"Down",yield.first/tmpYield.first);
+
+                }
+
+            }
+            if (!(name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"))
+                FixNegativeBinsMC(filelabel_+postfix,name,false);
+
             f->Close();
             return yield;
         }
@@ -1247,6 +1270,11 @@ class DataCardCreatorXTT_MC {
             return yield;
         }
 
+        void setBinning2D(const std::vector<double>& binning, const std::vector<double>& binningUnroll) {
+            binning_ = binning;
+            binningUnroll_ = binningUnroll;
+        }
+
 
         void setBinning(const std::vector<double>& binning) {
             binning_ = binning;
@@ -1265,14 +1293,14 @@ class DataCardCreatorXTT_MC {
         }
 
         void printIntegral(std::string folder,std::string histo){
-            TH1F * h =(TH1F*) fout_->Get((folder+"/"+histo).c_str());
+            TH2F * h =(TH2F*) fout_->Get((folder+"/"+histo).c_str());
             std::cout<<"Integral of "<<folder<<" and "<<histo<<" is: "<<h->Integral()<<std::endl;
         }
 
         void renormalizeHistogram(std::string folder, std::string histo, float yield)
         {
 
-            TH1F * h =(TH1F*) fout_->Get((folder+"/"+histo).c_str());
+            TH2F * h =(TH2F*) fout_->Get((folder+"/"+histo).c_str());
             double scaleFactor = 1.0;
             if (h->Integral()>0)
                 scaleFactor = yield/h->Integral();
@@ -1285,7 +1313,7 @@ class DataCardCreatorXTT_MC {
             h->Write(h->GetName(),TObject::kOverwrite);
 
             for(unsigned int i=0;i<shifts_.size();++i) {
-                TH1F * hh =(TH1F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Up").c_str());
+                TH2F * hh =(TH2F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Up").c_str());
                 if(hh!=0) {
                     hh->Scale(scaleFactor);
                     fout_->cd(folder.c_str());
@@ -1297,7 +1325,7 @@ class DataCardCreatorXTT_MC {
                 }
 
 
-                TH1F * hhh =(TH1F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Down").c_str());
+                TH2F * hhh =(TH2F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Down").c_str());
                 if(hhh!=0) {
                     hhh->Scale(scaleFactor);
                     fout_->cd(folder.c_str());
@@ -1328,13 +1356,12 @@ class DataCardCreatorXTT_MC {
 
             if(fout_->Get(folder.c_str())==0)
                 fout_->mkdir(folder.c_str());
-            TH1F *h=0;
+            TH2F *h=0;
 
             TString variableOld_=variable_;
             std::string newCuts_=cut;
 
-            std::cout<<"name is: "<<name<<std::endl;
-            if (!(name.find("data_obs")||name=="QCD" )){
+            if(!(name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")){
                 if (shift=="METUp"){
                     if (variable_=="mt12") variable_="pfmtEnUp";
                     else if (variable_=="met") variable_="pfmetEnUp";
@@ -1373,27 +1400,31 @@ class DataCardCreatorXTT_MC {
                     ReplaceStringInPlace(newCuts_, "pt_1", "taupt2REDO_DOWN"); //OPPOSITE Ok for ltau
                     ReplaceStringInPlace(newCuts_, "pt_2", "tauptREDO_DOWN"); //OPPOSITE Ok for ltau
                 }
+
             }
-
             /*
-
-               if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&(variable_=="pfmtEnUp"||variable_=="pfmtEnDown"||variable_=="pfmtJetUp"||variable_=="pfmtJetDown")||){
+               if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&(variable_=="pfmtEnUp"||variable_=="pfmtEnDown"||variable_=="pfmtJetUp"||variable_=="pfmtJetDown")){
                variable_="mt12";
                }
 
                if((name=="data_obs"||name=="data_obs_ss"||name=="data_obs_sdb"||name=="data_obs_ss_sdb"||name=="QCD")&&(variable_=="pfmetEnUp"||variable_=="pfmetEnDown")){
                variable_="met";
                }
+               */
 
-*/
-
+            //binning_ binningX
+            //binning_ binningY
+            //double xbins[4]={0,70,130,400};
+            //double ybins[4]={0,50,100,400};
+            //TH2F *h = new TH2F("oldrebin",old->GetTitle(),nx,xbins,ny,ybins);
             if(binning_.size()==0)
-                h= new TH1F(name.c_str(),name.c_str(),bins_,min_,max_);
-            else 
-                h = new TH1F(name.c_str(),name.c_str(),binning_.size()-1,&binning_[0]);
+                h=new TH2F(name.c_str(),name.c_str(),bins_,min_,max_,bins_,min_,max_);
+            else
+                h=new TH2F(name.c_str(),name.c_str(),binning_.size()-1,&binning_[0],binningUnroll_.size()-1,&binningUnroll_[0]);
             h->Sumw2();
 
-            tree->Draw((variable_+">>"+name).c_str(),newCuts_.c_str());
+            tree->Draw((variableUnroll_+":"+variable_+">>"+name).c_str(),cut.c_str());
+            //tree->Draw((variable_+":"+variableUnroll_+">>"+name).c_str(),cut.c_str());
 
             variable_=variableOld_;//
 
@@ -1410,7 +1441,7 @@ class DataCardCreatorXTT_MC {
             float yield = h->IntegralAndError(1,h->GetNbinsX(),error,"");
             //float yield = h->IntegralAndError(0,h->GetNbinsX()+1,error,"");
             if(yield == 0){
-                h->SetBinContent(1,0.00001);
+                h->SetBinContent(1,1,0.00001);
             }
             h->ClearUnderflowAndOverflow();
             h->Write(h->GetName(),TObject::kOverwrite);
@@ -1422,6 +1453,7 @@ class DataCardCreatorXTT_MC {
         void close() {
             fout_->Close();
         }
+
 
 
 
@@ -1445,25 +1477,31 @@ class DataCardCreatorXTT_MC {
 
             if(fout_->Get(folder.c_str())==0)
                 fout_->mkdir(folder.c_str());
-            TH1F *h=0;
+            TH2F *h=0;
 
+            //binning_ binningX
+            //binning_ binningY
+            //double xbins[4]={0,70,130,400};
+            //double ybins[4]={0,50,100,400};
+            //TH2F *h = new TH2F("oldrebin",old->GetTitle(),nx,xbins,ny,ybins);
             if(binning_.size()==0)
-                h= new TH1F(name.c_str(),name.c_str(),bins_,min_,max_);
-            else 
-                h = new TH1F(name.c_str(),name.c_str(),binning_.size()-1,&binning_[0]);
+                h=new TH2F(name.c_str(),name.c_str(),bins_,min_,max_,bins_,min_,max_);
+            else
+                h=new TH2F(name.c_str(),name.c_str(),binning_.size()-1,&binning_[0],binningUnroll_.size()-1,&binningUnroll_[0]);
             h->Sumw2();
 
-
-            tree->Draw((variable_+"*"+shift+">>"+name).c_str(),cut.c_str());
+            tree->Draw((variableUnroll_+":"+variable_+"*"+shift+">>"+name).c_str(),cut.c_str());
+            //tree->Draw((variable_+"*"+shift+":"+variableUnroll_+">>"+name).c_str(),cut.c_str());
 
             h->Scale(scaleFactor);
+
             //     printf("Created Histogram %s with entries=%f\n",name.c_str(),h->Integral());
             fout_->cd(folder.c_str());
 
             Double_t error=0.0;
             float yield = h->IntegralAndError(1,h->GetNbinsX(),error,"");
             if(yield == 0){
-                h->SetBinContent(1,0.00001);
+                h->SetBinContent(1,1,0.00001);
             }
             h->Write(h->GetName(),TObject::kOverwrite);
 
@@ -1472,14 +1510,14 @@ class DataCardCreatorXTT_MC {
 
         void scaleHistogram(std::string folder, std::string histo, float scaleFactor)
         {
-            TH1F * h =(TH1F*) fout_->Get((folder+"/"+histo).c_str());
+            TH2F * h =(TH2F*) fout_->Get((folder+"/"+histo).c_str());
             h->Scale(scaleFactor);
             fout_->cd(folder.c_str());
             h->Write(h->GetName(),TObject::kOverwrite);
             fout_->cd();
 
             for(unsigned int i=0;i<shifts_.size();++i) {
-                TH1F * hh =(TH1F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Up").c_str());
+                TH2F * hh =(TH2F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Up").c_str());
                 if(hh!=0) {
                     hh->Scale(scaleFactor);
                     fout_->cd(folder.c_str());
@@ -1487,7 +1525,7 @@ class DataCardCreatorXTT_MC {
                     fout_->cd();
                 }
 
-                TH1F * hhh =(TH1F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Down").c_str());
+                TH2F * hhh =(TH2F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Down").c_str());
                 if(hhh!=0) {
                     hhh->Scale(scaleFactor);
                     fout_->cd(folder.c_str());
@@ -1610,9 +1648,9 @@ class DataCardCreatorXTT_MC {
 
         void mergeHistogram(std::string folder, std::string histo1, std::string histo2, std::string newName)
         {
-            TH1F * h1 =(TH1F*) fout_->Get((folder+"/"+histo1).c_str());
-            TH1F * h2 =(TH1F*) fout_->Get((folder+"/"+histo2).c_str());
-            TH1F *hNew =(TH1F*) h1->Clone(TString(newName));
+            TH2F * h1 =(TH2F*) fout_->Get((folder+"/"+histo1).c_str());
+            TH2F * h2 =(TH2F*) fout_->Get((folder+"/"+histo2).c_str());
+            TH2F *hNew =(TH2F*) h1->Clone(TString(newName));
             hNew->Add(h2,1.);
 
             for(int i=1;i<h1->GetNbinsX();++i){
@@ -1635,27 +1673,26 @@ class DataCardCreatorXTT_MC {
 
         }
 
-        void subtractHistogramShifts(std::string folder, std::string histo1, std::string histo2, bool floor=true)
+        void subtractHistogramShifts(std::string folder, std::string histo1, std::string histo2)
         {
-            TH1F * h1 =(TH1F*) fout_->Get((folder+"/"+histo1).c_str());
-            TH1F * h2 =(TH1F*) fout_->Get((folder+"/"+histo2).c_str());
+            TH2F * h1 =(TH2F*) fout_->Get((folder+"/"+histo1).c_str());
+            TH2F * h2 =(TH2F*) fout_->Get((folder+"/"+histo2).c_str());
             h1->Add(h2,-1.);
 
-            if (floor){
-                for(int i=1;i<h1->GetNbinsX();++i){
-                    if(h1->GetBinContent(i)<0){
-                        h1->SetBinContent(i,0.00001);
-                        h1->SetBinError(i,1.0);
-                    }
-                }
-            }
-
+            /*
+               for(int i=1;i<h1->GetNbinsX();++i){
+               if(h1->GetBinContent(i)<0){
+               h1->SetBinContent(i,0.00001);
+               h1->SetBinError(i,1.0);
+               }
+               }
+               */
             for(unsigned int i=0;i<shifts_.size();++i) {
-                TH1F * hhu1 =(TH1F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Up").c_str());
-                TH1F * hhu2 =(TH1F*) fout_->Get((folder+"/"+histo2+"_"+shiftsPostFix_[i]+"Up").c_str());
+                TH2F * hhu1 =(TH2F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Up").c_str());
+                TH2F * hhu2 =(TH2F*) fout_->Get((folder+"/"+histo2+"_"+shiftsPostFix_[i]+"Up").c_str());
 
-                TH1F * hhd1=(TH1F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Down").c_str());
-                TH1F * hhd2 =(TH1F*) fout_->Get((folder+"/"+histo2+"_"+shiftsPostFix_[i]+"Down").c_str());
+                TH2F * hhd1=(TH2F*) fout_->Get((folder+"/"+histo1+"_"+shiftsPostFix_[i]+"Down").c_str());
+                TH2F * hhd2 =(TH2F*) fout_->Get((folder+"/"+histo2+"_"+shiftsPostFix_[i]+"Down").c_str());
                 hhu1->Add(hhu2,-1.);
                 hhd1->Add(hhd2,-1.);
                 fout_->cd(folder.c_str());
@@ -1671,8 +1708,8 @@ class DataCardCreatorXTT_MC {
 
         void subtractHistogram(std::string folder, std::string histo1, std::string histo2, bool floor=true)
         {
-            TH1F * h1 =(TH1F*) fout_->Get((folder+"/"+histo1).c_str());
-            TH1F * h2 =(TH1F*) fout_->Get((folder+"/"+histo2).c_str());
+            TH2F * h1 =(TH2F*) fout_->Get((folder+"/"+histo1).c_str());
+            TH2F * h2 =(TH2F*) fout_->Get((folder+"/"+histo2).c_str());
             h1->Add(h2,-1.);
 
             if(floor)
@@ -1691,8 +1728,8 @@ class DataCardCreatorXTT_MC {
 
         void addHistogram(std::string folder, std::string histo1, std::string histo2)
         {
-            TH1F * h1 =(TH1F*) fout_->Get((folder+"/"+histo1).c_str());
-            TH1F * h2 =(TH1F*) fout_->Get((folder+"/"+histo2).c_str());
+            TH2F * h1 =(TH2F*) fout_->Get((folder+"/"+histo1).c_str());
+            TH2F * h2 =(TH2F*) fout_->Get((folder+"/"+histo2).c_str());
             h1->Add(h2,1.);
 
             fout_->cd(folder.c_str());
@@ -1701,8 +1738,8 @@ class DataCardCreatorXTT_MC {
 
         void renameHist(std::string folder, std::string name ,std::string histo1)///folder, new name, old name
         {
-            TH1F * h1 =(TH1F*) fout_->Get((folder+"/"+histo1).c_str());
-            TH1F * h2 = (TH1F*) h1->Clone(TString(name));
+            TH2F * h1 =(TH2F*) fout_->Get((folder+"/"+histo1).c_str());
+            TH2F * h2 = (TH2F*) h1->Clone(TString(name));
 
             h2->Write(h2->GetName(),TObject::kOverwrite);
         }
@@ -1710,7 +1747,7 @@ class DataCardCreatorXTT_MC {
 
         void FixBinsToZero(std::string folder, std::string histo, bool verbose=false) {
 
-            TH1F * hist =(TH1F*) fout_->Get((folder+"/"+histo).c_str());
+            TH2F * hist =(TH2F*) fout_->Get((folder+"/"+histo).c_str());
             unsigned bins = hist->GetNbinsX();
             for (unsigned i = 1; i <= bins; ++i) {
                 hist->SetBinContent(i,0.000001);
@@ -1723,7 +1760,7 @@ class DataCardCreatorXTT_MC {
 
         void FixNegativeBins(std::string folder, std::string histo, bool verbose=false) {
 
-            TH1F * hist =(TH1F*) fout_->Get((folder+"/"+histo).c_str());
+            TH2F * hist =(TH2F*) fout_->Get((folder+"/"+histo).c_str());
             unsigned bins = hist->GetNbinsX();
             for (unsigned i = 1; i <= bins; ++i) {
                 if (hist->GetBinContent(i) < 0){
@@ -1741,12 +1778,12 @@ class DataCardCreatorXTT_MC {
             FixNegativeBins(folder, histo, verbose);
 
             for(unsigned int i=0;i<shifts_.size();++i) {
-                TH1F * hh =(TH1F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Up").c_str());
+                TH2F * hh =(TH2F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Up").c_str());
                 if(hh!=0) {
                     FixNegativeBins(folder, (histo+"_"+shiftsPostFix_[i]+"Up").c_str(), verbose);
                 }
 
-                TH1F * hhh =(TH1F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Down").c_str());
+                TH2F * hhh =(TH2F*) fout_->Get((folder+"/"+histo+"_"+shiftsPostFix_[i]+"Down").c_str());
                 if(hhh!=0) {
                     FixNegativeBins(folder, (histo+"_"+shiftsPostFix_[i]+"Down").c_str(), verbose);
                 }
@@ -1755,9 +1792,9 @@ class DataCardCreatorXTT_MC {
         }
 
 
-        void FixEmptyBins(std::string folder, std::string histo, bool is_qcd=false, bool verbose=true) {
+        void FixEmptyBins(std::string folder, std::string histo, bool is_qcd, bool verbose=false) {
 
-            TH1F * hist =(TH1F*) fout_->Get((folder+"/"+histo).c_str());
+            TH2F * hist =(TH2F*) fout_->Get((folder+"/"+histo).c_str());
             unsigned bins = hist->GetNbinsX();
             unsigned first_populated = 0;
             unsigned last_populated = 0;
@@ -1772,8 +1809,6 @@ class DataCardCreatorXTT_MC {
             if (verbose) std::cout << "First populated bin: " << first_populated << std::endl;
             if (verbose) std::cout << "Last populated bin: " << last_populated << std::endl;
             double av_weight = ( hist->Integral() / double(hist->GetEntries()));
-            double last_weight = hist->GetBinContent(last_populated);
-            double last_error = hist->GetBinError(last_populated);
             if (!is_qcd) {
                 if (verbose) std::cout << "Integral: " << hist->Integral() << std::endl;
                 if (verbose) std::cout << "Entries: " << hist->GetEntries() << std::endl;
@@ -1785,19 +1820,11 @@ class DataCardCreatorXTT_MC {
                     if (is_qcd) {
                         hist->SetBinError(i, 1.0);
                     } else {
-                        if (verbose) std::cout << "Set weight to 1.8 * av_weight = " << (1.8 * av_weight) << std::endl;
-                        hist->SetBinError(i, 1.8*av_weight);    
+                        if (verbose) std::cout << "Set weight to 1.0 * av_weight = " << (1.0 * av_weight) << std::endl;
+                        hist->SetBinError(i, av_weight);    
                     }
                 }
             }
-
-            for (unsigned i = last_populated+1; i < bins+1; ++i) {
-                if (hist->GetBinContent(i) == 0.) {
-                    if (verbose) std::cout << "Bin " << i << " is empty!" << std::endl;
-                        hist->SetBinError(i,last_error);
-                }
-            }
-
             hist->Write(hist->GetName(),TObject::kOverwrite);
         }
 
@@ -1811,9 +1838,9 @@ class DataCardCreatorXTT_MC {
             if(channel == "diTau")
                 chan = "tt";
 
-            TH1F * h1 =(TH1F*) fout_->Get((channel+prefix+"/"+histo1).c_str());
-            TH1F * h2 = (TH1F*)h1->Clone(TString(histo1+std::string("_CMS_xtt_QCDShape_"+chan+prefix+"_"+energy_+"Up")));
-            TH1F * h3 = (TH1F*)h1->Clone(TString(histo1+std::string("_CMS_xtt_QCDShape_"+chan+prefix+"_"+energy_+"Down")));
+            TH2F * h1 =(TH2F*) fout_->Get((channel+prefix+"/"+histo1).c_str());
+            TH2F * h2 = (TH2F*)h1->Clone(TString(histo1+std::string("_CMS_xtt_QCDShape_"+chan+prefix+"_"+energy_+"Up")));
+            TH2F * h3 = (TH2F*)h1->Clone(TString(histo1+std::string("_CMS_xtt_QCDShape_"+chan+prefix+"_"+energy_+"Down")));
             std::cout << "Channel label is " << chan << std::endl;
             float x,y;
             float cUp = corr+unc;
@@ -1860,8 +1887,6 @@ class DataCardCreatorXTT_MC {
         std::string vvFile_;
         std::string zvvFile_;
         std::string ewkFile_;
-        std::string ewkFileW_;
-        std::string ewkFilez_;
         std::string topFile_;
         std::string qcdFile_;
         std::string dataFile_;
@@ -1908,10 +1933,12 @@ class DataCardCreatorXTT_MC {
 
         //histogram options
         std::string variable_;
+        std::string variableUnroll_;
         int bins_;
         float min_;
         float max_;
         std::vector<double> binning_;
+        std::vector<double> binningUnroll_;
         std::string weight_;
         std::string Zweight_;
         std::string Vweight_;
@@ -1930,6 +1957,7 @@ class DataCardCreatorXTT_MC {
         float wFactorErr_;
         float qcdFactor_;
         float qcdFactorErr_;
+
 
         std::string dir_;
 
